@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     print('Visited localhost:3000')
-    return 'Hello, World!'
+    return 'Hello, Swolemate!'
 
 if __name__ == '__main__':
     app.debug = True
