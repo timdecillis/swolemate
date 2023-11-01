@@ -1,6 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import Meal from './components/Meal';
+
 
 function App() {
   return (
@@ -9,7 +11,7 @@ function App() {
         <h1>
         SWOLEMATE
           </h1>
-
+<Meal label={"Breakfast"}/>
       </header>
     </div>
   );
