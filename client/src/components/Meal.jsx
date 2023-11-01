@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Meal = ({label}) => {
+const Meal = ({ label }) => {
   return (
-    <div>{label}</div>
+    <>
+      <div>{label}</div>
+      <input></input>
+    </>
   )
 }
 
