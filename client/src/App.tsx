@@ -9,9 +9,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>
-        SWOLEMATE
-          </h1>
-<Meal label={"Breakfast"}/>
+          SWOLEMATE
+        </h1>
+        <Meal label={"Breakfast"} />
+        <Meal label={"Lunch"} />
+        <Meal label={"Dinner"} />
       </header>
     </div>
   );
