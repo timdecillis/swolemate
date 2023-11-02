@@ -13,7 +13,7 @@ function App() {
         </h1>
         <Meal label={"Breakfast"} />
         <Meal label={"Lunch"} />
-        <Meal label={"Dinner"} />
+        <Meal label={"Foo"} />
       </header>
     </div>
   );
