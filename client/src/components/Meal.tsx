@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
+import axios from 'axios';
 
 interface MealProps {
   label: string;
@@ -12,6 +13,8 @@ const Meal = ({ label }: MealProps) => {
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
     setMealItems([...mealItems, input]);
+    axios.get('/band')
+    .then(() => console.log('hit server'));
   }
 
   return (
