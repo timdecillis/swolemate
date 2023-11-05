@@ -20,17 +20,17 @@ def add_cors_headers(response):
 def hello():
     return "Hello, Swolemate!"
 
-@app.route('/test')
+@app.route("/test")
 def test():
     return foods
 
-@app.route('/addFood', methods=['POST'])
+@app.route("/addFood", methods=["POST"])
 def add_food():
     data = request.get_json()
-    foods[data['lowerLabel']].append(data['input'])
+    foods[data["lowerLabel"]].append(data["input"])
     return foods
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.debug = True
-    print('Starting the Flask server')
+    print("Starting the Flask server")
     app.run()
