@@ -27,8 +27,8 @@ def test():
 @app.route('/addFood', methods=['POST'])
 def add_food():
     data = request.get_json()
-
-    print(data['lowerLabel'])
+    foods[data['lowerLabel']].append(data['input'])
+    print(foods)
     return 'Success'
 
 if __name__ == '__main__':
