@@ -1,16 +1,23 @@
 import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
+interface MealItems {
+  breakfast: string[],
+  lunch: string[],
+  dinner: string[]
+}
+
 interface MealProps {
   label: string;
   foods: string[];
+  setMealItems: React.Dispatch<React.SetStateAction<MealItems>>;
 }
 
-const Meal = ({ label, foods }: MealProps) => {
+const Meal = ({ label, foods, setMealItems }: MealProps) => {
 
   const lower = function (word: string): string {
     let newWord = word[0].toLowerCase();
-    for (let i = 1; i < word.length; i ++) {
+    for (let i = 1; i < word.length; i++) {
       newWord += word[i]
     }
     return newWord;
@@ -24,10 +31,12 @@ const Meal = ({ label, foods }: MealProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-   const lowerLabel = lower(label);
-   console.log(lowerLabel)
-
-    instance.post('/addFood', { input, lowerLabel });
+    const lowerLabel = lower(label);
+    instance.post('/addFood', { input, lowerLabel })
+      .then(({data}) => {
+        console.log(data)
+        setMealItems(data);
+      })
   }
 
   return (

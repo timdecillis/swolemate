@@ -28,8 +28,7 @@ def test():
 def add_food():
     data = request.get_json()
     foods[data['lowerLabel']].append(data['input'])
-    print(foods)
-    return 'Success'
+    return foods
 
 if __name__ == '__main__':
     app.debug = True
