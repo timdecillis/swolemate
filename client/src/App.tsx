@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import logo from './assets/4.png'
 import './App.css';
 import Meal from './components/Meal';
 
@@ -26,9 +27,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>
-          SWOLEMATE
-        </h1>
+      <div>
+      <img src={logo}  alt="Logo" />
+    </div>
         <Meal setMealItems={setMealItems} label={"Breakfast"} foods={mealItems.breakfast}/>
         <Meal setMealItems={setMealItems} label={"Lunch"} foods={mealItems.lunch}/>
         <Meal setMealItems={setMealItems} label={"Dinner"} foods={mealItems.dinner} />
