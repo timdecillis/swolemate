@@ -10,11 +10,18 @@ const Meal = ({ label }: MealProps) => {
   const [mealItems, setMealItems] = useState<string[]>([]);
   const [input, setInput] = useState('');
 
+  const instance = axios.create({
+    baseURL: 'http://localhost:5000' // Replace with your desired base URL
+  });
+
+  // Now you can use `instance` to make requests with the specified base URL
+
+
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
     setMealItems([...mealItems, input]);
-    console.log(axios)
-    return axios.get('http://localhost:5000/')
+
+    return instance.get('/test')
     .then(() => console.log('hit server'));
   }
 
