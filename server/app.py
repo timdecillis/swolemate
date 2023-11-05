@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -18,13 +18,18 @@ def add_cors_headers(response):
 
 @app.route('/')
 def hello():
-    print('Visited localhost:5000')
     return 'Hello, Swolemate!'
 
 @app.route('/test')
 def test():
-    print('Visited 5000')
     return foods
+
+@app.route('/addFood', methods=['POST'])
+def add_food():
+    data = request.get_json()
+
+    print(data['lowerLabel'])
+    return 'Success'
 
 if __name__ == '__main__':
     app.debug = True
