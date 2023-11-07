@@ -1,5 +1,7 @@
 from flask import Flask, request
 
+from database.py import get_all
+
 app = Flask(__name__)
 
 foods = {
@@ -19,9 +21,10 @@ def add_cors_headers(response):
 def hello():
     return "Hello, Swolemate!"
 
-@app.route("/test")
+@app.route("/default")
 def test():
-    return foods
+    response = get_all()
+    return response
 
 @app.route("/addFood", methods=["POST"])
 def add_food():

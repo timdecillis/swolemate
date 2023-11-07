@@ -20,8 +20,11 @@ function App() {
   });
 
   useEffect(() => {
-    instance.get('/test')
-      .then(({ data }) => setMealItems(data));
+    instance.get('/default')
+      .then(({data}) => {
+        console.log(data)
+      })
+      // .then(({ data }) => setMealItems(data));
   }, [])
 
   return (
