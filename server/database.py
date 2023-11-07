@@ -15,4 +15,11 @@ def seed_database(user):
     for doc in db["users"].find():
         print(doc)
 
+def get_all():
+    for doc in db["users"].find():
+        return doc
+
 seed_database(user1)
+
+if __name__ == "__main__":
+    print("doing something")
