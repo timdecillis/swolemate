@@ -21,16 +21,17 @@ def add_cors_headers(response):
 def hello():
     return "Hello, Swolemate!"
 
-@app.route("/default")
-def test():
-    response = get_all()
-    return response
+@app.route("/getUserFoods", methods=["GET"])
+def get_foods():
+    user = request.args.get("user")
+    data = get_all(user)
+    return data
 
-@app.route("/addFood", methods=["POST"])
-def add_food():
-    data = request.get_json()
-    foods[data["lowerLabel"]].append(data["input"])
-    return foods
+# @app.route("/addFood", methods=["POST"])
+# def add_food():
+#     data = request.get_json()
+#     foods[data["lowerLabel"]].append(data["input"])
+#     return foods
 
 if __name__ == "__main__":
     app.debug = True
