@@ -15,12 +15,14 @@ def seed_database(user):
     for doc in db["users"].find():
         print(doc)
 
-def get_all():
-    for doc in db["users"].find():
-        print(doc)
-
-
-print(db["users"].find_one({"name": "user1"}))
+def get_all(user):
+    for doc in db["users"].find({"name": user}):
+        data = {
+            "breakfast": doc["breakfast"],
+            "lunch": doc["lunch"],
+            "dinner": doc["dinner"]
+            }
+        return data
 
 if __name__ == "__main__":
     print("doing something")
