@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from database.py import get_all
+from database import get_all
 
 app = Flask(__name__)
 
