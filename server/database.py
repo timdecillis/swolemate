@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 user1 = {
-    "name": "user1",
+    "name": "user2",
     "breakfast": ["cereal", "eggs", "bacon", "fruit"],
     "lunch": ["sandwich", "soup", "salad"],
     "dinner": ["spaghetti", "chicken", "waffles"]
@@ -17,9 +17,10 @@ def seed_database(user):
 
 def get_all():
     for doc in db["users"].find():
-        return doc
+        print(doc)
 
-seed_database(user1)
+
+print(db["users"].find_one({"name": "user1"}))
 
 if __name__ == "__main__":
     print("doing something")
