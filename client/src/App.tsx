@@ -34,7 +34,6 @@ function App() {
     console.log(user)
     instance.get('/getUserFoods', { params: { user } })
       .then(({data}) => {
-        console.log('data:', data)
         setMealItems(data)
       })
   }
