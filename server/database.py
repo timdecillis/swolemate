@@ -23,6 +23,3 @@ def get_all(user):
             "dinner": doc["dinner"]
             }
         return data
-
-if __name__ == "__main__":
-    print("doing something")
