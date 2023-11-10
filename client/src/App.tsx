@@ -1,7 +1,6 @@
-import React, { SyntheticEvent, useState, useEffect } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
-import logo from './assets/4.png'
 import './App.css';
 import Meal from './components/Meal';
 
@@ -16,18 +15,9 @@ function App() {
   const [mealItems, setMealItems] = useState<MealItems>({ breakfast: [], lunch: [], dinner: [] });
   const [user, setUser] = useState('');
 
-
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
   });
-
-  // useEffect(() => {
-  //   instance.get('/default')
-  //     .then(({data}) => {
-  //       console.log(data)
-  //     })
-  //     // .then(({ data }) => setMealItems(data));
-  // }, [])
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
@@ -41,7 +31,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <img src={logo} alt="Logo" />
           <h3>Enter username</h3>
           <form onSubmit={onSubmit}>
             <input onChange={e => setUser(e.target.value)} type='text' />
