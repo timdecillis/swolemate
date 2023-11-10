@@ -15,9 +15,9 @@ function App() {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    instance.get('/getUserFoods', { params: { user } })
+    instance.get('/getUserTemplates', { params: { user } })
       .then(({data}) => {
-        setTemplates(data)
+        setTemplates(data);
       })
   }
 
@@ -31,7 +31,7 @@ function App() {
             <input type='submit' />
           </form>
         </div>
-        <Templates setTemplates={setTemplates} />
+        <Templates setTemplates={setTemplates} templates={templates} />
       </header>
     </div>
   );

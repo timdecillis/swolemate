@@ -2,10 +2,11 @@ import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 interface TemplateProps {
+  templates: string[];
   setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Templates = ({ setTemplates }: TemplateProps) => {
+const Templates = ({ templates, setTemplates }: TemplateProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -15,9 +16,8 @@ const Templates = ({ setTemplates }: TemplateProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    instance.post('/addFood', { input })
+    instance.post('/addTemplate', { input })
       .then(({data}) => {
-        console.log(data)
         setTemplates(data);
       })
   }
@@ -25,6 +25,9 @@ const Templates = ({ setTemplates }: TemplateProps) => {
   return (
     <>
       <h2>Templates</h2>
+      <div>
+        {templates && templates.map((template, i) => <h3 key={i} >{template}</h3>)}
+      </div>
       <form onSubmit={onSubmit}>
         <label htmlFor="new-item">Add a new template: </label><br />
         <input type="text" id="new_item" name="new_item" onChange={e => setInput(e.target.value)}></input>
