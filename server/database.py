@@ -2,9 +2,7 @@ from pymongo import MongoClient
 
 user1 = {
     "name": "user2",
-    "breakfast": ["cereal", "eggs", "bacon", "fruit"],
-    "lunch": ["sandwich", "soup", "salad"],
-    "dinner": ["spaghetti", "chicken", "waffles"]
+    "templates": ["the fox jumped over the hound", "spiderman was denied a bank loan", "unique new york"]
 }
 
 client = MongoClient("mongodb://localhost:27017/")
