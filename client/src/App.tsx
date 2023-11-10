@@ -31,7 +31,6 @@ function App() {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    console.log(user)
     instance.get('/getUserFoods', { params: { user } })
       .then(({data}) => {
         setMealItems(data)
