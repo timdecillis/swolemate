@@ -31,7 +31,7 @@ function App() {
             <input type='submit' />
           </form>
         </div>
-        <Templates setTemplates={setTemplates} templates={templates} />
+        <Templates user={user} setTemplates={setTemplates} templates={templates} />
       </header>
     </div>
   );

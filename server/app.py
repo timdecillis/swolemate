@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from database import get_all
+from database import get_all, add_temp
 
 app = Flask(__name__)
 
@@ -22,10 +22,17 @@ def hello():
     return "Hello, Swolemate!"
 
 @app.route("/getUserTemplates", methods=["GET"])
-def templates():
+def get_templates():
     user = request.args.get("user")
     data = get_all(user)
     return data
+
+@app.route("/addTemplate", methods=["POST"])
+def add_template():
+    data = request.get_json()
+    print(data)
+    # added = add_temp(user, data)
+    # return added
 
 if __name__ == "__main__":
     app.debug = True
