@@ -4,15 +4,9 @@ import axios from 'axios';
 import './App.css';
 import Templates from './components/Templates';
 
-interface MealItems {
-  breakfast: string[],
-  lunch: string[],
-  dinner: string[]
-}
-
 function App() {
 
-  const [mealItems, setMealItems] = useState<MealItems>({ breakfast: [], lunch: [], dinner: [] });
+  const [templates, setTemplates] = useState<string[]>([]);
   const [user, setUser] = useState('');
 
   const instance = axios.create({
@@ -23,7 +17,7 @@ function App() {
     event.preventDefault()
     instance.get('/getUserFoods', { params: { user } })
       .then(({data}) => {
-        setMealItems(data)
+        setTemplates(data)
       })
   }
 
@@ -37,9 +31,7 @@ function App() {
             <input type='submit' />
           </form>
         </div>
-        <Templates setMealItems={setMealItems} label={"Breakfast"} foods={mealItems.breakfast} />
-        <Templates setMealItems={setMealItems} label={"Lunch"} foods={mealItems.lunch} />
-        <Templates setMealItems={setMealItems} label={"Dinner"} foods={mealItems.dinner} />
+        <Templates setTemplates={setTemplates} />
       </header>
     </div>
   );

@@ -1,27 +1,11 @@
 import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
-interface MealItems {
-  breakfast: string[],
-  lunch: string[],
-  dinner: string[]
+interface TemplateProps {
+  setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-interface MealProps {
-  label: string;
-  foods: string[];
-  setMealItems: React.Dispatch<React.SetStateAction<MealItems>>;
-}
-
-const Meal = ({ label, foods, setMealItems }: MealProps) => {
-
-  const lower = function (word: string): string {
-    let newWord = word[0].toLowerCase();
-    for (let i = 1; i < word.length; i++) {
-      newWord += word[i]
-    }
-    return newWord;
-  }
+const Templates = ({ setTemplates }: TemplateProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -31,22 +15,18 @@ const Meal = ({ label, foods, setMealItems }: MealProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    const lowerLabel = lower(label);
-    instance.post('/addFood', { input, lowerLabel })
+    instance.post('/addFood', { input })
       .then(({data}) => {
         console.log(data)
-        setMealItems(data);
+        setTemplates(data);
       })
   }
 
   return (
     <>
-      <div>{label}</div>
-      <div>
-        {foods && foods.map((item, i) => <div key={i}>{item}</div>)}
-      </div>
+      <h2>Templates</h2>
       <form onSubmit={onSubmit}>
-        <label htmlFor="new-item">Add a new {label} item: </label><br />
+        <label htmlFor="new-item">Add a new template: </label><br />
         <input type="text" id="new_item" name="new_item" onChange={e => setInput(e.target.value)}></input>
         <input type="submit" value="add it!" />
       </form>
@@ -54,4 +34,4 @@ const Meal = ({ label, foods, setMealItems }: MealProps) => {
   )
 }
 
-export default Meal
+export default Templates
