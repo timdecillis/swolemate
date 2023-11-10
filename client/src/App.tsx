@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 import './App.css';
-import Meal from './components/Meal';
+import Template from './components/Template';
 
 interface MealItems {
   breakfast: string[],
@@ -37,9 +37,9 @@ function App() {
             <input type='submit' />
           </form>
         </div>
-        <Meal setMealItems={setMealItems} label={"Breakfast"} foods={mealItems.breakfast} />
-        <Meal setMealItems={setMealItems} label={"Lunch"} foods={mealItems.lunch} />
-        <Meal setMealItems={setMealItems} label={"Dinner"} foods={mealItems.dinner} />
+        <Template setMealItems={setMealItems} label={"Breakfast"} foods={mealItems.breakfast} />
+        <Template setMealItems={setMealItems} label={"Lunch"} foods={mealItems.lunch} />
+        <Template setMealItems={setMealItems} label={"Dinner"} foods={mealItems.dinner} />
       </header>
     </div>
   );
