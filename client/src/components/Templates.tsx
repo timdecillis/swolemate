@@ -17,7 +17,7 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    instance.post('/addTemplate', { input, user })
+    instance.post('/addTemplate', { template: input, user })
       .then(({data}) => {
         setTemplates(data);
       })

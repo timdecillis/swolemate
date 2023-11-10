@@ -30,9 +30,10 @@ def get_templates():
 @app.route("/addTemplate", methods=["POST"])
 def add_template():
     data = request.get_json()
-    print(data)
-    # added = add_temp(user, data)
-    # return added
+    user = data["user"]
+    template = data["template"]
+    added = add_temp(user, template)
+    return added
 
 if __name__ == "__main__":
     app.debug = True

@@ -20,5 +20,5 @@ def get_all(user):
 def add_temp(user, template):
     for doc in db["users"].find({"name": user}):
         data = doc["templates"]
-        doc.insert_one(template)
+        data.append(template)
         return data
