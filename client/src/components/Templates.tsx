@@ -23,8 +23,8 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
       })
   }
 
-  const deleteTemplate = (value: number) => {
-    instance.delete('/deleteTemplate', { data: { index: value, user } })
+  const deleteTemplate = (value: string) => {
+    instance.delete('/deleteTemplate', { data: { template: value, user } })
       .then(({ data }) => {
         setTemplates(data)
       })
@@ -38,7 +38,7 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
           <div key={i}>
             <h3>{i + 1}.) {template}</h3>
             <button onClick={() => {
-              deleteTemplate(i)
+              deleteTemplate(template)
             }} >X</button>
           </div>
         )}

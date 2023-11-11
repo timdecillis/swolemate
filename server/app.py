@@ -41,8 +41,8 @@ def delete_template():
     if request.method == "DELETE":
         data = request.get_json()
         user = data["user"]
-        index = data["index"]
-        deleted = delete_temp(user, index)
+        template = data["template"]
+        deleted = delete_temp(user, template)
         print("delete:", deleted)
     return deleted
 
