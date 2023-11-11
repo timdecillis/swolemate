@@ -18,8 +18,15 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
     instance.post('/addTemplate', { template: input, user })
-      .then(({data}) => {
+      .then(({ data }) => {
         setTemplates(data);
+      })
+  }
+
+  const deleteTemplate = (value: number) => {
+    instance.delete('/deleteTemplate', { data: { index: value, user }})
+      .then(() => {
+        console.log('deleted!')
       })
   }
 
@@ -27,7 +34,14 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
     <>
       <h2>Templates</h2>
       <div>
-        {templates && templates.map((template, i) => <h3 key={i} >{i+1}.) {template}</h3>)}
+        {templates && templates.map((template, i) =>
+          <>
+            <h3 key={i} >{i + 1}.) {template}</h3>
+            <button onClick={() => {
+              deleteTemplate(i)
+            }} >X</button>
+          </>
+        )}
       </div>
       <form onSubmit={onSubmit}>
         <label htmlFor="new-item">Add a new template: </label><br />
