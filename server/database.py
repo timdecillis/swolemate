@@ -27,4 +27,6 @@ def delete_temp(user, index):
     for doc in db["users"].find({"name": user}):
         data = doc["templates"]
         del data[index]
-        return data
+        print(data)
+
+    return data
