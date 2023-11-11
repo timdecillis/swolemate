@@ -24,9 +24,9 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
   }
 
   const deleteTemplate = (value: number) => {
-    instance.delete('/deleteTemplate', { data: { index: value, user }})
-      .then(() => {
-        console.log('deleted!')
+    instance.delete('/deleteTemplate', { data: { index: value, user } })
+      .then(({ data }) => {
+        setTemplates(data)
       })
   }
 

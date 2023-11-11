@@ -37,20 +37,14 @@ def add_template():
 
 @app.route("/deleteTemplate", methods=["DELETE", "OPTIONS"])
 def delete_template():
-    # if request.method == "OPTIONS":
-    #     print('method is OPTION')
-    #     response = make_response()
-    #     response.headers["Access-Control-Allow-Origin"] = "*"
-    #     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    #     response.headers["Access-Control-Allow-Methods"] = "DELETE"
-    #     return response
-
-    print('deleting:')
-    # data = request.get_json()
-    # user = data["user"]
-    # index = data["index"]
-    # deleted = delete_temp(user, index)
-    return "Success"
+    deleted = []
+    if request.method == "DELETE":
+        data = request.get_json()
+        user = data["user"]
+        index = data["index"]
+        deleted = delete_temp(user, index)
+        print("delete:", deleted)
+    return deleted
 
 if __name__ == "__main__":
     app.debug = True
