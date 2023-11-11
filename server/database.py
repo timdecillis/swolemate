@@ -21,10 +21,12 @@ def add_temp(user, template):
     for doc in db["users"].find({"name": user}):
         data = doc["templates"]
         data.append(template)
-        return data
+    db["users"].update_one({"name": user}, {"$set": {"templates": data}})
+    return data
 
 def delete_temp(user, template):
     for doc in db["users"].find({"name": user}):
         data = doc["templates"]
         data.remove(template)
+    db["users"].update_one({"name": user}, {"$set": {"templates": data}})
     return data
