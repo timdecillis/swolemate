@@ -14,7 +14,7 @@ foods = {
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, DELETE"
     return response
 
 @app.route("/")
@@ -37,12 +37,13 @@ def add_template():
 
 @app.route("/deleteTemplate", methods=["DELETE", "OPTIONS"])
 def delete_template():
-    if request.method == "OPTIONS":
-        response = make_response()
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-        response.headers["Access-Control-Allow-Methods"] = "DELETE"
-        return response
+    # if request.method == "OPTIONS":
+    #     print('method is OPTION')
+    #     response = make_response()
+    #     response.headers["Access-Control-Allow-Origin"] = "*"
+    #     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    #     response.headers["Access-Control-Allow-Methods"] = "DELETE"
+    #     return response
 
     print('deleting:')
     # data = request.get_json()
