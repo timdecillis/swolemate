@@ -37,11 +37,12 @@ def add_template():
 
 @app.route("/deleteTemplate", methods=["DELETE"])
 def delete_template():
-    data = request.get_json()
-    user = data["user"]
-    index = data["index"]
-    deleted = delete_temp(user, index)
-    return deleted
+    print('deleting:')
+    # data = request.get_json()
+    # user = data["user"]
+    # index = data["index"]
+    # deleted = delete_temp(user, index)
+    return "Success"
 
 if __name__ == "__main__":
     app.debug = True
