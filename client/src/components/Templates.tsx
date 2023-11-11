@@ -2,11 +2,12 @@ import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 interface TemplateProps {
+  user: string;
   templates: string[];
   setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Templates = ({ templates, setTemplates }: TemplateProps) => {
+const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -16,9 +17,16 @@ const Templates = ({ templates, setTemplates }: TemplateProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    instance.post('/addTemplate', { input })
-      .then(({data}) => {
+    instance.post('/addTemplate', { template: input, user })
+      .then(({ data }) => {
         setTemplates(data);
+      })
+  }
+
+  const deleteTemplate = (value: number) => {
+    instance.delete('/deleteTemplate', { data: { index: value, user }})
+      .then(() => {
+        console.log('deleted!')
       })
   }
 
@@ -26,7 +34,14 @@ const Templates = ({ templates, setTemplates }: TemplateProps) => {
     <>
       <h2>Templates</h2>
       <div>
-        {templates && templates.map((template, i) => <h3 key={i} >{template}</h3>)}
+        {templates && templates.map((template, i) =>
+          <>
+            <h3 key={i} >{i + 1}.) {template}</h3>
+            <button onClick={() => {
+              deleteTemplate(i)
+            }} >X</button>
+          </>
+        )}
       </div>
       <form onSubmit={onSubmit}>
         <label htmlFor="new-item">Add a new template: </label><br />

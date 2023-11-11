@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from database import get_all
+from database import get_all, add_temp, delete_temp
 
 app = Flask(__name__)
 
@@ -22,10 +22,27 @@ def hello():
     return "Hello, Swolemate!"
 
 @app.route("/getUserTemplates", methods=["GET"])
-def templates():
+def get_templates():
     user = request.args.get("user")
     data = get_all(user)
     return data
+
+@app.route("/addTemplate", methods=["POST"])
+def add_template():
+    data = request.get_json()
+    user = data["user"]
+    template = data["template"]
+    added = add_temp(user, template)
+    return added
+
+@app.route("/deleteTemplate", methods=["DELETE"])
+def delete_template():
+    print('deleting:')
+    # data = request.get_json()
+    # user = data["user"]
+    # index = data["index"]
+    # deleted = delete_temp(user, index)
+    return "Success"
 
 if __name__ == "__main__":
     app.debug = True

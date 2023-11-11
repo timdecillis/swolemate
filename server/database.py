@@ -16,3 +16,15 @@ def get_all(user):
     for doc in db["users"].find({"name": user}):
         data = doc["templates"]
         return data
+
+def add_temp(user, template):
+    for doc in db["users"].find({"name": user}):
+        data = doc["templates"]
+        data.append(template)
+        return data
+
+def delete_temp(user, index):
+    for doc in db["users"].find({"name": user}):
+        data = doc["templates"]
+        del data[index]
+        return data
