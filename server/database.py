@@ -23,10 +23,8 @@ def add_temp(user, template):
         data.append(template)
         return data
 
-def delete_temp(user, index):
+def delete_temp(user, template):
     for doc in db["users"].find({"name": user}):
         data = doc["templates"]
-        del data[index]
-        print(data)
-
+        data.remove(template)
     return data
