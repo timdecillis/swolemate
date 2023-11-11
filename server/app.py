@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 from database import get_all, add_temp, delete_temp
 
@@ -35,8 +35,15 @@ def add_template():
     added = add_temp(user, template)
     return added
 
-@app.route("/deleteTemplate", methods=["DELETE"])
+@app.route("/deleteTemplate", methods=["DELETE", "OPTIONS"])
 def delete_template():
+    if request.method == "OPTIONS":
+        response = make_response()
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+        response.headers["Access-Control-Allow-Methods"] = "DELETE"
+        return response
+
     print('deleting:')
     # data = request.get_json()
     # user = data["user"]

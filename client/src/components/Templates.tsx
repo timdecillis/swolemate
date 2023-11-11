@@ -35,12 +35,12 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
       <h2>Templates</h2>
       <div>
         {templates && templates.map((template, i) =>
-          <>
-            <h3 key={i} >{i + 1}.) {template}</h3>
+          <div key={i}>
+            <h3>{i + 1}.) {template}</h3>
             <button onClick={() => {
               deleteTemplate(i)
             }} >X</button>
-          </>
+          </div>
         )}
       </div>
       <form onSubmit={onSubmit}>
