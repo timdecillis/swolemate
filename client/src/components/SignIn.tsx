@@ -1,13 +1,13 @@
-
-import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
+import React, { SyntheticEvent, useState, ReactNode, SetStateAction, Dispatch } from 'react';
 
 interface SignInProps {
-  setTemplates: React.Dispatch<React.SetStateAction<[]>>
-
+  setSignedIn: Dispatch<SetStateAction<false>>
+  setTemplates: Dispatch<SetStateAction<ReactNode[]>>
+  signedIn: Dispatch<SetStateAction<boolean>>
 }
 
-const SignIn = ({ setTemplates }: SignInProps) => {
+const SignIn = ({ setTemplates, signedIn, setSignedIn }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -18,7 +18,7 @@ const SignIn = ({ setTemplates }: SignInProps) => {
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
     instance.get('/getUserTemplates', { params: { user } })
-      .then(({data}) => {
+      .then(({ data }) => {
         setTemplates(data);
       })
   }
@@ -30,6 +30,9 @@ const SignIn = ({ setTemplates }: SignInProps) => {
         <input onChange={e => setUser(e.target.value)} type='text' />
         <input type='submit' />
       </form>
+      <button onClick={() => {
+        setSignedIn(false)
+      }} >Sign Out</button>
     </div>
   )
 }
