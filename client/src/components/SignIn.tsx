@@ -1,25 +1,28 @@
 import axios from 'axios';
-import React, { SyntheticEvent, useState, ReactNode, SetStateAction, Dispatch } from 'react';
+import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react';
 
 interface SignInProps {
-  setSignedIn: Dispatch<SetStateAction<false>>
-  setTemplates: Dispatch<SetStateAction<ReactNode[]>>
-  signedIn: Dispatch<SetStateAction<boolean>>
+  user: string
+  setUser: Dispatch<SetStateAction<string>>
+  setSignedIn: Dispatch<SetStateAction<boolean>>
+  setTemplates: Dispatch<SetStateAction<string[]>>
+  signedIn: boolean
 }
 
-const SignIn = ({ setTemplates, signedIn, setSignedIn }: SignInProps) => {
+const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
   });
 
-  const [user, setUser] = useState('');
+  const [input, setInput] = useState('');
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    instance.get('/getUserTemplates', { params: { user } })
+    instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
         setTemplates(data);
+        setSignedIn(true)
       })
   }
 
@@ -27,12 +30,9 @@ const SignIn = ({ setTemplates, signedIn, setSignedIn }: SignInProps) => {
     <div>
       <h3>Enter username</h3>
       <form onSubmit={onSubmit}>
-        <input onChange={e => setUser(e.target.value)} type='text' />
+        <input onChange={e => setInput(e.target.value)} type='text' />
         <input type='submit' />
       </form>
-      <button onClick={() => {
-        setSignedIn(false)
-      }} >Sign Out</button>
     </div>
   )
 }

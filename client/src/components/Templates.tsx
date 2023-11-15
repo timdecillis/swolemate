@@ -1,13 +1,14 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SetStateAction, SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 interface TemplateProps {
+  setSignedIn: React.Dispatch<SetStateAction<boolean>>
   user: string;
   templates: string[];
   setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
+const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplateProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -48,6 +49,9 @@ const Templates = ({ templates, setTemplates, user }: TemplateProps) => {
         <input type="text" id="new_item" name="new_item" onChange={e => setInput(e.target.value)}></input>
         <input type="submit" value="add it!" />
       </form>
+      <button onClick={() => {
+        setSignedIn(false)
+      }} >Sign Out</button>
     </>
   )
 }
