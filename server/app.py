@@ -4,12 +4,6 @@ from database import get_all, add_temp, delete_temp
 
 app = Flask(__name__)
 
-foods = {
-    "breakfast": ["cereal", "eggs", "bacon", "fruit"],
-    "lunch": ["sandwich", "soup", "salad"],
-    "dinner": ["spaghetti", "chicken", "waffles"]
-}
-
 @app.after_request
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
@@ -25,6 +19,7 @@ def hello():
 def get_templates():
     user = request.args.get("user")
     data = get_all(user)
+    print("data:", data)
     return data
 
 @app.route("/addTemplate", methods=["POST"])
