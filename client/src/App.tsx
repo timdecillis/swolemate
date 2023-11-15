@@ -7,9 +7,9 @@ import SignIn from './components/SignIn';
 
 function App() {
 
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState<boolean>(false);
   const [templates, setTemplates] = useState<string[]>([]);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState<string>('');
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'

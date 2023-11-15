@@ -1,10 +1,10 @@
 import axios from 'axios';
-import React, { SyntheticEvent, useState, ReactNode, SetStateAction, Dispatch } from 'react';
+import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react';
 
 interface SignInProps {
-  setSignedIn: Dispatch<SetStateAction<false>>
-  setTemplates: Dispatch<SetStateAction<ReactNode[]>>
-  signedIn: Dispatch<SetStateAction<boolean>>
+  setSignedIn: Dispatch<SetStateAction<boolean>>
+  setTemplates: Dispatch<SetStateAction<string[]>>
+  signedIn: boolean
 }
 
 const SignIn = ({ setTemplates, signedIn, setSignedIn }: SignInProps) => {
