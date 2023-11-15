@@ -24,6 +24,7 @@ def hello():
 @app.route("/getUserTemplates", methods=["GET"])
 def get_templates():
     user = request.args.get("user")
+    print("user:", user)
     data = get_all(user)
     return data
 

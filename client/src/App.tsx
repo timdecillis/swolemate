@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import './App.css';
@@ -18,8 +18,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {!signedIn && <SignIn signedIn={signedIn} setSignedIn={setSignedIn} setTemplates={setTemplates} />}
-        {signedIn && <Templates user={user} setTemplates={setTemplates} templates={templates} />}
+        {!signedIn && <SignIn user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser} setTemplates={setTemplates} />}
+        {signedIn && <Templates setSignedIn={setSignedIn} user={user} setTemplates={setTemplates} templates={templates} />}
       </header>
     </div>
   );
