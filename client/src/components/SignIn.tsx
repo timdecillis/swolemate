@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react';
 
 interface SignInProps {
+  label: string
   user: string
   setUser: Dispatch<SetStateAction<string>>
   setSignedIn: Dispatch<SetStateAction<boolean>>
@@ -9,7 +10,7 @@ interface SignInProps {
   signedIn: boolean
 }
 
-const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user }: SignInProps) => {
+const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user, label }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -29,7 +30,7 @@ const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user }: SignInPr
 
   return (
     <div>
-      <h3>Enter username</h3>
+      <h3>{label}</h3>
       <form onSubmit={onSubmit}>
         <input onChange={e => setInput(e.target.value)} type='text' />
         <input type='submit' />

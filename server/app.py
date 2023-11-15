@@ -25,6 +25,7 @@ def hello():
 def get_templates():
     user = request.args.get("user")
     data = get_all(user)
+    print("data:", data)
     return data
 
 @app.route("/addTemplate", methods=["POST"])

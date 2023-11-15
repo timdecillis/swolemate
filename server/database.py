@@ -1,21 +1,26 @@
 from pymongo import MongoClient
 
-user2 = {
-    "name": "user2",
-    "templates": ["the fox jumped over the hound", "spiderman was denied a bank loan", "unique new york"]
-}
-
 client = MongoClient("mongodb://localhost:27017/")
 db = client["mind_palace"]
 
-def seed_database(user):
-    db["users"].insert_one(user)
+def create_user(user):
+    print("creating user")
+    data = {
+        "name": user,
+        "templates": []
+    }
+    db["users"].insert_one(data)
     print("your users:", db["users"])
 
 def get_all(user):
-    for doc in db["users"].find({"name": user}):
-        data = doc["templates"]
-        return data
+    doc = db["users"].find_one({"name": user})
+    if not doc:
+        print("creating new")
+        create_user(user)
+        return []
+    data = doc["templates"]
+    return data
+
 
 def add_temp(user, template):
     for doc in db["users"].find({"name": user}):
