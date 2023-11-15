@@ -11,10 +11,6 @@ function App() {
   const [templates, setTemplates] = useState<string[]>([]);
   const [user, setUser] = useState<string>('');
 
-  const instance = axios.create({
-    baseURL: 'http://localhost:5000'
-  });
-
   return (
     <div className="App">
       <header className="App-header">
