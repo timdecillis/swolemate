@@ -4,18 +4,15 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client["mind_palace"]
 
 def create_user(user):
-    print("creating user")
     data = {
         "name": user,
         "templates": []
     }
     db["users"].insert_one(data)
-    print("your users:", db["users"])
 
 def get_all(user):
     doc = db["users"].find_one({"name": user})
     if not doc:
-        print("creating new")
         create_user(user)
         return []
     data = doc["templates"]
