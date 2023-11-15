@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 import './App.css';
 import Templates from './components/Templates';
@@ -10,10 +9,6 @@ function App() {
   const [signedIn, setSignedIn] = useState<boolean>(false);
   const [templates, setTemplates] = useState<string[]>([]);
   const [user, setUser] = useState<string>('');
-
-  const instance = axios.create({
-    baseURL: 'http://localhost:5000'
-  });
 
   return (
     <div className="App">

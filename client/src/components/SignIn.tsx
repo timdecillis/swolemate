@@ -19,6 +19,7 @@ const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user }: SignInPr
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
+    setUser(input)
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
         setTemplates(data);
