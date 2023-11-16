@@ -31,18 +31,22 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplateProps
       })
   }
 
+  const mapped = templates.map((template, i) =>
+  <div key={i}>
+    <h3>{i + 1}.) {template}</h3>
+    <button>Edit</button>
+    <button onClick={() => {
+      deleteTemplate(template)
+    }} >X</button>
+  </div>
+)
+
   return (
     <>
+      <h1>Welcome, {user}!</h1>
       <h2>Templates</h2>
       <div>
-        {templates && templates.map((template, i) =>
-          <div key={i}>
-            <h3>{i + 1}.) {template}</h3>
-            <button onClick={() => {
-              deleteTemplate(template)
-            }} >X</button>
-          </div>
-        )}
+        {templates && mapped}
       </div>
       <form onSubmit={onSubmit}>
         <label htmlFor="new-item">Add a new template: </label><br />
