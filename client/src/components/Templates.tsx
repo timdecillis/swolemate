@@ -34,14 +34,8 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
   }
 
   const mapped = templates.map((template, i) =>
-  <div key={i}>
-    <h3>{i + 1}.) {template}</h3>
-    <button>Edit</button>
-    <button onClick={() => {
-      deleteTemplate(template)
-    }} >X</button>
-  </div>
-)
+    <Template index={i} template={template} deleteTemplate={deleteTemplate} />
+  )
 
   return (
     <>
