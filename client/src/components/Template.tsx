@@ -14,7 +14,7 @@ const Template = ({ template, index, updateTemplate, deleteTemplate }: TemplateP
   const [editOpen, setEditOpen] = useState<boolean>(false);
 
   if (editOpen) {
-    return <EditForm editOpen={editOpen} template={template} updateTemplate={updateTemplate} />
+    return <EditForm setEditOpen={setEditOpen} editOpen={editOpen} template={template} updateTemplate={updateTemplate} />
   } else {
     return (
       <div key={index}>

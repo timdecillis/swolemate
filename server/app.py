@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response
 
-from database import get_all, add_temp, delete_temp
+from database import get_all, add_temp, delete_temp, update_temp
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, DELETE"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
     return response
 
 @app.route("/")
@@ -19,7 +19,6 @@ def hello():
 def get_templates():
     user = request.args.get("user")
     data = get_all(user)
-    print("data:", data)
     return data
 
 @app.route("/addTemplate", methods=["POST"])
@@ -30,6 +29,17 @@ def add_template():
     added = add_temp(user, template)
     return added
 
+@app.route("/updateTemplate", methods=["PUT", "OPTIONS"])
+def update_template():
+    updated = []
+    if request.method == "PUT":
+        data = request.get_json()
+        user = data["user"]
+        old_value = data["oldValue"]
+        new_value = data["newValue"]
+        updated = update_temp(user, old_value, new_value)
+    return updated
+
 @app.route("/deleteTemplate", methods=["DELETE", "OPTIONS"])
 def delete_template():
     deleted = []
@@ -38,7 +48,6 @@ def delete_template():
         user = data["user"]
         template = data["template"]
         deleted = delete_temp(user, template)
-        print("delete:", deleted)
     return deleted
 
 if __name__ == "__main__":
