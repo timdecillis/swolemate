@@ -1,14 +1,16 @@
 import React, { SetStateAction, SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
-interface TemplateProps {
+import Template from './Template';
+
+interface TemplatesProps {
   setSignedIn: React.Dispatch<SetStateAction<boolean>>
   user: string;
   templates: string[];
   setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplateProps) => {
+const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
