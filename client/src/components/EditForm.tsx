@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 
 interface EditFormProps {
   editOpen: boolean;
   template: string;
+  updateTemplate: (oldValue: string, newValue: string) => void;
 }
 
-const EditForm = ({ editOpen, template }: EditFormProps) => {
+const EditForm = ({ editOpen, template, updateTemplate }: EditFormProps) => {
 
-  if (!editOpen) return null
+  const [input, setInput] = useState<string>('')
+
+  const onSubmit = (event: SyntheticEvent) => {
+    event.preventDefault()
+    updateTemplate(template, input)
+  }
 
   return (
     <div>
       <h3>Please edit your template</h3>
-      <form>
-        <input type='text' value={template}/>
+      <form onSubmit={onSubmit} >
+        <input onChange={e => setInput(e.target.value)} type='text' value={template}/>
         <input type='submit' value='Save' />
       </form>
     </div>

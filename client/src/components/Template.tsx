@@ -6,14 +6,15 @@ interface TemplateProps {
   index: number;
   template: string;
   deleteTemplate: (value: string) => void;
+  updateTemplate: (oldValue: string, newValue: string) => void;
 }
 
-const Template = ({ template, index, deleteTemplate }: TemplateProps) => {
+const Template = ({ template, index, updateTemplate, deleteTemplate }: TemplateProps) => {
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
 
   if (editOpen) {
-    return <EditForm editOpen={editOpen} template={template} />
+    return <EditForm editOpen={editOpen} template={template} updateTemplate={updateTemplate} />
   } else {
     return (
       <div key={index}>
