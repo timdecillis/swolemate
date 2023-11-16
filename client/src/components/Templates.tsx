@@ -27,7 +27,7 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
   }
 
   const updateTemplate = (oldValue: string, newValue: string) => {
-    instance.put('/updateTemplate', { data: { oldValue, newValue, user } })
+    instance.put('/updateTemplate', { oldValue, newValue, user })
       .then(({ data }) => {
         setTemplates(data)
       })
