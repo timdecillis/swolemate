@@ -23,6 +23,7 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
     instance.post('/addTemplate', { template: input, user })
       .then(({ data }) => {
         setTemplates(data);
+        setInput('');
       })
   }
 
@@ -53,7 +54,7 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
       </div>
       <form onSubmit={onSubmit}>
         <label htmlFor="new-item">Add a new template: </label><br />
-        <input type="text" id="new_item" name="new_item" onChange={e => setInput(e.target.value)}></input>
+        <input value={input} type="text" id="new_item" name="new_item" onChange={e => setInput(e.target.value)}></input>
         <input type="submit" value="add it!" />
       </form>
       <button onClick={() => {
