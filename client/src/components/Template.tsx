@@ -19,6 +19,7 @@ const Template = ({ template, index, updateTemplate, deleteTemplate }: TemplateP
     return (
       <div key={index}>
         <h3>{index + 1}.) {template}</h3>
+        <button onClick={() => navigator.clipboard.writeText(template)} >Copy</button>
         <button onClick={() => setEditOpen(true)} >Edit</button>
         <button onClick={() => {
           deleteTemplate(template)
