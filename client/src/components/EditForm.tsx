@@ -9,7 +9,8 @@ interface EditFormProps {
 
 const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
 
-  const [input, setInput] = useState<string>(template)
+  const [input, setInput] = useState<string>(template);
+  const [variableOpen, setVariableOpen] = useState(false);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
@@ -18,14 +19,14 @@ const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
   }
 
   const addVariable = () => {
-
+    setVariableOpen(true);
   }
 
   return (
     <div>
       <h3>Please edit your template</h3>
       <form onSubmit={onSubmit} >
-        <input onChange={e => setInput(e.target.value)} type='text' value={input}/>
+        <input onChange={e => setInput(e.target.value)} type='text' value={input} />
         <input type='submit' value='Save' />
       </form>
       <button onClick={addVariable} >Enter variable</button>
