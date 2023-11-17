@@ -24,6 +24,7 @@ const EditForm = ({ editOpen, template, updateTemplate, setEditOpen }: EditFormP
         <input onChange={e => setInput(e.target.value)} type='text' value={input}/>
         <input type='submit' value='Save' />
       </form>
+      <button>Enter variable</button>
     </div>
   )
 }
