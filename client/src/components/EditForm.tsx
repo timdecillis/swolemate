@@ -7,7 +7,7 @@ interface EditFormProps {
   updateTemplate: (oldValue: string, newValue: string) => void;
 }
 
-const EditForm = ({ editOpen, template, updateTemplate, setEditOpen }: EditFormProps) => {
+const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
 
   const [input, setInput] = useState<string>(template)
 
