@@ -7,7 +7,7 @@ interface EditFormProps {
   updateTemplate: (oldValue: string, newValue: string) => void;
 }
 
-const EditForm = ({ editOpen, template, updateTemplate, setEditOpen }: EditFormProps) => {
+const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
 
   const [input, setInput] = useState<string>(template)
 
@@ -24,6 +24,7 @@ const EditForm = ({ editOpen, template, updateTemplate, setEditOpen }: EditFormP
         <input onChange={e => setInput(e.target.value)} type='text' value={input}/>
         <input type='submit' value='Save' />
       </form>
+      <button>Enter variable</button>
     </div>
   )
 }
