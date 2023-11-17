@@ -17,6 +17,10 @@ const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
     setEditOpen(false)
   }
 
+  const addVariable = () => {
+
+  }
+
   return (
     <div>
       <h3>Please edit your template</h3>
@@ -24,7 +28,7 @@ const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
         <input onChange={e => setInput(e.target.value)} type='text' value={input}/>
         <input type='submit' value='Save' />
       </form>
-      <button>Enter variable</button>
+      <button onClick={addVariable} >Enter variable</button>
     </div>
   )
 }
