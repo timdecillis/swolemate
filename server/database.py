@@ -19,10 +19,15 @@ def get_all(user):
     return data
 
 
-def add_temp(user, template):
+def add_temp(user, template_name, template):
     for doc in db["users"].find({"name": user}):
         data = doc["templates"]
-        data.append(template)
+        new_template = {
+            "name": template_name,
+            "variables": [],
+            "string": template
+        }
+        data.append(new_template)
     db["users"].update_one({"name": user}, {"$set": {"templates": data}})
     return data
 
