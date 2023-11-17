@@ -28,6 +28,12 @@ const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
       <form onSubmit={onSubmit} >
         <input onChange={e => setInput(e.target.value)} type='text' value={input} />
         <input type='submit' value='Save' />
+        {variableOpen &&
+        <div>
+          <h3>Enter a variable</h3>
+          <input></input>
+          </div>
+          }
       </form>
       <button onClick={addVariable} >Enter variable</button>
     </div>
