@@ -30,7 +30,7 @@ const EditForm = ({ template, updateTemplate, setEditOpen }: EditFormProps) => {
         <input type='submit' value='Save' />
         {variableOpen &&
         <div>
-          <h3>Enter a variable</h3>
+          <h3>Enter variable name</h3>
           <input></input>
           </div>
           }
