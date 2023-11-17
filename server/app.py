@@ -25,8 +25,9 @@ def get_templates():
 def add_template():
     data = request.get_json()
     user = data["user"]
+    template_name = data["name"]
     template = data["template"]
-    added = add_temp(user, template)
+    added = add_temp(user, template_name, template)
     return added
 
 @app.route("/updateTemplate", methods=["PUT", "OPTIONS"])
