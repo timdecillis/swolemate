@@ -55,7 +55,7 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
         {templates && mapped}
       </div>
       {!newTemplateOpen && <button onClick={() => setNewTemplateOpen(true)} >Add a new template</button>}
-      {newTemplateOpen && <NewTemplate user={user}/>}
+      {newTemplateOpen && <NewTemplate user={user} setNewTemplateOpen={setNewTemplateOpen} />}
       <button onClick={() => {
         setSignedIn(false)
       }} >Sign Out</button>

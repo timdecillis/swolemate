@@ -1,14 +1,15 @@
-import React  from 'react';
+import React, { SetStateAction }  from 'react';
 
 interface NewTemplateProps {
   user: string;
+  setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const NewTemplate = ({ user }: NewTemplateProps) => {
+const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   return (
     <>
-      <button>Discard</button>
+      <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>
     </>
   )
