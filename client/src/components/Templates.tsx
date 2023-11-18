@@ -2,6 +2,7 @@ import React, { SetStateAction, SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 import Template from './Template';
+import NewTemplate from './NewTemplate';
 
 interface TemplatesProps {
   setSignedIn: React.Dispatch<SetStateAction<boolean>>
@@ -16,7 +17,8 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
     baseURL: 'http://localhost:5000'
   });
 
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState<string>('');
+  const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
@@ -52,7 +54,8 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
       <div>
         {templates && mapped}
       </div>
-      <button>Add a new template</button>
+      {!newTemplateOpen && <button onClick={() => setNewTemplateOpen(true)} >Add a new template</button>}
+      {newTemplateOpen && <NewTemplate user={user}/>}
       <button onClick={() => {
         setSignedIn(false)
       }} >Sign Out</button>
