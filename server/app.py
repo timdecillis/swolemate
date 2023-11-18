@@ -27,7 +27,8 @@ def add_template():
     user = data["user"]
     template_name = data["name"]
     template = data["template"]
-    added = add_temp(user, template_name, template)
+    variables = data["variables"]
+    added = add_temp(user, template_name, variables, template)
     return added
 
 @app.route("/updateTemplate", methods=["PUT", "OPTIONS"])
