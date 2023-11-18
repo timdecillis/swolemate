@@ -10,7 +10,7 @@ interface TemplatesProps {
   setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProps) => {
+const NewTemplate = ({ templates, setTemplates, user, setSignedIn }: TemplatesProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -60,4 +60,4 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
   )
 }
 
-export default Templates
+export default NewTemplate
