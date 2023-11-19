@@ -1,4 +1,4 @@
-import React, { SetStateAction }  from 'react';
+import React, { SetStateAction } from 'react';
 
 interface NewTemplateProps {
   user: string;
@@ -9,8 +9,10 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   return (
     <>
+      <h2> </h2>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>
+      <h2> </h2>
     </>
   )
 }
