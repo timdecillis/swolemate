@@ -8,6 +8,7 @@ interface NewTemplateProps {
 const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
+  const [template, setTemplate] = useState({});
 
   return (
     <>
