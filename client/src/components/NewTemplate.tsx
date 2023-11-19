@@ -14,7 +14,8 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
       <h3>Enter text -</h3>
       <form>
         <input type='text' ></input>
-        <button type='submit'>Save</button>
+        <button>Add to template</button>
+        <button type='submit'>Finish</button>
       </form>
       <h3>or - </h3>
       {variableOpen &&
