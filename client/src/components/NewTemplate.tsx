@@ -11,7 +11,12 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   return (
     <>
-      <h2> </h2>
+      <h3>Enter text -</h3>
+      <form>
+        <input type='text' ></input>
+        <button type='submit'>Save</button>
+      </form>
+      <h3>or - </h3>
       {variableOpen &&
         <div>
           <input placeholder='Variable name' ></input>
