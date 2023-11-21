@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction } from 'react';
+import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 
 interface NewTemplateProps {
   user: string;
@@ -9,12 +9,19 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [template, setTemplate] = useState({});
+  const [nameInput, setNameInput] = useState<string>('');
+
+  const saveName = (name: string) => {
+    setTemplate(prevTemplate => ({ ...prevTemplate, name }));  }
 
   return (
     <>
-    <form>
+    <form onSubmit={(e: SyntheticEvent) => {
+      e.preventDefault();
+      saveName(nameInput);
+    }}>
       <h3>Please enter a name for the template</h3>
-      <input type='text'></input>
+      <input onChange={e => setNameInput(e.target.value)} type='text'></input>
       <input type='submit' value='Save'></input>
     </form>
       <h3>Enter text -</h3>
