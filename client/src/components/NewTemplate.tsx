@@ -12,6 +12,11 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   return (
     <>
+    <form>
+      <h3>Please enter a name for the template</h3>
+      <input type='text'></input>
+      <input type='submit' value='Save'></input>
+    </form>
       <h3>Enter text -</h3>
       <form>
         <input type='text' ></input>
