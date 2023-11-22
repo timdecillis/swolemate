@@ -6,7 +6,6 @@ const instance = axios.create({
 });
 
 interface AddNameProps {
-  user: string;
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
