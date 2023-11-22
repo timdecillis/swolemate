@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent, SetStateAction } from 'react';
+import React, { useState, SetStateAction } from 'react';
 import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
