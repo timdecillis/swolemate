@@ -6,6 +6,7 @@ import TemplateEditor from './TemplateEditor';
 interface NewTemplateProps {
   user: string;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
+  newTemplateOpen: boolean;
 }
 
 type TemplateType = {
@@ -18,7 +19,7 @@ type TemplateType = {
   string: string;
 }
 
-const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
+const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
 
   const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: [{name: '', content: ''}], string: '' });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
@@ -27,7 +28,7 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   return (
     <>
-      {addNameOpen && <AddName setAddNameOpen={setAddNameOpen} />}
+      {addNameOpen && <AddName setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
       {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>

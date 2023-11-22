@@ -7,6 +7,7 @@ const instance = axios.create({
 
 interface AddNameProps {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
+  newTemplateOpen: boolean;
 }
 
 const AddName = ({ setAddNameOpen }: AddNameProps) => {
@@ -27,6 +28,7 @@ const AddName = ({ setAddNameOpen }: AddNameProps) => {
         <input onChange={e => setInput(e.target.value)} type='text'></input>
         <input type='submit' value='Save'></input>
       </form>
+      <button>Discard</button>
       <h1> </h1>
     </>
   )
