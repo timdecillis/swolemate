@@ -10,20 +10,21 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [template, setTemplate] = useState({});
   const [nameInput, setNameInput] = useState<string>('');
+  const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
 
   const saveName = (name: string) => {
     setTemplate(prevTemplate => ({ ...prevTemplate, name }));  }
 
   return (
     <>
-    <form onSubmit={(e: SyntheticEvent) => {
+    {addNameOpen && <form onSubmit={(e: SyntheticEvent) => {
       e.preventDefault();
       saveName(nameInput);
     }}>
       <h3>Please enter a name for the template</h3>
       <input onChange={e => setNameInput(e.target.value)} type='text'></input>
       <input type='submit' value='Save'></input>
-    </form>
+    </form>}
       <h3>Enter text -</h3>
       <form>
         <input type='text' ></input>
