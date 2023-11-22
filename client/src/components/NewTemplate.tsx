@@ -9,7 +9,7 @@ interface NewTemplateProps {
   newTemplateOpen: boolean;
 }
 
-type TemplateType = {
+export type TemplateType = {
   id: number;
   name: string;
   variables: [{
@@ -28,7 +28,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
 
   return (
     <>
-      {addNameOpen && <AddName setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
+      {addNameOpen && <AddName template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
       {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
