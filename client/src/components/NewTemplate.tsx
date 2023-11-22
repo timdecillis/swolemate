@@ -8,7 +8,6 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-
 interface NewTemplateProps {
   user: string;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -30,7 +29,6 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: [{name: '', content: ''}], string: '' });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
-
 
   return (
     <>

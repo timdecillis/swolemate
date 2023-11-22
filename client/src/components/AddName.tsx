@@ -1,6 +1,12 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
+import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
+
+const instance = axios.create({
+  baseURL: 'http://localhost:5000'
+});
+
 
 interface AddNameProps {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -19,14 +25,17 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen }: AddNameProps) => {
   }
 
   const saveName = () => {
-
+    instance.post('/createTemplate', {data: input})
+    .then((data) => {
+      console.log('data:', data)
+    })
   }
 
   return (
     <>
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
-        // saveName(input);
+        saveName();
       }}>
         <h3>Please enter a name for the template:</h3>
         <input onChange={e => setInput(e.target.value)} type='text'></input>
