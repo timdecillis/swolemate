@@ -11,7 +11,6 @@ interface NewTemplateProps {
 const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
   const [template, setTemplate] = useState({});
-  const [nameInput, setNameInput] = useState<string>('');
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 

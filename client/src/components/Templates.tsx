@@ -56,6 +56,7 @@ const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProp
       </div>
       {!newTemplateOpen && <button onClick={() => setNewTemplateOpen(true)} >Add a new template</button>}
       {newTemplateOpen && <NewTemplate user={user} setNewTemplateOpen={setNewTemplateOpen} />}
+      <h1> </h1>
       <button onClick={() => {
         setSignedIn(false)
       }} >Sign Out</button>
