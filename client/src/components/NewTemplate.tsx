@@ -28,7 +28,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
 
   return (
     <>
-      {addNameOpen && <AddName setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
+      {addNameOpen && <AddName setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
       {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
