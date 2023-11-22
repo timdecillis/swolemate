@@ -10,7 +10,6 @@ interface NewTemplateProps {
 
 const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
-  const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [template, setTemplate] = useState({});
   const [nameInput, setNameInput] = useState<string>('');
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
@@ -22,7 +21,7 @@ const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
   return (
     <>
     {addNameOpen && <AddName/>}
-    {editorOpen && <TemplateEditor/>}
+    {editorOpen && <TemplateEditor setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
   )
