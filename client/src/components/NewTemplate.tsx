@@ -1,14 +1,20 @@
-import React, { useState, SetStateAction, SyntheticEvent } from 'react';
+import React, { useState, SetStateAction } from 'react';
+import axios from 'axios';
 
 import AddName from './AddName';
 import TemplateEditor from './TemplateEditor';
 
+const instance = axios.create({
+  baseURL: 'http://localhost:5000'
+});
+
 interface NewTemplateProps {
   user: string;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
+  newTemplateOpen: boolean;
 }
 
-type TemplateType = {
+export type TemplateType = {
   id: number;
   name: string;
   variables: [{
@@ -18,16 +24,15 @@ type TemplateType = {
   string: string;
 }
 
-const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
+const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
 
   const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: [{name: '', content: ''}], string: '' });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
-
   return (
     <>
-      {addNameOpen && <AddName setAddNameOpen={setAddNameOpen} />}
+      {addNameOpen && <AddName template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
       {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
