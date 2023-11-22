@@ -8,7 +8,7 @@ interface NewTemplateProps {
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-interface template {
+type TemplateType = {
   id: number;
   name: string;
   variables: [{
@@ -16,23 +16,19 @@ interface template {
     content: string
   }];
   string: string;
-
 }
 
 const NewTemplate = ({ user, setNewTemplateOpen }: NewTemplateProps) => {
 
-  const [template, setTemplate] = useState({});
+  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: [{name: '', content: ''}], string: '' });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
-  const saveName = (name: string) => {
-    setTemplate(prevTemplate => ({ ...prevTemplate, name }));
-  }
 
   return (
     <>
       {addNameOpen && <AddName setAddNameOpen={setAddNameOpen} />}
-      {editorOpen && <TemplateEditor setNewTemplateOpen={setNewTemplateOpen} />}
+      {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
   )
