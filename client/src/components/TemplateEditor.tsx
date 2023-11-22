@@ -1,21 +1,11 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 import axios from 'axios';
 
-import TemplateType from './NewTemplate';
+import { TemplateType } from './NewTemplate';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
-
-type TemplateType = {
-  id: number;
-  name: string;
-  variables: [{
-    name: string,
-    content: string
-  }];
-  string: string;
-}
 
 interface TemplateEditorProps {
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;

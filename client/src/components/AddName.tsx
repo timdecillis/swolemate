@@ -1,11 +1,6 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
-import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
-
-const instance = axios.create({
-  baseURL: 'http://localhost:5000'
-});
 
 interface AddNameProps {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -20,7 +15,7 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen }: AddNameProps) => {
 
   const discard = () => {
     setAddNameOpen(false);
-    setNewTemplateOpen(false)
+    setNewTemplateOpen(false);
   }
 
   const saveName = () => {
