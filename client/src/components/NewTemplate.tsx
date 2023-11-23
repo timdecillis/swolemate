@@ -66,7 +66,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
           }}>Edit</button>
         </>
       }
-      {template.string && <div>Template content: {template.string}</div>}
+      {template.string.length > 0 && <div>Template content: {template.string}</div>}
       {template.variables && Object.keys(template.variables).map(key => <div>{key}</div>)}
       {addNameOpen && <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
       {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} editTemplateVariable={editTemplateVariable} />}
