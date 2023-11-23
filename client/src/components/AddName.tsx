@@ -11,7 +11,6 @@ const instance = axios.create({
 interface AddNameProps {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
-  newTemplateOpen: boolean;
   template: TemplateType;
 }
 

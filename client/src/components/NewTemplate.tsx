@@ -33,7 +33,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   return (
     <>
       {template.name && <div>{template.name}</div>}
-      {addNameOpen && <AddName template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
+      {addNameOpen && <AddName template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen}/>}
       {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
