@@ -17,16 +17,13 @@ interface NewTemplateProps {
 export type TemplateType = {
   id: number;
   name: string;
-  variables: [{
-    name: string,
-    content: string
-  }];
+  variables: {[key: string]: string};
   string: string;
 }
 
 const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
 
-  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: [{ name: '', content: '' }], string: '' });
+  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: '' });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
@@ -36,6 +33,12 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
 
   const editTemplateString = (string: string) => {
     setTemplate({...template, string});
+  }
+
+  const editTemplateVariable = (name: string, content: string) => {
+    let previousVariables = template.variables;
+    previousVariables[name] = content;
+    setTemplate({...template, variables: previousVariables })
   }
 
   return (
@@ -49,11 +52,10 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
           }}>Edit</button>
         </>
       }
-      {
-        template.string && <div>Template content: {template.string}</div>
-      }
+      {template.string && <div>Template content: {template.string}</div>}
+      {template.variables && Object.keys(template.variables).map(key => <div>{key}</div>)}
       {addNameOpen && <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
-      {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} />}
+      {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} editTemplateVariable={editTemplateVariable} />}
 
     </>
   )
