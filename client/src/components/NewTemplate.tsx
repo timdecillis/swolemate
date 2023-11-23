@@ -53,6 +53,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     let previousString = template.string;
     previousVariables[name] = content;
     setTemplate({ ...template, string: [...previousString, [name]], variables: previousVariables })
+    console.log(template.variables)
   }
 
   return (

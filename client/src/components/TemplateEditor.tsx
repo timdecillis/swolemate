@@ -2,6 +2,7 @@ import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
+import EditVariables from './EditVariables';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
@@ -46,6 +47,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, edit
           }} >Add to template</button>
         </div>
       }
+      {editVariablesOpen && <EditVariables editTemplateVariable={editTemplateVariable} editVariablesOpen={editVariablesOpen} setEditVariablesOpen={setEditVariablesOpen}/> }
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
       <button onClick={() => setEditVariablesOpen(true)} >Edit variables</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
