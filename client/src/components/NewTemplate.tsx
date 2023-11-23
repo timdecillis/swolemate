@@ -31,7 +31,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
   const editTemplateName = (name: string) => {
-    setTemplate({...template, name});
+    setTemplate({ ...template, name });
   }
 
   return (
@@ -39,10 +39,13 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
       {template.name &&
         <>
           <div>Template name: {template.name}</div>
-          <button>Edit</button>
+          <button onClick={() => {
+            setAddNameOpen(true);
+            setEditorOpen(false)
+          }} >Edit</button>
         </>
       }
-      {addNameOpen && <AddName editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
+      {addNameOpen && <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
       {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
