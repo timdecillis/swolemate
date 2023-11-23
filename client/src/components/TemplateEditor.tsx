@@ -31,8 +31,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, edit
         editTemplateString(input);
       }} >
         <input onChange={e => setInput(e.target.value)} type='text' ></input>
-        <button>Add to template</button>
-        <button type='submit'>Finish</button>
+        <button type='submit'>Add to template</button>
       </form>
       <h3>or - </h3>
       {variableOpen &&
