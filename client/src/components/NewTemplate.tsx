@@ -34,6 +34,10 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     setTemplate({ ...template, name });
   }
 
+  const editTemplateString = (string: string) => {
+    setTemplate({...template, string});
+  }
+
   return (
     <>
       {template.name &&
@@ -42,11 +46,14 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
           <button onClick={() => {
             setAddNameOpen(true);
             setEditorOpen(false)
-          }} >Edit</button>
+          }}>Edit</button>
         </>
       }
+      {
+        template.string && <div>Template content: {template.string}</div>
+      }
       {addNameOpen && <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
-      {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
+      {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
     </>
   )

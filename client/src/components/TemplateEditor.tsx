@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction } from 'react';
+import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
@@ -10,18 +10,23 @@ const instance = axios.create({
 interface TemplateEditorProps {
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   template: TemplateType;
+  editTemplateString: (string: string) => void;
 }
 
-const TemplateEditor = ({ setNewTemplateOpen, template }: TemplateEditorProps) => {
+const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString }: TemplateEditorProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
+  const [input, setInput] = useState<string>('');
 
 
   return (
     <>
       <h3>Enter text -</h3>
-      <form>
-        <input type='text' ></input>
+      <form onSubmit={(e: SyntheticEvent) => {
+        e.preventDefault();
+        editTemplateString(input);
+      }} >
+        <input onChange={e => setInput(e.target.value)} type='text' ></input>
         <button>Add to template</button>
         <button type='submit'>Finish</button>
       </form>
