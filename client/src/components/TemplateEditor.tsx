@@ -2,6 +2,7 @@ import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
+import EditVariables from './EditVariables';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
@@ -18,6 +19,7 @@ interface TemplateEditorProps {
 const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, editTemplateVariable }: TemplateEditorProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
+  const [editVariablesOpen, setEditVariablesOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
@@ -31,8 +33,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, edit
         editTemplateString(input);
       }} >
         <input onChange={e => setInput(e.target.value)} type='text' ></input>
-        <button>Add to template</button>
-        <button type='submit'>Finish</button>
+        <button type='submit'>Add to template</button>
       </form>
       <h3>or - </h3>
       {variableOpen &&
@@ -46,7 +47,9 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, edit
           }} >Add to template</button>
         </div>
       }
+      {editVariablesOpen && <EditVariables editTemplateVariable={editTemplateVariable} editVariablesOpen={editVariablesOpen} setEditVariablesOpen={setEditVariablesOpen}/> }
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
+      <button onClick={() => setEditVariablesOpen(true)} >Edit variables</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>
       <h2> </h2>
