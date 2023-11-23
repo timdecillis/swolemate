@@ -26,12 +26,13 @@ export type TemplateType = {
 
 const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
 
-  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: [{name: '', content: ''}], string: '' });
+  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: [{ name: '', content: '' }], string: '' });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
   return (
     <>
+      {template.name && <div>{template.name}</div>}
       {addNameOpen && <AddName template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} newTemplateOpen={newTemplateOpen} />}
       {editorOpen && <TemplateEditor template={template} setNewTemplateOpen={setNewTemplateOpen} />}
 
