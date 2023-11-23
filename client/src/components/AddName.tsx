@@ -13,9 +13,10 @@ interface AddNameProps {
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   template: TemplateType;
   editTemplateName: (name: string) => void;
+  setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName }: AddNameProps) => {
+const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEditorOpen }: AddNameProps) => {
 
   const [input, setInput] = useState<string>('');
 
@@ -29,6 +30,8 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName }: AddNa
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         editTemplateName(input);
+        setAddNameOpen(false);
+        setEditorOpen(true);
       }}>
         <h3>Please enter a name for the template:</h3>
         <input onChange={e => setInput(e.target.value)} type='text'></input>
