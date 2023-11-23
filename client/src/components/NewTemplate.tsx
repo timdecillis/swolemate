@@ -17,13 +17,23 @@ interface NewTemplateProps {
 export type TemplateType = {
   id: number;
   name: string;
-  variables: {[key: string]: string};
-  string: string;
+  variables: { [key: string]: string };
+  string: (string | string[])[];
+  renderString: () => string;
+}
+
+const renderString = function(this: TemplateType) {
+  return this.string.map((part: (string | string[])) => {
+    if (Array.isArray(part)) {
+      return this.variables[part[0]];
+    }
+    return part;
+  }).join(' ');
 }
 
 const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
 
-  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: '' });
+  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [], renderString: renderString });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
@@ -32,13 +42,17 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   }
 
   const editTemplateString = (string: string) => {
-    setTemplate({...template, string});
-  }
+    setTemplate(prevTemplate => ({
+      ...prevTemplate,
+      string: [...prevTemplate.string, string]
+    }));
+  };
 
   const editTemplateVariable = (name: string, content: string) => {
     let previousVariables = template.variables;
+    let previousString = template.string;
     previousVariables[name] = content;
-    setTemplate({...template, variables: previousVariables })
+    setTemplate({ ...template, string: [...previousString, [name]], variables: previousVariables })
   }
 
   return (
