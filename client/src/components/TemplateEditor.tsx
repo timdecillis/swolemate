@@ -18,6 +18,7 @@ interface TemplateEditorProps {
 const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, editTemplateVariable }: TemplateEditorProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
+  const [editVariablesOpen, setEditVariablesOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
@@ -46,6 +47,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, edit
         </div>
       }
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
+      <button onClick={() => setEditVariablesOpen(true)} >Edit variables</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>
       <h2> </h2>
