@@ -74,12 +74,8 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
       {template.string.length > 0 && <div>Template content: {
         template.renderString()
       }</div>}
-      {template.variables && (
-        <div>
-          <h3>Variables</h3>
-          {variables}
-        </div>
-      )}
+      <h3>Variables</h3>
+      {variables}
       {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>
