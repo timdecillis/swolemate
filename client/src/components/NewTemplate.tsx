@@ -19,19 +19,26 @@ export type TemplateType = {
   name: string;
   variables: { [key: string]: string };
   string: (string | string[])[];
-  renderString: () => string;
-}
-
-const renderString = function(this: TemplateType) {
-  return this.string.map((part: (string | string[])) => {
-    if (Array.isArray(part)) {
-      return this.variables[part[0]];
-    }
-    return part;
-  }).join(' ');
+  renderString: () => any;
 }
 
 const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
+
+  const renderString = function (this: TemplateType) {
+    return this.string.map((part: (string | string[])) => {
+      if (Array.isArray(part)) {
+        return (
+          <>
+            <div>{this.variables[part[0]]}</div>
+            <button>Edit</button>
+          </>
+        )
+      }
+      return (
+        <div>{part}</div>
+      )
+    });
+  }
 
   const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [], renderString: renderString });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
@@ -67,9 +74,11 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
           }}>Edit</button>
         </>
       }
-      {template.string.length > 0 && <div>Template content: {template.renderString()}</div>}
-      {template.variables && Object.keys(template.variables).map((key, i) => <div key={i} >{key}</div>)}
       {addNameOpen && <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
+      {template.string.length > 0 && <div>Template content: {
+        template.renderString()
+      }</div>}
+      {template.variables && Object.keys(template.variables).map((key, i) => <div key={i} >{key}</div>)}
       {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>
