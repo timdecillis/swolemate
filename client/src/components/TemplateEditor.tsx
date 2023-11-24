@@ -12,11 +12,11 @@ interface TemplateEditorProps {
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   template: TemplateType;
   editTemplateString: (string: string) => void;
-  editTemplateVariable: (name: string, content: string) => void;
+  addNewVariable: (name: string, content: string) => void;
 
 }
 
-const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, editTemplateVariable }: TemplateEditorProps) => {
+const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addNewVariable }: TemplateEditorProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [editVariablesOpen, setEditVariablesOpen] = useState<boolean>(false);
@@ -42,12 +42,12 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, edit
           <input onChange={(e) => setVariableContent(e.target.value)} placeholder='Variable content' ></input>
           <button onClick={() => setVariableOpen(false)} >Discard</button>
           <button onClick={() => {
-            editTemplateVariable(variableName, variableContent);
+            addNewVariable(variableName, variableContent);
             setVariableOpen(false);
           }} >Add to template</button>
         </div>
       }
-      {editVariablesOpen && <EditVariables editTemplateVariable={editTemplateVariable} editVariablesOpen={editVariablesOpen} setEditVariablesOpen={setEditVariablesOpen}/> }
+      {editVariablesOpen && <EditVariables editVariablesOpen={editVariablesOpen} setEditVariablesOpen={setEditVariablesOpen}/> }
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
       <button onClick={() => setEditVariablesOpen(true)} >Edit variables</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
