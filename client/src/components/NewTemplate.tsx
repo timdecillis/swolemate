@@ -48,7 +48,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     }));
   };
 
-  const editTemplateVariable = (name: string, content: string) => {
+  const addNewVariable = (name: string, content: string) => {
     let previousVariables = template.variables;
     let previousString = template.string;
     previousVariables[name] = content;
@@ -68,9 +68,9 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
         </>
       }
       {template.string.length > 0 && <div>Template content: {template.renderString()}</div>}
-      {template.variables && Object.keys(template.variables).map(key => <div>{key}</div>)}
+      {template.variables && Object.keys(template.variables).map((key, i) => <div key={i} >{key}</div>)}
       {addNameOpen && <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
-      {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} editTemplateVariable={editTemplateVariable} />}
+      {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>
   )
