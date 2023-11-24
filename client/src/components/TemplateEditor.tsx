@@ -36,7 +36,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
         <button type='submit'>Add to template</button>
       </form>
       <h4> </h4>
-      {variableOpen && <AddVariable setVariableOpen={setVariableOpen} addNewVariable={addNewVariable}/>}
+      {variableOpen && <AddVariable template={template} setVariableOpen={setVariableOpen} addNewVariable={addNewVariable}/>}
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>
