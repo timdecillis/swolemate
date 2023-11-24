@@ -31,8 +31,9 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         editTemplateString(input);
+        setInput('');
       }} >
-        <input onChange={e => setInput(e.target.value)} type='text' ></input>
+        <input value={input} onChange={e => setInput(e.target.value)} type='text' ></input>
         <button type='submit'>Add to template</button>
       </form>
       <h4>or - </h4>

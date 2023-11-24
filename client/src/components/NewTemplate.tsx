@@ -27,17 +27,10 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   const renderString = function (this: TemplateType) {
     return this.string.map((part: (string | string[]), i) => {
       if (Array.isArray(part)) {
-        return (
-          <>
-            <div key={i} >{this.variables[part[0]]}</div>
-            <button>Edit</button>
-          </>
-        )
+        return this.variables[part[0]];
       }
-      return (
-        <div key={i} >{part}</div>
-      )
-    });
+      return part;
+    }).join(' ');
   }
 
   const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [], renderString: renderString });
