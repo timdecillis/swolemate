@@ -2,7 +2,7 @@ import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
-import EditVariable from './EditVariable';
+import AddVariable from './AddVariable';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
@@ -36,17 +36,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
         <button type='submit'>Add to template</button>
       </form>
       <h4> </h4>
-      {variableOpen &&
-        <div>
-          <input onChange={(e) => setVariableName(e.target.value)} placeholder='Variable name' ></input>
-          <input onChange={(e) => setVariableContent(e.target.value)} placeholder='Variable content' ></input>
-          <button onClick={() => setVariableOpen(false)} >Discard</button>
-          <button onClick={() => {
-            addNewVariable(variableName, variableContent);
-            setVariableOpen(false);
-          }} >Add to template</button>
-        </div>
-      }
+      {variableOpen && <AddVariable setVariableOpen={setVariableOpen} addNewVariable={addNewVariable}/>}
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>
