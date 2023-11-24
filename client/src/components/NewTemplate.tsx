@@ -65,16 +65,18 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
 
   return (
     <>
-      {template.name &&
+      {!addNameOpen ?
         <>
           <div>Template name: {template.name}</div>
           <button onClick={() => {
             setAddNameOpen(true);
             setEditorOpen(false)
           }}>Edit</button>
-        </>
+        </> :
+        <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
+
       }
-      {addNameOpen && <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />}
+
       {template.string.length > 0 && <div>Template content: {
         template.renderString()
       }</div>}
