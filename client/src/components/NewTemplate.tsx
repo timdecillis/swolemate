@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import AddName from './AddName';
 import TemplateEditor from './TemplateEditor';
+import EditVariable from './EditVariable';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
@@ -25,7 +26,7 @@ export type TemplateType = {
 const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
 
   const renderString = function (this: TemplateType) {
-    return this.string.map((part: (string | string[]), i) => {
+    return this.string.map((part: (string | string[])) => {
       if (Array.isArray(part)) {
         return this.variables[part[0]];
       }
@@ -36,6 +37,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [], renderString: renderString });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
+  const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
 
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
@@ -56,7 +58,14 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     console.log(template.variables)
   }
 
-  let variables = Object.keys(template.variables).map((key, i) => <div key={i} >{key}</div>);
+  let variables = Object.keys(template.variables).map((key, i) => {
+    return (
+      <>
+        <div key={i} >{key}</div>
+        <button onClick={() => setEditVariableOpen(true)} key={i} >Edit</button>
+      </>
+    )
+  });
 
   return (
     <>
@@ -76,6 +85,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
       }</div>}
       <h3>Variables</h3>
       {variables}
+      {editVariableOpen && <EditVariable editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
       {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>

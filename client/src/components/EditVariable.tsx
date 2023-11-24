@@ -1,13 +1,12 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 
 
-interface EditVariablesProps {
-  editVariablesOpen: boolean;
-  setEditVariablesOpen: React.Dispatch<SetStateAction<boolean>>;
-
+interface EditVariableProps {
+  editVariableOpen: boolean;
+  setEditVariableOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const EditVariables = ({ editVariablesOpen, setEditVariablesOpen }: EditVariablesProps) => {
+const EditVariable = ({ editVariableOpen, setEditVariableOpen }: EditVariableProps) => {
 
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
@@ -21,9 +20,9 @@ const EditVariables = ({ editVariablesOpen, setEditVariablesOpen }: EditVariable
         <input onChange={(e) => setVariableContent(e.target.value)} type='text' placeholder='content'></input>
         <button type='submit'>Save</button>
       </form>
-      <button onClick={() => setEditVariablesOpen(false)} >Cancel</button>
+      <button onClick={() => setEditVariableOpen(false)} >Cancel</button>
     </>
   )
 }
 
-export default EditVariables
+export default EditVariable

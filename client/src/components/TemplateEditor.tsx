@@ -2,7 +2,7 @@ import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
-import EditVariables from './EditVariables';
+import EditVariable from './EditVariable';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
@@ -19,7 +19,6 @@ interface TemplateEditorProps {
 const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addNewVariable }: TemplateEditorProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
-  const [editVariablesOpen, setEditVariablesOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
@@ -27,7 +26,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
 
   return (
     <>
-      <h4>Enter text -</h4>
+      <h4>Enter text: </h4>
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         editTemplateString(input);
@@ -36,7 +35,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
         <input value={input} onChange={e => setInput(e.target.value)} type='text' ></input>
         <button type='submit'>Add to template</button>
       </form>
-      <h4>or - </h4>
+      <h4> </h4>
       {variableOpen &&
         <div>
           <input onChange={(e) => setVariableName(e.target.value)} placeholder='Variable name' ></input>
@@ -48,9 +47,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
           }} >Add to template</button>
         </div>
       }
-      {editVariablesOpen && <EditVariables editVariablesOpen={editVariablesOpen} setEditVariablesOpen={setEditVariablesOpen}/> }
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
-      <button onClick={() => setEditVariablesOpen(true)} >Edit variables</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>
       <h2> </h2>
