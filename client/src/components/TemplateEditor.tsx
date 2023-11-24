@@ -27,7 +27,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
 
   return (
     <>
-      <h3>Enter text -</h3>
+      <h4>Enter text -</h4>
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         editTemplateString(input);
@@ -35,7 +35,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
         <input onChange={e => setInput(e.target.value)} type='text' ></input>
         <button type='submit'>Add to template</button>
       </form>
-      <h3>or - </h3>
+      <h4>or - </h4>
       {variableOpen &&
         <div>
           <input onChange={(e) => setVariableName(e.target.value)} placeholder='Variable name' ></input>
