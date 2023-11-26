@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction } from 'react';
+import React, { useState, SetStateAction, useEffect } from 'react';
 import axios from 'axios';
 
 import AddName from './AddName';
@@ -64,6 +64,12 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     setTemplate(prevTemplate => ({
       ...prevTemplate,
       string: [...previousString, [name]]
+    }));
+  }
+
+  const editVariable = (name: string, content: string) => {
+    setTemplate(prevTemplate => ({
+      ...prevTemplate, variables: {...prevTemplate.variables, [name]: content}
     }));
   }
 

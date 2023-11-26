@@ -17,8 +17,8 @@ const EditVariable = ({ editVariableOpen, setEditVariableOpen, variable }: EditV
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
       }} >
-        <input onChange={(e) => setVariableName(e.target.value)} type='text' value={variable[0]}></input>
-        <input onChange={(e) => setVariableContent(e.target.value)} type='text' value={variable[1]}></input>
+        <input onChange={(e) => setVariableName(e.target.value)} type='text' defaultValue={variable[0]}></input>
+        <input onChange={(e) => setVariableContent(e.target.value)} type='text' defaultValue={variable[1]}></input>
         <button type='submit'>Save</button>
       </form>
       <button onClick={() => setEditVariableOpen(false)} >Cancel</button>
