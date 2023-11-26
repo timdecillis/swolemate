@@ -13,10 +13,10 @@ interface TemplateEditorProps {
   template: TemplateType;
   editTemplateString: (string: string) => void;
   addNewVariable: (name: string, content: string) => void;
-
+  addExistingVariableToString: (name: string) => void;
 }
 
-const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addNewVariable }: TemplateEditorProps) => {
+const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addNewVariable, addExistingVariableToString }: TemplateEditorProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
@@ -36,7 +36,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
         <button type='submit'>Add to template</button>
       </form>
       <h4> </h4>
-      {variableOpen && <AddVariable template={template} setVariableOpen={setVariableOpen} addNewVariable={addNewVariable}/>}
+      {variableOpen && <AddVariable addExistingVariableToString={addExistingVariableToString} template={template} setVariableOpen={setVariableOpen} addNewVariable={addNewVariable}/>}
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard</button>
       <button>Save</button>

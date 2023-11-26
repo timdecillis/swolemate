@@ -17,9 +17,11 @@ const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user, label }: S
   });
 
   const [input, setInput] = useState('');
+  const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
+    if (!input) return setErrorOpen(true);
     setUser(input)
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
@@ -32,9 +34,12 @@ const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user, label }: S
     <div>
       <h3>{label}</h3>
       <form onSubmit={onSubmit}>
-        <input onChange={e => setInput(e.target.value)} type='text' />
+        <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text' />
         <input type='submit' />
       </form>
+      {errorOpen &&
+      <div>Please enter a username!</div>
+      }
     </div>
   )
 }
