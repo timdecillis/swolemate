@@ -40,6 +40,10 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
   const [variable, setVariable] = useState<string[]>([]);
 
+  useEffect(() => {
+
+  })
+
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
   }
@@ -56,7 +60,6 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     let previousString = template.string;
     previousVariables[name] = content;
     setTemplate({ ...template, string: [...previousString, [name]], variables: previousVariables })
-    console.log(template.variables)
   }
 
   const addExistingVariableToString = (name: string) => {
@@ -68,6 +71,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   }
 
   const editVariable = (name: string, content: string) => {
+    console.log('content in function:', content)
     setTemplate(prevTemplate => ({
       ...prevTemplate, variables: {...prevTemplate.variables, [name]: content}
     }));
@@ -104,7 +108,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
       }</div>}
       <h3>Variables</h3>
       {variables}
-      {editVariableOpen && <EditVariable variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
+      {editVariableOpen && <EditVariable editVariable={editVariable} variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
       {editorOpen && <TemplateEditor addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>
