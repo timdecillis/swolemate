@@ -94,7 +94,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
       <h3>Variables</h3>
       {variables}
       {editVariableOpen && <EditVariable editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
-      {editorOpen && <TemplateEditor editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
+      {editorOpen && <TemplateEditor addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>
   )

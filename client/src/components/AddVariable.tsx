@@ -6,9 +6,10 @@ interface EditVariableProps {
   setVariableOpen: React.Dispatch<SetStateAction<boolean>>;
   addNewVariable: (name: string, content: string) => void;
   template: TemplateType;
+  addExistingVariableToString: (name: string) => void;
 }
 
-const AddVariable = ({ addNewVariable, setVariableOpen, template }: EditVariableProps) => {
+const AddVariable = ({ addNewVariable, setVariableOpen, template, addExistingVariableToString }: EditVariableProps) => {
 
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
@@ -22,7 +23,7 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template }: EditVariable
             return (
               <>
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
-                <button>Insert</button>
+                <button onClick={() => addExistingVariableToString(tuple[0])} >Insert</button>
               </>
             );
           })}
