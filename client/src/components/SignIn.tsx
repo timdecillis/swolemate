@@ -17,9 +17,11 @@ const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user, label }: S
   });
 
   const [input, setInput] = useState('');
+  const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
+    if (!input) return setErrorOpen(true);
     setUser(input)
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
