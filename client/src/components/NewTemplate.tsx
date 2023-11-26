@@ -58,6 +58,14 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     console.log(template.variables)
   }
 
+  const addExistingVariableToString = (name: string) => {
+    let previousString = template.string;
+    setTemplate(prevTemplate => ({
+      ...prevTemplate,
+      string: [...previousString, [name]]
+    }));
+  }
+
   let variables = Object.keys(template.variables).map((key, i) => {
     return (
       <>

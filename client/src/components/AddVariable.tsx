@@ -15,7 +15,7 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template }: EditVariable
 
   return (
     <>
-      {Object.keys(template.variables) && (
+      {Object.keys(template.variables).length > 0 && (
         <>
           <h4>Choose a variable: </h4>
           {Object.entries(template.variables).map((tuple, i) => {
@@ -26,9 +26,10 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template }: EditVariable
               </>
             );
           })}
-          <h4>Or create a new variable:</h4>
+          <h4>~Or~</h4>
         </>
       )}
+      <h4>Create a new variable:</h4>
       <input onChange={(e) => setVariableName(e.target.value)} placeholder='Variable name' ></input>
       <input onChange={(e) => setVariableContent(e.target.value)} placeholder='Variable content' ></input>
       <button onClick={() => setVariableOpen(false)} >Discard</button>
