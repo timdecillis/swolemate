@@ -66,10 +66,11 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
     }));
   }
 
-  let variables = Object.keys(template.variables).map((key, i) => {
+  let variables = Object.entries(template.variables).map((entry, i) => {
     return (
       <>
-        <div key={i} >{key}</div>
+        <div key={i}>Name: {entry[0]}</div>
+        <div key={i}>Content: {entry[1]}</div>
         <button onClick={() => setEditVariableOpen(true)} key={i} >Edit</button>
       </>
     )
