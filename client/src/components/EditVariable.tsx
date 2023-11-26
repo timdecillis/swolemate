@@ -1,6 +1,5 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 
-
 interface EditVariableProps {
   editVariableOpen: boolean;
   setEditVariableOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -8,7 +7,7 @@ interface EditVariableProps {
   editVariable: (name: string, content: string) => void;
 }
 
-const EditVariable = ({ editVariableOpen, setEditVariableOpen, variable, editVariable }: EditVariableProps) => {
+const EditVariable = ({ setEditVariableOpen, variable, editVariable }: EditVariableProps) => {
 
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');

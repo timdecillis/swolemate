@@ -27,7 +27,6 @@ const Template = ({ template, index, updateTemplate, deleteTemplate }: TemplateP
       </div>
     )
   }
-
 }
 
 export default Template

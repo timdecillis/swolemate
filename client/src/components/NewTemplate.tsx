@@ -1,13 +1,8 @@
 import React, { useState, SetStateAction, useEffect } from 'react';
-import axios from 'axios';
 
 import AddName from './AddName';
 import TemplateEditor from './TemplateEditor';
 import EditVariable from './EditVariable';
-
-const instance = axios.create({
-  baseURL: 'http://localhost:5000'
-});
 
 interface NewTemplateProps {
   user: string;
@@ -23,7 +18,7 @@ export type TemplateType = {
   renderString: () => any;
 }
 
-const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateProps) => {
+const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
 
   const renderString = function (this: TemplateType) {
     return this.string.map((part: (string | string[])) => {
