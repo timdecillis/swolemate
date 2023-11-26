@@ -38,6 +38,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
   const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
+  const [variable, setVariable] = useState<string[]>([]);
 
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
@@ -71,7 +72,10 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
       <>
         <div key={i}>Name: {entry[0]}</div>
         <div key={i}>Content: {entry[1]}</div>
-        <button onClick={() => setEditVariableOpen(true)} key={i} >Edit</button>
+        <button onClick={() => {
+          setEditVariableOpen(true);
+          setVariable(entry);
+          }} key={i}>Edit</button>
       </>
     )
   });
@@ -94,7 +98,7 @@ const NewTemplate = ({ user, setNewTemplateOpen, newTemplateOpen }: NewTemplateP
       }</div>}
       <h3>Variables</h3>
       {variables}
-      {editVariableOpen && <EditVariable editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
+      {editVariableOpen && <EditVariable variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
       {editorOpen && <TemplateEditor addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>
