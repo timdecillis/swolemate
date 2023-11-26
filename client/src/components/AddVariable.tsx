@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent, SetStateAction } from 'react';
+import React, { useState, SetStateAction } from 'react';
 
 import { TemplateType } from './NewTemplate';
 

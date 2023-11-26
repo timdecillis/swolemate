@@ -10,7 +10,7 @@ interface SignInProps {
   signedIn: boolean
 }
 
-const SignIn = ({ setTemplates, signedIn, setSignedIn, setUser, user, label }: SignInProps) => {
+const SignIn = ({ setTemplates, setSignedIn, setUser, label }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'

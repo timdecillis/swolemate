@@ -1,12 +1,7 @@
 import React, { useState, SetStateAction, SyntheticEvent } from 'react';
-import axios from 'axios';
 
 import { TemplateType } from './NewTemplate';
 import AddVariable from './AddVariable';
-
-const instance = axios.create({
-  baseURL: 'http://localhost:5000'
-});
 
 interface TemplateEditorProps {
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -20,9 +15,6 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
-  const [variableName, setVariableName] = useState<string>('');
-  const [variableContent, setVariableContent] = useState<string>('');
-
 
   return (
     <>
