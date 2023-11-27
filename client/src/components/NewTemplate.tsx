@@ -66,7 +66,6 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
   }
 
   const editVariable = (name: string, content: string) => {
-    console.log('content in function:', content)
     setTemplate(prevTemplate => ({
       ...prevTemplate, variables: {...prevTemplate.variables, [name]: content}
     }));
