@@ -66,13 +66,15 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
   }
 
   const editVariable = (prevName: string, name: string, content: string) => {
-    console.log('prevName:', prevName, 'name:', name, 'content:', content)
     if (prevName) {
       let newString = template.string;
       newString.forEach((item: (string | string[])) => {
         if (Array.isArray(item) && item[0] === prevName) item[0] = name;
       })
-      setTemplate((prevTemplate) => ({...prevTemplate, ...prevTemplate.variables, [prevName]: content, string: newString}))
+      let newVariables = template.variables;
+      delete newVariables[prevName];
+      newVariables[name] = content;
+      setTemplate((prevTemplate) => ({...prevTemplate, variables: newVariables, string: newString}))
     } else {
       setTemplate(prevTemplate => ({
         ...prevTemplate, variables: { ...prevTemplate.variables, [name]: content }
