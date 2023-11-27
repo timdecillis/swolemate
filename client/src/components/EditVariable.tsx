@@ -4,7 +4,7 @@ interface EditVariableProps {
   editVariableOpen: boolean;
   setEditVariableOpen: React.Dispatch<SetStateAction<boolean>>;
   variable: string[];
-  editVariable: (name: string, content: string) => void;
+  editVariable: (prevName: string, name: string, content: string) => void;
 }
 
 const EditVariable = ({ setEditVariableOpen, variable, editVariable }: EditVariableProps) => {
@@ -16,7 +16,11 @@ const EditVariable = ({ setEditVariableOpen, variable, editVariable }: EditVaria
     <>
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
-        editVariable(variableName || variable[0], variableContent || variable[1]);
+        let prevName = '';
+        if (!variableContent) {
+          prevName = variable[0];
+        }
+        editVariable(prevName, variableName || variable[0], variableContent || variable[1]);
         setEditVariableOpen(false);
       }} >
         <input onChange={(e) => setVariableName(e.target.value)} type='text' defaultValue={variable[0]}></input>
