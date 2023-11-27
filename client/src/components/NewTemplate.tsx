@@ -65,10 +65,18 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
     }));
   }
 
-  const editVariable = (name: string, content: string) => {
-    setTemplate(prevTemplate => ({
-      ...prevTemplate, variables: {...prevTemplate.variables, [name]: content}
-    }));
+  const editVariable = (prevName: string, name: string, content: string) => {
+    if (prevName) {
+      let prevString = template.string;
+      prevString.forEach((item: (string | string[])) => {
+        if (Array.isArray(item) && item[0] === prevName) item[0] = name;
+      })
+      setTemplate((prevTemplate) => ({...prevTemplate, ...prevTemplate.variables, [prevName]: content}))
+    } else {
+      setTemplate(prevTemplate => ({
+        ...prevTemplate, variables: { ...prevTemplate.variables, [name]: content }
+      }));
+    }
   }
 
   let variables = Object.entries(template.variables).map((entry, i) => {
@@ -79,7 +87,7 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
         <button onClick={() => {
           setEditVariableOpen(true);
           setVariable(entry);
-          }} key={i}>Edit</button>
+        }} key={i}>Edit</button>
       </>
     )
   });
