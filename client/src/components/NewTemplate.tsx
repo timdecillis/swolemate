@@ -80,7 +80,6 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
         ...prevTemplate, variables: { ...prevTemplate.variables, [name]: content }
       }));
     }
-    console.log(template)
   }
 
   let variables = Object.entries(template.variables).map((entry, i) => {
