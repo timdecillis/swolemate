@@ -35,10 +35,6 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
   const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
   const [variable, setVariable] = useState<string[]>([]);
 
-  useEffect(() => {
-
-  })
-
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
   }
