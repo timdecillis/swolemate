@@ -30,7 +30,7 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEdit
         setEditorOpen(true);
       }}>
         <h3>Please enter a name for the template:</h3>
-        <input onChange={e => setInput(e.target.value)} type='text'></input>
+        <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text'></input>
         <input type='submit' value='Save'></input>
       </form>
       {errorOpen && <div>Please enter a name for your template!</div>}
