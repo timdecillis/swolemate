@@ -13,6 +13,7 @@ interface AddNameProps {
 const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEditorOpen }: AddNameProps) => {
 
   const [input, setInput] = useState<string>('');
+  const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const discard = () => {
     setAddNameOpen(false);
@@ -23,14 +24,16 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEdit
     <>
       <form onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
+        if(!input) return setErrorOpen(true);
         editTemplateName(input);
         setAddNameOpen(false);
         setEditorOpen(true);
       }}>
         <h3>Please enter a name for the template:</h3>
-        <input onChange={e => setInput(e.target.value)} type='text'></input>
+        <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text'></input>
         <input type='submit' value='Save'></input>
       </form>
+      {errorOpen && <div>Please enter a name for your template!</div>}
       <button onClick={discard} >Discard</button>
       <h1> </h1>
     </>
