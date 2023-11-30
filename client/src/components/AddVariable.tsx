@@ -13,6 +13,7 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template, addExistingVar
 
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
+  const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -34,10 +35,12 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template, addExistingVar
         </>
       )}
       <h4>Create a new variable:</h4>
-      <input onChange={(e) => setVariableName(e.target.value)} placeholder='Variable name' ></input>
-      <input onChange={(e) => setVariableContent(e.target.value)} placeholder='Variable content' ></input>
+      <input onClick={() => setErrorOpen(false)} onChange={(e) => {setVariableName(e.target.value)}} placeholder='Variable name' ></input>
+      <input onClick={() => setErrorOpen(false)} onChange={(e) => setVariableContent(e.target.value)} placeholder='Variable content' ></input>
+      {errorOpen && <div>Please enter a variable name and content!</div>}
       <button onClick={() => setVariableOpen(false)} >Discard</button>
       <button onClick={() => {
+        if (!variableName || !variableContent) return setErrorOpen(true);
         addNewVariable(variableName, variableContent);
         setVariableOpen(false);
       }} >Add to template</button>
