@@ -23,7 +23,10 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template, addExistingVar
             return (
               <>
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
-                <button onClick={() => addExistingVariableToString(tuple[0])} >Insert</button>
+                <button onClick={() => {
+                  addExistingVariableToString(tuple[0]);
+                  setVariableOpen(false);
+                  }} >Insert</button>
               </>
             );
           })}
