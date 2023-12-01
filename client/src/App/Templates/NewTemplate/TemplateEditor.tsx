@@ -1,7 +1,7 @@
 import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 
-import { TemplateType } from './Templates/NewTemplate';
-import AddVariable from './AddVariable';
+import { TemplateType } from '../NewTemplate';
+import AddVariable from '../../AddVariable';
 
 interface TemplateEditorProps {
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
