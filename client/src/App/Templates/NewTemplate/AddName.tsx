@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 
-import { TemplateType } from './NewTemplate';
+import { TemplateType } from '../NewTemplate';
 
 interface AddNameProps {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;

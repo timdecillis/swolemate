@@ -1,8 +1,8 @@
 import React, { useState, SetStateAction, useEffect } from 'react';
 
-import AddName from './AddName';
-import TemplateEditor from './TemplateEditor';
-import EditVariable from './EditVariable';
+import AddName from './NewTemplate/AddName';
+import TemplateEditor from './NewTemplate/TemplateEditor';
+import EditVariable from './NewTemplate/EditVariable';
 
 interface NewTemplateProps {
   user: string;

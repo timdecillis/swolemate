@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import './App.css';
-import Templates from './components/Templates';
-import SignIn from './components/SignIn';
+import Templates from './App/Templates';
+import SignIn from './App/SignIn';
 
 function App() {
 
