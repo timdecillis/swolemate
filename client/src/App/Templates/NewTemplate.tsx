@@ -32,8 +32,7 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
   const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [], renderString: renderString });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
-  const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
-  const [variable, setVariable] = useState<string[]>([]);
+
 
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
@@ -61,36 +60,6 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
     }));
   }
 
-  const editVariable = (prevName: string, name: string, content: string) => {
-    if (prevName) {
-      let newString = template.string;
-      newString.forEach((item: (string | string[])) => {
-        if (Array.isArray(item) && item[0] === prevName) item[0] = name;
-      })
-      let newVariables = template.variables;
-      delete newVariables[prevName];
-      newVariables[name] = content;
-      setTemplate((prevTemplate) => ({...prevTemplate, variables: newVariables, string: newString}))
-    } else {
-      setTemplate(prevTemplate => ({
-        ...prevTemplate, variables: { ...prevTemplate.variables, [name]: content }
-      }));
-    }
-  }
-
-  let variables = Object.entries(template.variables).map((entry, i) => {
-    return (
-      <div key={i}>
-        <div>Name: {entry[0]}</div>
-        <div>Content: {entry[1]}</div>
-        <button onClick={() => {
-          setEditVariableOpen(true);
-          setVariable(entry);
-        }}>Edit</button>
-      </div>
-    )
-  });
-
   return (
     <>
       {!addNameOpen ?
@@ -104,14 +73,9 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
         <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
       }
 
-      {template.string.length > 0 && <div>Template content: {
-        template.renderString()
-      }</div>}
-      <h3>Variables</h3>
-      {variables}
-      {editVariableOpen && <EditVariable editVariable={editVariable} variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
-      {editorOpen && <TemplateEditor addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
+      {template.string.length > 0 && <div>Template content: {template.renderString()}</div>}
 
+      {editorOpen && <TemplateEditor setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
     </>
   )
 }

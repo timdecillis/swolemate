@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react';
+import axios from 'axios';
 
 interface SignInProps {
   label: string
@@ -25,6 +25,7 @@ const SignIn = ({ setTemplates, setSignedIn, setUser, label }: SignInProps) => {
     setUser(input)
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
+        console.log('data:', data)
         setTemplates(data);
         setSignedIn(true)
       })

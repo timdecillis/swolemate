@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import EditForm from '../EditForm';
+import EditForm from './EditForm';
 
 interface TemplateProps {
   index: number;
