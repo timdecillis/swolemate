@@ -22,7 +22,7 @@ const EditVariable = ({ setEditVariableOpen, variable, editVariable }: EditVaria
         }
         editVariable(prevName, variableName || variable[0], variableContent || variable[1]);
         setEditVariableOpen(false);
-      }} >
+      }}>
         <input onChange={(e) => setVariableName(e.target.value)} type='text' defaultValue={variable[0]}></input>
         <input onChange={(e) => setVariableContent(e.target.value)} type='text' defaultValue={variable[1]}></input>
         <button type='submit'>Save</button>
