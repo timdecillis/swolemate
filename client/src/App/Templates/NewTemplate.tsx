@@ -104,12 +104,13 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
         <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
       }
 
-      {template.string.length > 0 && <div>Template content: {
-        template.renderString()
-      }</div>}
+      {template.string.length > 0 && <div>Template content: {template.renderString()}</div>}
+
       <h3>Variables</h3>
       {variables}
+
       {editVariableOpen && <EditVariable editVariable={editVariable} variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
+
       {editorOpen && <TemplateEditor addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
 
     </>
