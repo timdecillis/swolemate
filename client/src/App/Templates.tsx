@@ -1,8 +1,8 @@
 import React, { SetStateAction, SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
-import Template from './Template';
-import NewTemplate from './NewTemplate';
+import Template from './Templates/Template';
+import NewTemplate from './Templates/NewTemplate';
 
 interface TemplatesProps {
   setSignedIn: React.Dispatch<SetStateAction<boolean>>
