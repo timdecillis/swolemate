@@ -11,6 +11,8 @@ interface TemplatesProps {
   setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
+console.log('foo');
+
 const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProps) => {
 
   const instance = axios.create({
