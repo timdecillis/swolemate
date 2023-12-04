@@ -1,8 +1,8 @@
-import React, { useState, SetStateAction, useEffect } from 'react';
+import React, { useState, SetStateAction } from 'react';
+import axios from 'axios';
 
 import AddName from './NewTemplate/AddName';
 import TemplateEditor from './NewTemplate/TemplateEditor';
-import EditVariable from './NewTemplate/EditVariable';
 
 interface NewTemplateProps {
   user: string;
@@ -18,7 +18,11 @@ export type TemplateType = {
   renderString: () => any;
 }
 
-const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
+const instance = axios.create({
+  baseURL: 'http://localhost:5000'
+});
+
+const NewTemplate = ({ setNewTemplateOpen, user }: NewTemplateProps) => {
 
   const renderString = function (this: TemplateType) {
     return this.string.map((part: (string | string[])) => {
@@ -33,6 +37,12 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
+  const saveNewTemplate = () => {
+    instance.post('/addTemplate', {user, template})
+    .then((data) => {
+      console.log('data:', data);
+    })
+  }
 
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
@@ -75,7 +85,7 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
 
       {template.string.length > 0 && <div>Template content: {template.renderString()}</div>}
 
-      {editorOpen && <TemplateEditor setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
+      {editorOpen && <TemplateEditor saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
     </>
   )
 }

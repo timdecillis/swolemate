@@ -25,7 +25,6 @@ const SignIn = ({ setTemplates, setSignedIn, setUser, label }: SignInProps) => {
     setUser(input)
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
-        console.log('data:', data)
         setTemplates(data);
         setSignedIn(true)
       })
