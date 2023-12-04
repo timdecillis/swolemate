@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, useEffect } from 'react';
+import React, { useState, SetStateAction } from 'react';
 
 import AddName from './NewTemplate/AddName';
 import TemplateEditor from './NewTemplate/TemplateEditor';
