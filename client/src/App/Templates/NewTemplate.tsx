@@ -2,7 +2,6 @@ import React, { useState, SetStateAction } from 'react';
 
 import AddName from './NewTemplate/AddName';
 import TemplateEditor from './NewTemplate/TemplateEditor';
-import EditVariable from './NewTemplate/EditVariable';
 
 interface NewTemplateProps {
   user: string;
