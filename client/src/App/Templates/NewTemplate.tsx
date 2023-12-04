@@ -39,7 +39,7 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
 
   const saveNewTemplate = () => {
     console.log('template:', template);
-    // instance.post('/saveNewTemplate', {template})
+    // instance.post('/addTemplate', {template})
   }
 
   const editTemplateName = (name: string) => {
