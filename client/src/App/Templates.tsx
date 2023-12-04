@@ -7,17 +7,16 @@ import NewTemplate from './Templates/NewTemplate';
 interface TemplatesProps {
   setSignedIn: React.Dispatch<SetStateAction<boolean>>
   user: string;
-  templates: string[];
-  setTemplates: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Templates = ({ templates, setTemplates, user, setSignedIn }: TemplatesProps) => {
+const Templates = ({ user, setSignedIn }: TemplatesProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
   });
 
   const [input, setInput] = useState<string>('');
+  const [templates, setTemplates] = useState<string[]>([]);
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {

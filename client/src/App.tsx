@@ -7,14 +7,13 @@ import SignIn from './App/SignIn';
 function App() {
 
   const [signedIn, setSignedIn] = useState<boolean>(false);
-  const [templates, setTemplates] = useState<string[]>([]);
   const [user, setUser] = useState<string>('');
 
   return (
     <div className="App">
       <header className="App-header">
-        {!signedIn && <SignIn label='Enter username' user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser} setTemplates={setTemplates} />}
-        {signedIn && <Templates setSignedIn={setSignedIn} user={user} setTemplates={setTemplates} templates={templates} />}
+        {!signedIn && <SignIn label='Enter username' user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser}/>}
+        {signedIn && <Templates setSignedIn={setSignedIn} user={user} />}
       </header>
     </div>
   );

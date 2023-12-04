@@ -6,11 +6,10 @@ interface SignInProps {
   user: string
   setUser: Dispatch<SetStateAction<string>>
   setSignedIn: Dispatch<SetStateAction<boolean>>
-  setTemplates: Dispatch<SetStateAction<string[]>>
   signedIn: boolean
 }
 
-const SignIn = ({ setTemplates, setSignedIn, setUser, label }: SignInProps) => {
+const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -25,7 +24,6 @@ const SignIn = ({ setTemplates, setSignedIn, setUser, label }: SignInProps) => {
     setUser(input)
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
-        setTemplates(data);
         setSignedIn(true)
       })
   }
