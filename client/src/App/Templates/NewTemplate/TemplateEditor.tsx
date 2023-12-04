@@ -11,9 +11,10 @@ interface TemplateEditorProps {
   editTemplateString: (string: string) => void;
   addNewVariable: (name: string, content: string) => void;
   addExistingVariableToString: (name: string) => void;
+  saveNewTemplate: () => void;
 }
 
-const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addNewVariable, addExistingVariableToString, setTemplate }: TemplateEditorProps) => {
+const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addNewVariable, addExistingVariableToString, setTemplate, saveNewTemplate }: TemplateEditorProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
@@ -76,7 +77,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
 
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
       <button onClick={() => setNewTemplateOpen(false)} >Discard Template</button>
-      <button>Save Template</button>
+      <button onClick={saveNewTemplate} >Save Template</button>
       <h2> </h2>
     </>
   )

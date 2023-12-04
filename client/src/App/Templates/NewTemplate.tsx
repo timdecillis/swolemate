@@ -83,7 +83,7 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
 
       {template.string.length > 0 && <div>Template content: {template.renderString()}</div>}
 
-      {editorOpen && <TemplateEditor setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
+      {editorOpen && <TemplateEditor saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
     </>
   )
 }
