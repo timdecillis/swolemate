@@ -1,4 +1,5 @@
 import React, { useState, SetStateAction } from 'react';
+import axios from 'axios';
 
 import AddName from './NewTemplate/AddName';
 import TemplateEditor from './NewTemplate/TemplateEditor';
@@ -17,6 +18,10 @@ export type TemplateType = {
   renderString: () => any;
 }
 
+const instance = axios.create({
+  baseURL: 'http://localhost:5000'
+});
+
 const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
 
   const renderString = function (this: TemplateType) {
@@ -32,6 +37,10 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
+  const saveNewTemplate = () => {
+    console.log('template:', template);
+    // instance.post('/saveNewTemplate', {template})
+  }
 
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
