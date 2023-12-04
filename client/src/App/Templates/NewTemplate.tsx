@@ -22,7 +22,7 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
+const NewTemplate = ({ setNewTemplateOpen, user }: NewTemplateProps) => {
 
   const renderString = function (this: TemplateType) {
     return this.string.map((part: (string | string[])) => {
@@ -38,8 +38,10 @@ const NewTemplate = ({ setNewTemplateOpen }: NewTemplateProps) => {
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
   const saveNewTemplate = () => {
-    console.log('template:', template);
-    // instance.post('/addTemplate', {template})
+    instance.post('/addTemplate', {user, template})
+    .then((data) => {
+      console.log('data:', data);
+    })
   }
 
   const editTemplateName = (name: string) => {
