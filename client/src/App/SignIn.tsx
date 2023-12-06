@@ -2,14 +2,15 @@ import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react
 import axios from 'axios';
 
 interface SignInProps {
-  label: string
-  user: string
-  setUser: Dispatch<SetStateAction<string>>
-  setSignedIn: Dispatch<SetStateAction<boolean>>
-  signedIn: boolean
+  label: string;
+  user: string;
+  setUser: Dispatch<SetStateAction<string>>;
+  setSignedIn: Dispatch<SetStateAction<boolean>>;
+  signedIn: boolean;
+  setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
+const SignIn = ({ setSignedIn, setUser, label, setTemplates }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -17,20 +18,15 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
 
   const [input, setInput] = useState('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    if (!input) return setErrorOpen(true);
-    setLoading(true);
-    setTimeout(() => {
-      setUser(input);
-      setLoading(false);
-    }, 4000);
-    // instance.get('/getUserTemplates', { params: { user: input } })
-    //   .then(({ data }) => {
-    //     setSignedIn(true)
-    //   })
+    setUser(input);
+    instance.get('/getUserTemplates', { params: { user: input } })
+      .then(({ data }) => {
+        setTemplates(data);
+        setSignedIn(true);
+      })
   }
 
   return (
@@ -40,9 +36,8 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
         <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text' />
         <input type='submit' />
       </form>
-      {loading && <div>loading, please wait...</div>}
       {errorOpen &&
-      <div>Please enter a username!</div>
+        <div>Please enter a username!</div>
       }
     </div>
   )

@@ -1,22 +1,24 @@
-import React, { SetStateAction, SyntheticEvent, useState } from 'react';
+import React, { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 import Template from './Templates/Template';
 import NewTemplate from './Templates/NewTemplate';
+import { TemplateType } from './Templates/NewTemplate';
 
 interface TemplatesProps {
-  setSignedIn: React.Dispatch<SetStateAction<boolean>>
+  setSignedIn: React.Dispatch<SetStateAction<boolean>>;
   user: string;
+  templates: TemplateType[];
+  setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const Templates = ({ user, setSignedIn }: TemplatesProps) => {
+const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
   });
 
   const [input, setInput] = useState<string>('');
-  const [templates, setTemplates] = useState<string[]>([]);
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {
@@ -43,7 +45,7 @@ const Templates = ({ user, setSignedIn }: TemplatesProps) => {
   }
 
   const mapped = templates.map((template, i) =>
-    <Template index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+    <Template index={i} templateName={template.name} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
   )
 
   return (
