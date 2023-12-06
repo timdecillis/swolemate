@@ -17,15 +17,12 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
 
   const [input, setInput] = useState('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
     if (!input) return setErrorOpen(true);
-    setLoading(true);
     setTimeout(() => {
       setUser(input);
-      setLoading(false);
     }, 4000);
     // instance.get('/getUserTemplates', { params: { user: input } })
     //   .then(({ data }) => {
@@ -40,7 +37,6 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
         <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text' />
         <input type='submit' />
       </form>
-      {loading && <div>loading, please wait...</div>}
       {errorOpen &&
       <div>Please enter a username!</div>
       }
