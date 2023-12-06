@@ -10,7 +10,7 @@ interface SignInProps {
   setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
+const SignIn = ({ setSignedIn, setUser, label, setTemplates }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -24,8 +24,8 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
     setUser(input);
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
-        console.log('data:', data)
-        setSignedIn(true)
+        setTemplates(data);
+        setSignedIn(true);
       })
   }
 
