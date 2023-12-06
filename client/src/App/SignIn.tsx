@@ -20,14 +20,10 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    if (!input) return setErrorOpen(true);
-    setTimeout(() => {
-      setUser(input);
-    }, 4000);
-    // instance.get('/getUserTemplates', { params: { user: input } })
-    //   .then(({ data }) => {
-    //     setSignedIn(true)
-    //   })
+    instance.get('/getUserTemplates', { params: { user: input } })
+      .then(({ data }) => {
+        setSignedIn(true)
+      })
   }
 
   return (
