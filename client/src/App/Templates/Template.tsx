@@ -6,6 +6,7 @@ interface TemplateProps {
   index: number;
   deleteTemplate: (value: string) => void;
   updateTemplate: (oldValue: string, newValue: string) => void;
+  templateName: string;
 }
 
 const Template = ({ index, updateTemplate, deleteTemplate }: TemplateProps) => {
