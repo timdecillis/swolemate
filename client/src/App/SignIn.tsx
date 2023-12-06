@@ -2,11 +2,12 @@ import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react
 import axios from 'axios';
 
 interface SignInProps {
-  label: string
-  user: string
-  setUser: Dispatch<SetStateAction<string>>
-  setSignedIn: Dispatch<SetStateAction<boolean>>
-  signedIn: boolean
+  label: string;
+  user: string;
+  setUser: Dispatch<SetStateAction<string>>;
+  setSignedIn: Dispatch<SetStateAction<boolean>>;
+  signedIn: boolean;
+  setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
 const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {

@@ -1,4 +1,4 @@
-import React, { SetStateAction, SyntheticEvent, useState } from 'react';
+import React, { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 import Template from './Templates/Template';
@@ -6,8 +6,9 @@ import NewTemplate from './Templates/NewTemplate';
 import { TemplateType } from './Templates/NewTemplate';
 
 interface TemplatesProps {
-  setSignedIn: React.Dispatch<SetStateAction<boolean>>
+  setSignedIn: React.Dispatch<SetStateAction<boolean>>;
   user: string;
+  setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
 const Templates = ({ user, setSignedIn }: TemplatesProps) => {

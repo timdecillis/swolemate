@@ -8,12 +8,13 @@ function App() {
 
   const [signedIn, setSignedIn] = useState<boolean>(false);
   const [user, setUser] = useState<string>('');
+  const [templates, setTemplates] = useState<[]>([]);
 
   return (
     <div className="App">
       <header className="App-header">
-        {!signedIn && <SignIn label='Enter username' user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser}/>}
-        {signedIn && <Templates setSignedIn={setSignedIn} user={user} />}
+        {!signedIn && <SignIn setTemplates={setTemplates} label='Enter username' user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser}/>}
+        {signedIn && <Templates setTemplates={setTemplates} setSignedIn={setSignedIn} user={user} />}
       </header>
     </div>
   );
