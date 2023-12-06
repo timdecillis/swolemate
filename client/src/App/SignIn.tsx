@@ -20,6 +20,7 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
+    setUser(input);
     instance.get('/getUserTemplates', { params: { user: input } })
       .then(({ data }) => {
         setSignedIn(true)
@@ -34,7 +35,7 @@ const SignIn = ({ setSignedIn, setUser, label }: SignInProps) => {
         <input type='submit' />
       </form>
       {errorOpen &&
-      <div>Please enter a username!</div>
+        <div>Please enter a username!</div>
       }
     </div>
   )
