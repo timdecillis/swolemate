@@ -9,7 +9,7 @@ interface TemplateProps {
   templateName: string;
 }
 
-const Template = ({ index, updateTemplate, deleteTemplate }: TemplateProps) => {
+const Template = ({ index, updateTemplate, deleteTemplate, templateName }: TemplateProps) => {
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
 
@@ -18,7 +18,7 @@ const Template = ({ index, updateTemplate, deleteTemplate }: TemplateProps) => {
   } else {
     return (
       <div key={index}>
-        <h3>{index + 1}.) Template string goes here</h3>
+        <h3>{index + 1}.) {templateName}</h3>
         <button onClick={() => navigator.clipboard.writeText('template text to copy')} >Copy</button>
         <button onClick={() => setEditOpen(true)} >Edit</button>
         <button onClick={() => {
