@@ -28,7 +28,6 @@ def add_template():
     data = request.get_json()
     user = data["user"]
     template = data["template"]
-    print('temp:', template)
     added = add_temp(user, template)
     return added
 
