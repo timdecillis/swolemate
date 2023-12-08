@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from bson import ObjectId
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client["mind_palace"]
@@ -14,15 +15,19 @@ def get_all(user):
     doc = db["users"].find_one({"name": user})
     if not doc:
         create_user(user)
-        print('creating new')
-        return "Success"
+        return []
     data = doc["templates"]
-    print('exists')
     return data
 
 
 def add_temp(user, template):
-    db["users"].update_one({"name": user}, {"$push": {"templates": template}})
+    template_id = str(ObjectId())
+    template = { **template, "id": template_id}
+
+    db["users"].update_one(
+        {"name": user},
+        {"$push": {"templates": template}}
+    )
     return template
 
 def update_temp(user, old_value, new_value):
@@ -40,3 +45,8 @@ def delete_temp(user, template):
         data.remove(template)
     db["users"].update_one({"name": user}, {"$set": {"templates": data}})
     return data
+
+def wipe_db():
+    db["users"].delete_many({})
+    print('data deleted')
+    return
