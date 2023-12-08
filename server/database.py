@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, ReturnDocument
 from bson import ObjectId
 
 client = MongoClient("mongodb://localhost:27017/")
@@ -24,11 +24,12 @@ def add_temp(user, template):
     template_id = str(ObjectId())
     template = { **template, "id": template_id}
 
-    db["users"].update_one(
+    doc = db["users"].find_one_and_update(
         {"name": user},
-        {"$push": {"templates": template}}
+        {"$push": {"templates": template}},
+        return_document=ReturnDocument.AFTER
     )
-    return template
+    return doc["templates"]
 
 def update_temp(user, old_value, new_value):
     for doc in db["users"].find({"name": user}):
