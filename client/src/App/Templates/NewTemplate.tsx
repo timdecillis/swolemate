@@ -41,7 +41,6 @@ const NewTemplate = ({ setNewTemplateOpen, user }: NewTemplateProps) => {
     instance.post('/addTemplate', {user, template})
     .then((data) => {
       setNewTemplateOpen(false);
-      console.log('data:', data);
     })
   }
 
