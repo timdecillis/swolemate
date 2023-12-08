@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction } from 'react';
+import React, { useState, SetStateAction, Dispatch } from 'react';
 import axios from 'axios';
 
 import AddName from './NewTemplate/AddName';
@@ -8,6 +8,7 @@ interface NewTemplateProps {
   user: string;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   newTemplateOpen: boolean;
+  setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
 export type TemplateType = {
@@ -22,7 +23,7 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-const NewTemplate = ({ setNewTemplateOpen, user }: NewTemplateProps) => {
+const NewTemplate = ({ setNewTemplateOpen, user, setTemplates }: NewTemplateProps) => {
 
   const renderString = function (this: TemplateType) {
     return this.string.map((part: (string | string[])) => {
@@ -37,12 +38,6 @@ const NewTemplate = ({ setNewTemplateOpen, user }: NewTemplateProps) => {
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
-  const saveNewTemplate = () => {
-    instance.post('/addTemplate', {user, template})
-    .then((data) => {
-      setNewTemplateOpen(false);
-    })
-  }
 
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
@@ -68,6 +63,14 @@ const NewTemplate = ({ setNewTemplateOpen, user }: NewTemplateProps) => {
       ...prevTemplate,
       string: [...previousString, [name]]
     }));
+  }
+
+  const saveNewTemplate = () => {
+    instance.post('/addTemplate', {user, template})
+    .then(({data}) => {
+      setTemplates(data);
+      setNewTemplateOpen(false);
+    })
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react';
+import React, { Dispatch, SetStateAction, SyntheticEvent, useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Template from './Templates/Template';
@@ -53,7 +53,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
       <h1>Welcome, {user}!</h1>
       <h2>Templates</h2>
       {!newTemplateOpen && <button onClick={() => setNewTemplateOpen(true)} >Add a new template</button>}
-      {newTemplateOpen && <NewTemplate user={user} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
+      {newTemplateOpen && <NewTemplate setTemplates={setTemplates} user={user} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
       <div>{templates && mapped}</div>
       <h1> </h1>
       <button onClick={() => {
