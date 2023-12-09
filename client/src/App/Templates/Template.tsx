@@ -6,7 +6,7 @@ import { TemplateType } from './NewTemplate';
 interface TemplateProps {
   index: number;
   string: string;
-  deleteTemplate: (value: string) => void;
+  deleteTemplate: (id: string) => void;
   updateTemplate: (oldValue: string, newValue: string) => void;
   template: TemplateType;
 }
@@ -35,7 +35,7 @@ const Template = ({ index, updateTemplate, deleteTemplate, template, string }: T
         <button onClick={() => copy(string)} >Copy</button>
         <button onClick={() => setEditOpen(true)} >Edit</button>
         <button onClick={() => {
-          // deleteTemplate(template)
+          deleteTemplate(template.id.toString());
         }} >X</button>
       </div>
     )

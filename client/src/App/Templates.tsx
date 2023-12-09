@@ -27,10 +27,11 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
       })
   }
 
-  const deleteTemplate = (value: string) => {
-    instance.delete('/deleteTemplate', { data: { template: value, user } })
+  const deleteTemplate = (id: string) => {
+    instance.delete('/deleteTemplate', { data: { id, user } })
       .then(({ data }) => {
-        setTemplates(data)
+        console.log('data:', data)
+        setTemplates(data);
       })
   }
 
