@@ -44,8 +44,20 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
       })
   }
 
-  const mapped = templates.map((template, i) =>
-    <Template index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+  const renderString = function (template: TemplateType) {
+    return template.string.map((part: (string | string[])) => {
+      if (Array.isArray(part)) {
+        return template.variables[part[0]];
+      }
+      return part;
+    }).join(' ');
+  }
+
+  const mapped = templates.map((template, i) => {
+    return (
+      <Template string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+    )
+  }
   )
 
   return (
