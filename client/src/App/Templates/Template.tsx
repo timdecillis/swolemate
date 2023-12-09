@@ -32,7 +32,7 @@ const Template = ({ index, updateTemplate, deleteTemplate, template, string }: T
         <h3>{index + 1}.) {template.name}</h3>
         <h4>{string}</h4>
         {copiedOpen && <div>template copied to clipboard</div>}
-        <button onClick={() => copy(template.name)} >Copy</button>
+        <button onClick={() => copy(string)} >Copy</button>
         <button onClick={() => setEditOpen(true)} >Edit</button>
         <button onClick={() => {
           // deleteTemplate(template)

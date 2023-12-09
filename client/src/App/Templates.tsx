@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, SyntheticEvent, useState, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 
 import Template from './Templates/Template';
@@ -18,17 +18,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
     baseURL: 'http://localhost:5000'
   });
 
-  const [input, setInput] = useState<string>('');
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
-
-  const onSubmit = (event: SyntheticEvent) => {
-    event.preventDefault()
-    instance.post('/addTemplate', { template: input, user })
-      .then(({ data }) => {
-        setTemplates(data);
-        setInput('');
-      })
-  }
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     instance.put('/updateTemplate', { oldValue, newValue, user })
