@@ -45,7 +45,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
   }
 
   const mapped = templates.map((template, i) =>
-    <Template index={i} templateName={template.name} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+    <Template index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
   )
 
   return (
