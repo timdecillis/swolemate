@@ -28,7 +28,7 @@ const Template = ({ index, updateTemplate, deleteTemplate, template, string }: T
     return <EditForm setEditOpen={setEditOpen} editOpen={editOpen} updateTemplate={updateTemplate} />
   } else {
     return (
-      <div key={index}>
+      <div>
         <h3>{index + 1}.) {template.name}</h3>
         <h4>{string}</h4>
         {copiedOpen && <div>template copied to clipboard</div>}

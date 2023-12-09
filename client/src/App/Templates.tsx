@@ -30,7 +30,6 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
   const deleteTemplate = (id: string) => {
     instance.delete('/deleteTemplate', { data: { id, user } })
       .then(({ data }) => {
-        console.log('data:', data)
         setTemplates(data);
       })
   }
@@ -46,7 +45,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
 
   const mapped = templates.map((template, i) => {
     return (
-      <Template string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+      <Template key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
     )
   }
   )

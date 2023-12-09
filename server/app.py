@@ -49,7 +49,6 @@ def delete_template():
         user = data["user"]
         unique_id = data["id"]
         deleted = delete_temp(user, unique_id)
-        print('deleted:', deleted)
         return deleted
     return 'Invalid request method'
 
