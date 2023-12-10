@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, SyntheticEvent, useState, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 
 import Template from './Templates/Template';
@@ -18,17 +18,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
     baseURL: 'http://localhost:5000'
   });
 
-  const [input, setInput] = useState<string>('');
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
-
-  const onSubmit = (event: SyntheticEvent) => {
-    event.preventDefault()
-    instance.post('/addTemplate', { template: input, user })
-      .then(({ data }) => {
-        setTemplates(data);
-        setInput('');
-      })
-  }
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     instance.put('/updateTemplate', { oldValue, newValue, user })
@@ -37,15 +27,27 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
       })
   }
 
-  const deleteTemplate = (value: string) => {
-    instance.delete('/deleteTemplate', { data: { template: value, user } })
+  const deleteTemplate = (id: string) => {
+    instance.delete('/deleteTemplate', { data: { id, user } })
       .then(({ data }) => {
-        setTemplates(data)
+        setTemplates(data);
       })
   }
 
-  const mapped = templates.map((template, i) =>
-    <Template index={i} templateName={template.name} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+  const renderString = function (template: TemplateType) {
+    return template.string.map((part: (string | string[])) => {
+      if (Array.isArray(part)) {
+        return template.variables[part[0]];
+      }
+      return part;
+    }).join(' ');
+  }
+
+  const mapped = templates.map((template, i) => {
+    return (
+      <Template key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+    )
+  }
   )
 
   return (

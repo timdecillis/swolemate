@@ -40,12 +40,16 @@ def update_temp(user, old_value, new_value):
     db["users"].update_one({"name": user}, {"$set": {"templates": data}})
     return data
 
-def delete_temp(user, template):
-    for doc in db["users"].find({"name": user}):
-        data = doc["templates"]
-        data.remove(template)
-    db["users"].update_one({"name": user}, {"$set": {"templates": data}})
-    return data
+def delete_temp(user, id):
+    user_doc = db["users"].find_one({"name": user})
+    if user_doc:
+        templates = user_doc["templates"]
+        for template in templates:
+            if template["id"] == id:
+                templates.remove(template)
+                db["users"].update_one({"name": user}, {"$set": {"templates": templates}})
+                return templates
+    return []
 
 def wipe_db():
     db["users"].delete_many({})

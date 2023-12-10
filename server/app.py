@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response
+from flask import Flask, request
 
 from database import get_all, add_temp, delete_temp, update_temp
 
@@ -29,7 +29,6 @@ def add_template():
     user = data["user"]
     template = data["template"]
     added = add_temp(user, template)
-    print('added:', added)
     return added
 
 @app.route("/updateTemplate", methods=["PUT", "OPTIONS"])
@@ -45,13 +44,13 @@ def update_template():
 
 @app.route("/deleteTemplate", methods=["DELETE", "OPTIONS"])
 def delete_template():
-    deleted = []
     if request.method == "DELETE":
         data = request.get_json()
         user = data["user"]
-        template = data["template"]
-        deleted = delete_temp(user, template)
-    return deleted
+        unique_id = data["id"]
+        deleted = delete_temp(user, unique_id)
+        return deleted
+    return 'Invalid request method'
 
 if __name__ == "__main__":
     app.debug = True

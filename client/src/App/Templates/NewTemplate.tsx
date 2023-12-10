@@ -16,7 +16,6 @@ export type TemplateType = {
   name: string;
   variables: { [key: string]: string };
   string: (string | string[])[];
-  renderString: () => any;
 }
 
 const instance = axios.create({
@@ -25,16 +24,16 @@ const instance = axios.create({
 
 const NewTemplate = ({ setNewTemplateOpen, user, setTemplates }: NewTemplateProps) => {
 
-  const renderString = function (this: TemplateType) {
-    return this.string.map((part: (string | string[])) => {
+  const renderString = function (template: TemplateType) {
+    return template.string.map((part: (string | string[])) => {
       if (Array.isArray(part)) {
-        return this.variables[part[0]];
+        return template.variables[part[0]];
       }
       return part;
     }).join(' ');
   }
 
-  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [], renderString: renderString });
+  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [] });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
@@ -86,7 +85,7 @@ const NewTemplate = ({ setNewTemplateOpen, user, setTemplates }: NewTemplateProp
         <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
       }
 
-      {template.string.length > 0 && <div>Template content: {template.renderString()}</div>}
+      {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
 
       {editorOpen && <TemplateEditor saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
     </>
