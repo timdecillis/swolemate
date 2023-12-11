@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import EditForm from './EditForm';
+import NewTemplate from './NewTemplate';
 import { TemplateType } from './NewTemplate';
 
 interface TemplateProps {
