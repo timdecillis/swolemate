@@ -5,7 +5,7 @@ import AddName from './NewTemplate/AddName';
 import TemplateEditor from './NewTemplate/TemplateEditor';
 
 interface NewTemplateProps {
-  user: string;
+  user?: string;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   newTemplateOpen: boolean;
   setTemplates: Dispatch<SetStateAction<[]>>;

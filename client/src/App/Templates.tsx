@@ -45,7 +45,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
 
   const mapped = templates.map((template, i) => {
     return (
-      <Template key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+      <Template user={user} setTemplates={setTemplates} newTemplateOpen={newTemplateOpen} setNewTemplateOpen={setNewTemplateOpen} key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
     )
   }
   )
@@ -54,9 +54,12 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
     <>
       <h1>Welcome, {user}!</h1>
       <h2>Templates</h2>
+
       {!newTemplateOpen && <button onClick={() => setNewTemplateOpen(true)} >Add a new template</button>}
+
       {newTemplateOpen && <NewTemplate setTemplates={setTemplates} user={user} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
-      <div>{templates && mapped}</div>
+
+      {templates && <div>{mapped}</div>}
       <h1> </h1>
       <button onClick={() => {
         setSignedIn(false)
