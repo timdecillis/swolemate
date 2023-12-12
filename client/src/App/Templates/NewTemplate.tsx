@@ -80,7 +80,7 @@ const NewTemplate = ({ setNewTemplateOpen, user, setTemplates }: NewTemplateProp
           <button onClick={() => {
             setAddNameOpen(true);
             setEditorOpen(false)
-          }}>Edit</button>
+          }}>Edit Name</button>
         </> :
         <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
       }
