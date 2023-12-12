@@ -1,9 +1,9 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 
-import { TemplateType } from '../NewTemplate';
+import { TemplateType } from '../TemplateEditor';
 
 interface AddNameProps {
-  setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
+  setAddNameOpen?: React.Dispatch<SetStateAction<boolean>>;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   template: TemplateType;
   editTemplateName: (name: string) => void;
@@ -16,7 +16,6 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEdit
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const discard = () => {
-    setAddNameOpen(false);
     setNewTemplateOpen(false);
   }
 
@@ -26,7 +25,6 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEdit
         e.preventDefault();
         if(!input) return setErrorOpen(true);
         editTemplateName(input);
-        setAddNameOpen(false);
         setEditorOpen(true);
       }}>
         <h3>Please enter a name for the template:</h3>

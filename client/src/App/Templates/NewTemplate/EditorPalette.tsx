@@ -1,6 +1,6 @@
 import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 
-import { TemplateType } from '../NewTemplate';
+import { TemplateType } from '../TemplateEditor';
 import AddVariable from './TemplateEditor/AddVariable';
 import EditVariable from './EditVariable';
 
