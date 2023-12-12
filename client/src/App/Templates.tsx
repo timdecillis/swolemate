@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 
 import Template from './Templates/Template';
-import NewTemplate from './Templates/NewTemplate';
-import { TemplateType } from './Templates/NewTemplate';
+import TemplateEditor from './Templates/TemplateEditor';
+import { TemplateType } from './Templates/TemplateEditor';
 
 interface TemplatesProps {
   setSignedIn: React.Dispatch<SetStateAction<boolean>>;
@@ -19,6 +19,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
   });
 
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
+  const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     instance.put('/updateTemplate', { oldValue, newValue, user })
@@ -56,7 +57,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
 
       {!newTemplateOpen && <button onClick={() => setNewTemplateOpen(true)} >Add a new template</button>}
 
-      {newTemplateOpen && <NewTemplate setTemplates={setTemplates} user={user} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
+      {newTemplateOpen && <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} user={user} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
 
       <h1>Templates</h1>
       {templates && <div>{mapped}</div>}

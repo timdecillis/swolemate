@@ -1,8 +1,8 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 
 import EditForm from './EditForm';
-import NewTemplate from './NewTemplate';
-import { TemplateType } from './NewTemplate';
+import TemplateEditor from './TemplateEditor';
+import { TemplateType } from './TemplateEditor';
 
 interface TemplateProps {
   index: number;
@@ -30,7 +30,7 @@ const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, temp
   }
 
   if (editOpen) {
-    return <NewTemplate setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />
+    return <TemplateEditor setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />
   } else {
     return (
       <div>
