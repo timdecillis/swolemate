@@ -2,7 +2,7 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 import axios from 'axios';
 
 import AddName from './NewTemplate/AddName';
-import TemplateEditor from './NewTemplate/EditorPalette';
+import EditorPalette from './NewTemplate/EditorPalette';
 
 interface TemplateEditorProps {
   user?: string;
@@ -66,29 +66,29 @@ const NewTemplate = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user, se
   }
 
   const saveNewTemplate = () => {
-    instance.post('/addTemplate', {user, template})
-    .then(({data}) => {
-      setTemplates(data);
-      setNewTemplateOpen(false);
-    })
+    instance.post('/addTemplate', { user, template })
+      .then(({ data }) => {
+        setTemplates(data);
+        setNewTemplateOpen(false);
+      })
+  }
+
+  if (addNameOpen) {
+    return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
   }
 
   return (
     <>
-      {!addNameOpen ?
-        <>
-          <h3>Template name: {template.name}</h3>
-          <button onClick={() => {
-            setAddNameOpen?.(true);
-            setEditorOpen(false)
-          }}>Edit Name</button>
-        </> :
-        <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
-      }
-
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
 
-      {editorOpen && <TemplateEditor saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
+      {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
+      <>
+        <h3>Template name: {template.name}</h3>
+        <button onClick={() => {
+          setAddNameOpen?.(true);
+          setEditorOpen(false)
+        }}>Edit Name</button>
+      </>
     </>
   )
 }
