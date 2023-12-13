@@ -69,7 +69,7 @@ const Templates = ({ setTemplates }: TemplatesProps) => {
         }
         } >Add a new template</button>
         :
-        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
+        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} />}
 
       <h1>Templates</h1>
 

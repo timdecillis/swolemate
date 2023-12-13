@@ -4,19 +4,18 @@ import { TemplateType } from '../TemplateEditor';
 
 interface AddNameProps {
   setAddNameOpen?: React.Dispatch<SetStateAction<boolean>>;
-  setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   template: TemplateType;
   editTemplateName: (name: string) => void;
   setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEditorOpen }: AddNameProps) => {
+const AddName = ({ setAddNameOpen, editTemplateName, setEditorOpen }: AddNameProps) => {
 
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const discard = () => {
-    setNewTemplateOpen(false);
+    // setNewTemplateOpen(false);
   }
 
   return (

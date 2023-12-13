@@ -6,8 +6,6 @@ import EditorPalette from './NewTemplate/EditorPalette';
 
 interface TemplateEditorProps {
   user?: string;
-  setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
-  newTemplateOpen: boolean;
   setTemplates: Dispatch<SetStateAction<[]>>;
   addNameOpen?: boolean;
   setAddNameOpen?: React.Dispatch<SetStateAction<boolean>>;
@@ -25,7 +23,7 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-const TemplateEditor = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user, setTemplates, currentTemplate }: TemplateEditorProps) => {
+const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, setTemplates, currentTemplate }: TemplateEditorProps) => {
 
   const renderString = function (template: TemplateType) {
     return template.string.map((part: (string | string[])) => {
@@ -72,12 +70,12 @@ const TemplateEditor = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user,
     instance.post('/addTemplate', { user, template })
       .then(({ data }) => {
         setTemplates(data);
-        setNewTemplateOpen(false);
+        // setNewTemplateOpen(false);
       })
   }
 
   if (addNameOpen) {
-    return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setNewTemplateOpen={setNewTemplateOpen} setAddNameOpen={setAddNameOpen} />
+    return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setAddNameOpen={setAddNameOpen} />
   }
 
   return (
@@ -91,7 +89,7 @@ const TemplateEditor = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user,
       </>
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
 
-      {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
+      {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} addNewVariable={addNewVariable} />}
     </>
   )
 }

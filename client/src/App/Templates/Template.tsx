@@ -35,7 +35,7 @@ const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, temp
   }
 
   if (editOpen) {
-    return <TemplateEditor currentTemplate={template} setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />
+    return <TemplateEditor currentTemplate={template} setTemplates={setTemplates} />
   } else {
     return (
       <div>
