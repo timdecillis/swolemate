@@ -18,7 +18,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          {!signedIn && <SignIn setTemplates={setTemplates} label='Enter username' user={user} setUser={setUser} />}
+          {!signedIn && <SignIn setTemplates={setTemplates} user={user} setUser={setUser} />}
         {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn} user={user} />}
         </header>
       </div>

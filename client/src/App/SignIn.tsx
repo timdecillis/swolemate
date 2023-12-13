@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSignedIn, getSignedIn } from '../App/userSlice';
 
 interface SignInProps {
-  label: string;
   user: string;
   setUser: Dispatch<SetStateAction<string>>;
   setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const SignIn = ({ setUser, label, setTemplates }: SignInProps) => {
+const SignIn = ({ setUser, setTemplates }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -25,6 +24,7 @@ const SignIn = ({ setUser, label, setTemplates }: SignInProps) => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
+    if(!input) setErrorOpen(true);
     dispatch(setSignedIn({ condition: true }))
     setUser(input);
     // instance.get('/getUserTemplates', { params: { user: input } })
@@ -36,14 +36,12 @@ const SignIn = ({ setUser, label, setTemplates }: SignInProps) => {
 
   return (
     <div>
-      <h3>{label}</h3>
+      <h3>Enter username</h3>
       <form onSubmit={onSubmit}>
         <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text' />
         <input type='submit' />
       </form>
-      {errorOpen &&
-        <div>Please enter a username!</div>
-      }
+      {errorOpen && <div>Please enter a username!</div>}
     </div>
   )
 }
