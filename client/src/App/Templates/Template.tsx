@@ -29,8 +29,13 @@ const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, temp
     }, 1800)
   }
 
+  const deleteAlert = () => {
+    const result = window.confirm('Are you sure you want to permanently delete this template?');
+    if (result) deleteTemplate(template.id.toString());
+  }
+
   if (editOpen) {
-    return <TemplateEditor setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />
+    return <TemplateEditor currentTemplate={template} setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />
   } else {
     return (
       <div>
@@ -38,10 +43,11 @@ const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, temp
         <h4>{string}</h4>
         {copiedOpen && <div>template copied to clipboard</div>}
         <button onClick={() => copy(string)} >Copy</button>
-        <button onClick={() => setEditOpen(true)} >Edit</button>
         <button onClick={() => {
-          deleteTemplate(template.id.toString());
-        }} >X</button>
+          setEditOpen(true);
+        }
+        } >Edit</button>
+        <button onClick={deleteAlert} >X</button>
       </div>
     )
   }

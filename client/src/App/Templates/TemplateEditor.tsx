@@ -11,6 +11,7 @@ interface TemplateEditorProps {
   setTemplates: Dispatch<SetStateAction<[]>>;
   addNameOpen?: boolean;
   setAddNameOpen?: React.Dispatch<SetStateAction<boolean>>;
+  currentTemplate?: TemplateType;
 }
 
 export type TemplateType = {
@@ -24,7 +25,7 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-const NewTemplate = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user, setTemplates }: TemplateEditorProps) => {
+const TemplateEditor = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user, setTemplates, currentTemplate }: TemplateEditorProps) => {
 
   const renderString = function (template: TemplateType) {
     return template.string.map((part: (string | string[])) => {
@@ -35,7 +36,9 @@ const NewTemplate = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user, se
     }).join(' ');
   }
 
-  const [template, setTemplate] = useState<TemplateType>({ id: 0, name: '', variables: {}, string: [] });
+  const [template, setTemplate] = useState<TemplateType>(
+    currentTemplate ? currentTemplate : { id: 0, name: '', variables: {}, string: [] }
+    );
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
 
@@ -93,4 +96,4 @@ const NewTemplate = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user, se
   )
 }
 
-export default NewTemplate
+export default TemplateEditor
