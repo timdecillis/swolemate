@@ -18,7 +18,8 @@ const userSlice = createSlice({
       const { user } = action.payload;
       state.user = user;
     },
-    setSignIn(state, action) {
+    setSignedIn(state, action) {
+      console.log('setting signedIn!')
       const { condition } = action.payload;
       if (condition) state.signedIn = true;
       if (!condition) state.signedIn = false;
@@ -28,6 +29,6 @@ const userSlice = createSlice({
 
 export default userSlice.reducer
 
-export const { login, setSignIn } = userSlice.actions
+export const { login, setSignedIn } = userSlice.actions
 
 export const getUser = (state: UserState) => state.user
