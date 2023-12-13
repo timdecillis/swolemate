@@ -79,16 +79,16 @@ const NewTemplate = ({ addNameOpen, setAddNameOpen, setNewTemplateOpen, user, se
 
   return (
     <>
-      {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
-
-      {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
       <>
-        <h3>Template name: {template.name}</h3>
+        <h3>Name: {template.name}</h3>
         <button onClick={() => {
           setAddNameOpen?.(true);
           setEditorOpen(false)
         }}>Edit Name</button>
       </>
+      {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
+
+      {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} setNewTemplateOpen={setNewTemplateOpen} addNewVariable={addNewVariable} />}
     </>
   )
 }

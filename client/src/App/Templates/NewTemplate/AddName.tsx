@@ -25,6 +25,7 @@ const AddName = ({ setAddNameOpen, setNewTemplateOpen, editTemplateName, setEdit
         e.preventDefault();
         if(!input) return setErrorOpen(true);
         editTemplateName(input);
+        setAddNameOpen?.(false);
         setEditorOpen(true);
       }}>
         <h3>Please enter a name for the template:</h3>
