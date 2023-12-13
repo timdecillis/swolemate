@@ -57,7 +57,11 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
 
 
       {!newTemplateOpen ?
-        <button onClick={() => setNewTemplateOpen(true)} >Add a new template</button>
+        <button onClick={() => {
+          setNewTemplateOpen(true);
+          setAddNameOpen(true);
+        }
+        } >Add a new template</button>
         :
         <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} user={user} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
 

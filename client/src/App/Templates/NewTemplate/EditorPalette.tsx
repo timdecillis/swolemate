@@ -55,7 +55,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
 
   return (
     <>
-      <h4>Enter text: </h4>
+      <h3>Add text: </h3>
       <form onClick={() => setErrorOpen(false)} onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         if (!input) setErrorOpen(true);
@@ -68,7 +68,7 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
       {errorOpen && <div>Please enter some text to add!</div>}
       <h4> </h4>
 
-      <h3>Variables</h3>
+      <h3>Add variables:</h3>
       {variables}
 
       {editVariableOpen && <EditVariable editVariable={editVariable} variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
