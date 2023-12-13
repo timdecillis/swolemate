@@ -19,10 +19,8 @@ const userSlice = createSlice({
       state.user = user;
     },
     setSignedIn(state, action) {
-      console.log('setting signedIn!')
       const { condition } = action.payload;
-      if (condition) state.signedIn = true;
-      if (!condition) state.signedIn = false;
+     state.signedIn = condition;
     }
   }
 })

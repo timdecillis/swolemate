@@ -1,32 +1,37 @@
 import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSignedIn, getSignedIn } from '../App/userSlice';
 
 interface SignInProps {
   label: string;
   user: string;
   setUser: Dispatch<SetStateAction<string>>;
-  setSignedIn: Dispatch<SetStateAction<boolean>>;
-  signedIn: boolean;
   setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const SignIn = ({ setSignedIn, setUser, label, setTemplates }: SignInProps) => {
+const SignIn = ({ setUser, label, setTemplates }: SignInProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
   });
+
+  const dispatch = useDispatch();
+
+  const signedIn = useSelector(getSignedIn);
 
   const [input, setInput] = useState('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
+    dispatch(setSignedIn({ condition: true }))
     setUser(input);
-    instance.get('/getUserTemplates', { params: { user: input } })
-      .then(({ data }) => {
-        setTemplates(data);
-        setSignedIn(true);
-      })
+    // instance.get('/getUserTemplates', { params: { user: input } })
+    //   .then(({ data }) => {
+    //     setTemplates(data);
+    //     // setSignedIn(true);
+    //   })
   }
 
   return (

@@ -9,10 +9,7 @@ import { setSignedIn, getSignedIn } from './App/userSlice';
 
 
 function App() {
-  const dispatch = useDispatch();
-  const onSignInClicked = () => {
-    dispatch(setSignedIn({ condition: true }))
-  }
+
   const signedIn = useSelector(getSignedIn);
 
   const [user, setUser] = useState<string>('');
@@ -21,7 +18,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          {!signedIn && <SignIn setTemplates={setTemplates} label='Enter username' user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser} />}
+          {!signedIn && <SignIn setTemplates={setTemplates} label='Enter username' user={user} setUser={setUser} />}
         {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn} user={user} />}
         </header>
       </div>
