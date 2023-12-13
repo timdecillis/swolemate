@@ -18,8 +18,8 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          {!signedIn && <SignIn setTemplates={setTemplates} user={user} setUser={setUser} />}
-        {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn} user={user} />}
+          {!signedIn && <SignIn setTemplates={setTemplates}/>}
+        {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn}/>}
         </header>
       </div>
     );

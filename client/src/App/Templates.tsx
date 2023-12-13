@@ -1,18 +1,19 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
+import { getUser } from './userSlice'
 import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
 import { TemplateType } from './Templates/TemplateEditor';
 
 interface TemplatesProps {
   setSignedIn: React.Dispatch<SetStateAction<boolean>>;
-  user: string;
   templates: TemplateType[];
   setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProps) => {
+const Templates = ({ setSignedIn, templates, setTemplates }: TemplatesProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -21,18 +22,21 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
   const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
 
+  const user = useSelector(getUser);
+  console.log('user:', user)
+
   const updateTemplate = (oldValue: string, newValue: string) => {
-    instance.put('/updateTemplate', { oldValue, newValue, user })
-      .then(({ data }) => {
-        setTemplates(data)
-      })
+    // instance.put('/updateTemplate', { oldValue, newValue, user })
+    //   .then(({ data }) => {
+    //     setTemplates(data)
+    //   })
   }
 
   const deleteTemplate = (id: string) => {
-    instance.delete('/deleteTemplate', { data: { id, user } })
-      .then(({ data }) => {
-        setTemplates(data);
-      })
+    // instance.delete('/deleteTemplate', { data: { id, user } })
+    //   .then(({ data }) => {
+    //     setTemplates(data);
+    //   })
   }
 
   const renderString = function (template: TemplateType) {
@@ -46,7 +50,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
 
   const mapped = templates.map((template, i) => {
     return (
-      <Template user={user} setTemplates={setTemplates} newTemplateOpen={newTemplateOpen} setNewTemplateOpen={setNewTemplateOpen} key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+      <Template setTemplates={setTemplates} newTemplateOpen={newTemplateOpen} setNewTemplateOpen={setNewTemplateOpen} key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
     )
   }
   )
@@ -63,7 +67,7 @@ const Templates = ({ user, setSignedIn, templates, setTemplates }: TemplatesProp
         }
         } >Add a new template</button>
         :
-        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} user={user} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
+        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
 
       <h1>Templates</h1>
 
