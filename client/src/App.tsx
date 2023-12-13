@@ -23,7 +23,6 @@ function App() {
         <header className="App-header">
           {!signedIn && <SignIn setTemplates={setTemplates} label='Enter username' user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser} />}
         {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn} user={user} />}
-        <button onClick={onSignInClicked}>push me</button>
         </header>
       </div>
     );
