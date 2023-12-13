@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { getTemplates } from './Templates/templatesSlice';
 import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
@@ -13,17 +14,19 @@ interface TemplatesProps {
   setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const Templates = ({ templates, setTemplates }: TemplatesProps) => {
+const Templates = ({ setTemplates }: TemplatesProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
   });
 
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const templates = useSelector(getTemplates);
+  console.log('templates:', templates)
+
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
   const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
-
-  const user = useSelector(getUser);
-  console.log('user:', user)
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     // instance.put('/updateTemplate', { oldValue, newValue, user })
@@ -48,14 +51,12 @@ const Templates = ({ templates, setTemplates }: TemplatesProps) => {
     }).join(' ');
   }
 
-  const mapped = templates.map((template, i) => {
-    return (
-      <Template setTemplates={setTemplates} newTemplateOpen={newTemplateOpen} setNewTemplateOpen={setNewTemplateOpen} key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
-    )
-  }
-  )
-
-  const dispatch = useDispatch();
+  // const mapped = templates.map((template, i) => {
+  //   return (
+  //     <Template setTemplates={setTemplates} newTemplateOpen={newTemplateOpen} setNewTemplateOpen={setNewTemplateOpen} key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+  //   )
+  // }
+  // )
 
   return (
     <>
@@ -72,7 +73,7 @@ const Templates = ({ templates, setTemplates }: TemplatesProps) => {
 
       <h1>Templates</h1>
 
-      {templates && <div>{mapped}</div>}
+      {templates && <div></div>}
       <h1> </h1>
 
       <button onClick={() => {

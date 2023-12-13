@@ -5,7 +5,7 @@ const initialState = {
 }
 
 const templateSlice = createSlice({
-  name: 'user',
+  name: 'templates',
   initialState,
   reducers: {
     setTemplates(state, action) {
@@ -19,4 +19,4 @@ export default templateSlice.reducer
 
 export const { setTemplates } = templateSlice.actions
 
-export const getTemplates = (state: {templates: []}) => state.templates;
+export const getTemplates = (state: {templates: {templates: any[]}}) => state.templates;
