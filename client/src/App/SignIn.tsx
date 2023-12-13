@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSignedIn, getSignedIn } from '../App/userSlice';
+import { setSignedIn, getSignedIn } from './userSlice';
 
 interface SignInProps {
   user: string;
@@ -25,8 +25,11 @@ const SignIn = ({ setUser, setTemplates }: SignInProps) => {
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
     if(!input) setErrorOpen(true);
+    console.log('prior status:', signedIn)
     dispatch(setSignedIn({ condition: true }))
     setUser(input);
+    console.log('current status:', signedIn)
+
     // instance.get('/getUserTemplates', { params: { user: input } })
     //   .then(({ data }) => {
     //     setTemplates(data);

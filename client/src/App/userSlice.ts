@@ -5,11 +5,6 @@ const initialState = {
   signedIn: false
 }
 
-type UserState = {
-  user: null | string;
-  signedIn: boolean;
-}
-
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -29,5 +24,5 @@ export default userSlice.reducer
 
 export const { login, setSignedIn } = userSlice.actions
 
-export const getUser = (state: UserState) => state.user;
-export const getSignedIn = (state: UserState) => state.signedIn;
+export const getUser = (state: {user: null | string}) => state.user;
+export const getSignedIn = (state: {user: {signedIn: boolean}}) => state.user.signedIn;
