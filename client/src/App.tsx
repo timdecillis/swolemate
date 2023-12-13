@@ -12,7 +12,6 @@ function App() {
 
   const signedIn = useSelector(getSignedIn);
 
-  const [user, setUser] = useState<string>('');
   const [templates, setTemplates] = useState<[]>([]);
 
     return (

@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { getUser } from './userSlice'
+import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
 import { TemplateType } from './Templates/TemplateEditor';
@@ -13,7 +13,7 @@ interface TemplatesProps {
   setTemplates: Dispatch<SetStateAction<[]>>;
 }
 
-const Templates = ({ setSignedIn, templates, setTemplates }: TemplatesProps) => {
+const Templates = ({ templates, setTemplates }: TemplatesProps) => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -55,6 +55,8 @@ const Templates = ({ setSignedIn, templates, setTemplates }: TemplatesProps) => 
   }
   )
 
+  const dispatch = useDispatch();
+
   return (
     <>
       <h4>Welcome, {user}!</h4>
@@ -75,7 +77,7 @@ const Templates = ({ setSignedIn, templates, setTemplates }: TemplatesProps) => 
       <h1> </h1>
 
       <button onClick={() => {
-        setSignedIn(false)
+        dispatch(setSignedIn({condition: false}))
       }} >Sign Out</button>
     </>
   )
