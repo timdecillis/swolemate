@@ -11,7 +11,7 @@ interface TemplateProps {
   updateTemplate: (oldValue: string, newValue: string) => void;
   template: TemplateType;
   setTemplates: Dispatch<SetStateAction<[]>>;
-  user: string | undefined;
+  user?: string | undefined;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   newTemplateOpen: boolean;
 }

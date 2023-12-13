@@ -9,21 +9,16 @@ import { setSignedIn, getSignedIn } from './App/userSlice';
 
 
 function App() {
-  const dispatch = useDispatch();
-  const onSignInClicked = () => {
-    dispatch(setSignedIn({ condition: true }))
-  }
+
   const signedIn = useSelector(getSignedIn);
 
-  const [user, setUser] = useState<string>('');
   const [templates, setTemplates] = useState<[]>([]);
 
     return (
       <div className="App">
         <header className="App-header">
-          {!signedIn && <SignIn setTemplates={setTemplates} label='Enter username' user={user} signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser} />}
-        {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn} user={user} />}
-        <button onClick={onSignInClicked}>push me</button>
+          {!signedIn && <SignIn setTemplates={setTemplates}/>}
+        {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn}/>}
         </header>
       </div>
     );
