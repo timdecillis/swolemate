@@ -61,7 +61,6 @@ const Templates = ({ templates, setTemplates }: TemplatesProps) => {
     <>
       <h4>Welcome, {user}!</h4>
 
-
       {!newTemplateOpen ?
         <button onClick={() => {
           setNewTemplateOpen(true);
