@@ -14,14 +14,15 @@ function App() {
 
   const [templates, setTemplates] = useState<[]>([]);
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          {!signedIn && <SignIn setTemplates={setTemplates}/>}
-        {signedIn && <Templates templates={templates} setTemplates={setTemplates} setSignedIn={setSignedIn}/>}
-        </header>
-      </div>
-    );
+  return (
+    <div className="App">
+      <header className="App-header">
+        {signedIn ? <Templates/>
+          :
+          <SignIn/>}
+      </header>
+    </div>
+  );
 }
 
 export default App;

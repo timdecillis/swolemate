@@ -8,7 +8,6 @@ import EditorPalette from './TemplateEditor/EditorPalette';
 
 interface TemplateEditorProps {
   user?: string;
-  setTemplates: Dispatch<SetStateAction<[]>>;
   addNameOpen?: boolean;
   setAddNameOpen?: React.Dispatch<SetStateAction<boolean>>;
   currentTemplate?: TemplateType;
@@ -25,7 +24,7 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, setTemplates, currentTemplate }: TemplateEditorProps) => {
+const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, currentTemplate }: TemplateEditorProps) => {
 
   const renderString = function (template: TemplateType) {
     return template.string.map((part: (string | string[])) => {
@@ -71,7 +70,7 @@ const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, setTemplates, curre
   const saveNewTemplate = () => {
     instance.post('/addTemplate', { user, template })
       .then(({ data }) => {
-        setTemplates(data);
+        // setTemplates(data);
         // setNewTemplateOpen(false);
       })
   }

@@ -8,13 +8,7 @@ import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
 import { TemplateType } from './Templates/TemplateEditor';
 
-interface TemplatesProps {
-  setSignedIn: React.Dispatch<SetStateAction<boolean>>;
-  templates: TemplateType[];
-  setTemplates: Dispatch<SetStateAction<[]>>;
-}
-
-const Templates = ({ setTemplates }: TemplatesProps) => {
+const Templates = () => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
@@ -68,7 +62,7 @@ const Templates = ({ setTemplates }: TemplatesProps) => {
         }
         } >Add a new template</button>
         :
-        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} />}
+        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen}/>}
 
       <h1>Templates</h1>
 
