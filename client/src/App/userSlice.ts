@@ -38,5 +38,5 @@ export default userSlice.reducer
 
 export const { login, setSignedIn } = userSlice.actions
 
-export const getUser = (state: UserState) => state.user;
-export const getSignedIn = (state: {user: {signedIn: boolean}}) => state.user.signedIn;
+export const getUser = (state: State) => state.user.user;
+export const getSignedIn = (state: State) => state.user.signedIn;
