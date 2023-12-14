@@ -1,7 +1,7 @@
 import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 
 import { TemplateType } from '../TemplateEditor';
-import AddVariable from './TemplateEditor/AddVariable';
+import AddVariable from './EditorPalette/AddVariable';
 import EditVariable from './EditVariable';
 
 interface EditorPaletteProps {
