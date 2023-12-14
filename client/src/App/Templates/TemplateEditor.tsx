@@ -29,8 +29,6 @@ const TemplateEditor = ({ currentTemplate }: TemplateEditorProps) => {
   const user = useSelector(getUser);
   const nameOpen = useSelector(addNameOpen);
 
-  console.log('nameopen:', nameOpen)
-
   const renderString = function (template: TemplateType) {
     return template.string.map((part: (string | string[])) => {
       if (Array.isArray(part)) {

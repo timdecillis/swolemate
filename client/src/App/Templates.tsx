@@ -18,10 +18,7 @@ const Templates = () => {
   const user = useSelector(getUser);
   const templates = useSelector(getTemplates);
   const newTemplateOpen = useSelector(getNewTemplateOpen);
-
-
-  console.log('user:', user)
-
+  const nameOpen = useSelector(addNameOpen);
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     // instance.put('/updateTemplate', { oldValue, newValue, user })

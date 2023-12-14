@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { TemplatesState } from "./Templates/templatesSlice";
+import { NewTemplateState } from './Templates/TemplateEditor/newTemplateSlice'
+
+export type State = {
+  user: UserState;
+  templates:TemplatesState;
+  newTemplate: NewTemplateState
+}
+
 type UserState = {
   user: null | string;
   signedIn: boolean;
@@ -29,5 +38,5 @@ export default userSlice.reducer
 
 export const { login, setSignedIn } = userSlice.actions
 
-export const getUser = (state: UserState) => state.user;
-export const getSignedIn = (state: {user: {signedIn: boolean}}) => state.user.signedIn;
+export const getUser = (state: State) => state.user.user;
+export const getSignedIn = (state: State) => state.user.signedIn;
