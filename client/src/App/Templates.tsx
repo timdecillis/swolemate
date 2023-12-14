@@ -18,6 +18,8 @@ const Templates = () => {
   const user = useSelector(getUser);
   const templates = useSelector(getTemplates);
 
+console.log('templates:', templates)
+
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
   const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
 

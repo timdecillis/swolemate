@@ -10,13 +10,12 @@ interface TemplateProps {
   deleteTemplate: (id: string) => void;
   updateTemplate: (oldValue: string, newValue: string) => void;
   template: TemplateType;
-  setTemplates: Dispatch<SetStateAction<[]>>;
   user?: string | undefined;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
   newTemplateOpen: boolean;
 }
 
-const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, template, string, setTemplates, user, setNewTemplateOpen }: TemplateProps) => {
+const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, template, string, user, setNewTemplateOpen }: TemplateProps) => {
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [copiedOpen, setCopiedOpen] = useState<boolean>(false);
@@ -35,7 +34,7 @@ const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, temp
   }
 
   if (editOpen) {
-    return <TemplateEditor currentTemplate={template} setTemplates={setTemplates} />
+    return <TemplateEditor currentTemplate={template}/>
   } else {
     return (
       <div>
