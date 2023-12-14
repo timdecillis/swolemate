@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { TemplatesState } from "./Templates/templatesSlice";
+import { NewTemplateState } from './Templates/TemplateEditor/newTemplateSlice'
+
+export type State = {
+  user: UserState;
+  templates:TemplatesState;
+  newTemplate: NewTemplateState
+}
+
 type UserState = {
   user: null | string;
   signedIn: boolean;
