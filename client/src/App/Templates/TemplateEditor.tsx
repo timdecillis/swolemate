@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import { getUser } from '../userSlice'
-import { addNameOpen, setAddNameOpen } from './TemplateEditor/newTemplateSlice'
+import { addNameOpen, setAddNameOpen } from './templatesSlice'
 import AddName from './TemplateEditor/AddName';
 import EditorPalette from './TemplateEditor/EditorPalette';
 
@@ -81,7 +81,7 @@ const TemplateEditor = ({ currentTemplate }: TemplateEditorProps) => {
   }
 
   if (nameOpen) {
-    return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setAddNameOpen={setAddNameOpen} />
+    return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template}/>
   }
 
   return (

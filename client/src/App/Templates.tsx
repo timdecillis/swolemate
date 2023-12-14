@@ -2,8 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getTemplates, setNewTemplateOpen, getNewTemplateOpen } from './Templates/templatesSlice';
-import { addNameOpen, setAddNameOpen } from './Templates/TemplateEditor/newTemplateSlice'
+import { getTemplates, setNewTemplateOpen, getNewTemplateOpen, setAddNameOpen, addNameOpen } from './Templates/templatesSlice';
 import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
@@ -18,7 +17,11 @@ const Templates = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
   const templates = useSelector(getTemplates);
-  const newTemplateOpen = useSelector(getNewTemplateOpen)
+  const newTemplateOpen = useSelector(getNewTemplateOpen);
+
+
+  console.log('user:', user)
+
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     // instance.put('/updateTemplate', { oldValue, newValue, user })

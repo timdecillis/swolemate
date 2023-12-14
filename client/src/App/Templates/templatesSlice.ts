@@ -1,36 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type TemplatesState = {
+  templates: any[];
+  newTemplateOpen: boolean;
+  addNameOpen: boolean;
+}
 const initialState = {
   templates: [],
-  newTemplateOpen: false
-}
-
-type TemplateType = {
-  id: number;
-  name: string;
-  variables: { [key: string]: string };
-  string: (string | string[])[];
+  newTemplateOpen: false,
+  addNameOpen: false
 }
 
 const templateSlice = createSlice({
   name: 'templates',
   initialState,
   reducers: {
-    addTemplate: (state, action: { payload: {template: TemplateType}}) => {
-      const { template } = action.payload;
-      let previous = state.templates;
-      // previous.push(template)
-    },
     setNewTemplateOpen(state, action) {
       const { condition } = action.payload;
       state.newTemplateOpen = condition;
+    },
+    setAddNameOpen(state, action) {
+      const { condition } = action.payload;
+      state.addNameOpen = condition;
     }
   }
 })
 
 export default templateSlice.reducer
 
-export const { addTemplate, setNewTemplateOpen } = templateSlice.actions
+export const { setNewTemplateOpen, setAddNameOpen } = templateSlice.actions
 
-export const getTemplates = (state: {templates: {templates: any[]}}) => state.templates.templates;
-export const getNewTemplateOpen = (state: {templates: {newTemplateOpen: boolean}}) => state.templates.newTemplateOpen;
+export const getTemplates = (state: TemplatesState) => state.templates;
+export const addNameOpen = (state: TemplatesState) => state.addNameOpen;
+export const getNewTemplateOpen = (state: TemplatesState) => state.newTemplateOpen;

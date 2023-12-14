@@ -3,13 +3,12 @@ import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 import { TemplateType } from '../TemplateEditor';
 
 interface AddNameProps {
-  setAddNameOpen?: React.Dispatch<SetStateAction<boolean>>;
   template: TemplateType;
   editTemplateName: (name: string) => void;
   setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const AddName = ({ setAddNameOpen, editTemplateName, setEditorOpen }: AddNameProps) => {
+const AddName = ({ editTemplateName, setEditorOpen }: AddNameProps) => {
 
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
@@ -24,7 +23,7 @@ const AddName = ({ setAddNameOpen, editTemplateName, setEditorOpen }: AddNamePro
         e.preventDefault();
         if(!input) return setErrorOpen(true);
         editTemplateName(input);
-        setAddNameOpen?.(false);
+        // setAddNameOpen?.(false);
         setEditorOpen(true);
       }}>
         <h3>Please enter a name for the template:</h3>
