@@ -1,8 +1,10 @@
 import React, { useState, SetStateAction, Dispatch } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
-import AddName from './NewTemplate/AddName';
-import EditorPalette from './NewTemplate/EditorPalette';
+import { addName, getNewTemplate } from './TemplateEditor/newTemplateSlice'
+import AddName from './TemplateEditor/AddName';
+import EditorPalette from './TemplateEditor/EditorPalette';
 
 interface TemplateEditorProps {
   user?: string;
