@@ -18,8 +18,6 @@ const Templates = () => {
   const user = useSelector(getUser);
   const templates = useSelector(getTemplates);
 
-console.log('templates:', templates)
-
   const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
   const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
 
@@ -57,22 +55,23 @@ console.log('templates:', templates)
     <>
       <h4>Welcome, {user}!</h4>
 
-      {!newTemplateOpen ?
+      {newTemplateOpen ?
+        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} />
+        :
         <button onClick={() => {
           setNewTemplateOpen(true);
           setAddNameOpen(true);
         }
         } >Add a new template</button>
-        :
-        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen}/>}
+      }
 
       <h1>Templates</h1>
 
-      {templates && <div></div>}
+      {templates.length > 0 && <div>there are templates</div>}
       <h1> </h1>
 
       <button onClick={() => {
-        dispatch(setSignedIn({condition: false}))
+        dispatch(setSignedIn({ condition: false }))
       }} >Sign Out</button>
     </>
   )
