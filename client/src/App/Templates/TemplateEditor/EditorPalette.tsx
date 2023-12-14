@@ -1,11 +1,10 @@
 import React, { useState, SetStateAction, SyntheticEvent } from 'react';
 
 import { TemplateType } from '../TemplateEditor';
-import AddVariable from './TemplateEditor/AddVariable';
+import AddVariable from './EditorPalette/AddVariable';
 import EditVariable from './EditVariable';
 
-interface TemplateEditorProps {
-  setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
+interface EditorPaletteProps {
   setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
   template: TemplateType;
   editTemplateString: (string: string) => void;
@@ -14,7 +13,7 @@ interface TemplateEditorProps {
   saveNewTemplate: () => void;
 }
 
-const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addNewVariable, addExistingVariableToString, setTemplate, saveNewTemplate }: TemplateEditorProps) => {
+const TemplateEditor = ({ template, editTemplateString, addNewVariable, addExistingVariableToString, setTemplate, saveNewTemplate }: EditorPaletteProps) => {
 
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
@@ -76,7 +75,9 @@ const TemplateEditor = ({ setNewTemplateOpen, template, editTemplateString, addN
       {variableOpen && <AddVariable addExistingVariableToString={addExistingVariableToString} template={template} setVariableOpen={setVariableOpen} addNewVariable={addNewVariable} />}
 
       <button onClick={() => setVariableOpen(true)} >Insert variable</button>
-      <button onClick={() => setNewTemplateOpen(false)} >Discard Template</button>
+      <button onClick={() => {
+        // setNewTemplateOpen(false)
+        }} >Discard Template</button>
       <button onClick={saveNewTemplate} >Save Template</button>
       <h2> </h2>
     </>

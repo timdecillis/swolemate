@@ -2,28 +2,23 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { getTemplates, setNewTemplateOpen, getNewTemplateOpen } from './Templates/templatesSlice';
+import { addNameOpen, setAddNameOpen } from './Templates/TemplateEditor/newTemplateSlice'
 import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
 import { TemplateType } from './Templates/TemplateEditor';
 
-interface TemplatesProps {
-  setSignedIn: React.Dispatch<SetStateAction<boolean>>;
-  templates: TemplateType[];
-  setTemplates: Dispatch<SetStateAction<[]>>;
-}
-
-const Templates = ({ templates, setTemplates }: TemplatesProps) => {
+const Templates = () => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
   });
 
-  const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
-  const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
-
+  const dispatch = useDispatch();
   const user = useSelector(getUser);
-  console.log('user:', user)
+  const templates = useSelector(getTemplates);
+  const newTemplateOpen = useSelector(getNewTemplateOpen)
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     // instance.put('/updateTemplate', { oldValue, newValue, user })
@@ -48,36 +43,34 @@ const Templates = ({ templates, setTemplates }: TemplatesProps) => {
     }).join(' ');
   }
 
-  const mapped = templates.map((template, i) => {
-    return (
-      <Template setTemplates={setTemplates} newTemplateOpen={newTemplateOpen} setNewTemplateOpen={setNewTemplateOpen} key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
-    )
-  }
-  )
-
-  const dispatch = useDispatch();
+  // const mapped = templates.map((template, i) => {
+  //   return (
+  //     <Template setTemplates={setTemplates} newTemplateOpen={newTemplateOpen} setNewTemplateOpen={setNewTemplateOpen} key={i} string={renderString(template)} index={i} template={template} deleteTemplate={deleteTemplate} updateTemplate={updateTemplate} />
+  //   )
+  // }
+  // )
 
   return (
     <>
       <h4>Welcome, {user}!</h4>
 
-
-      {!newTemplateOpen ?
+      {newTemplateOpen ?
+        <TemplateEditor/>
+        :
         <button onClick={() => {
-          setNewTemplateOpen(true);
-          setAddNameOpen(true);
+          dispatch(setNewTemplateOpen({condition: true}));
+          dispatch(setAddNameOpen({condition: true}));
         }
         } >Add a new template</button>
-        :
-        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} setTemplates={setTemplates} setNewTemplateOpen={setNewTemplateOpen} newTemplateOpen={newTemplateOpen} />}
+      }
 
       <h1>Templates</h1>
 
-      {templates && <div>{mapped}</div>}
+      {templates.length > 0 && <div>there are templates</div>}
       <h1> </h1>
 
       <button onClick={() => {
-        dispatch(setSignedIn({condition: false}))
+        dispatch(setSignedIn({ condition: false }))
       }} >Sign Out</button>
     </>
   )

@@ -1,13 +1,10 @@
 import React, { SyntheticEvent, useState, SetStateAction, Dispatch } from 'react';
 import axios from 'axios';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setSignedIn, login } from './userSlice';
 
-interface SignInProps {
-  setTemplates: Dispatch<SetStateAction<[]>>;
-}
-
-const SignIn = ({ setTemplates }: SignInProps) => {
+const SignIn = () => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000'
