@@ -4,12 +4,16 @@ type NewTemplate = {
   name: string;
   variables: {};
   string: string[]
+  addNameOpen: boolean;
+  newTemplateOpen: boolean;
 }
 
 const initialState: NewTemplate = {
   name: '',
   variables: {},
-  string: []
+  string: [],
+  addNameOpen: false,
+  newTemplateOpen: false
 }
 
 const newTemplateSlice = createSlice({
@@ -20,12 +24,18 @@ const newTemplateSlice = createSlice({
       const { name } = action.payload;
       state.name = name;
     },
-
+    setAddNameOpen(state, action) {
+      const { condition } = action.payload;
+      console.log('condition:', condition)
+      state.addNameOpen = condition;
+    }
   }
 })
 
 export default newTemplateSlice.reducer
 
-export const { addName } = newTemplateSlice.actions
+export const { addName, setAddNameOpen } = newTemplateSlice.actions
+
+export const addNameOpen = (state: NewTemplate) => state
 
 export const getNewTemplate = (state: NewTemplate) => state;

@@ -30,7 +30,7 @@ const templateSlice = createSlice({
 
 export default templateSlice.reducer
 
-export const { addTemplate } = templateSlice.actions
+export const { addTemplate, setNewTemplateOpen } = templateSlice.actions
 
 export const getTemplates = (state: {templates: {templates: any[]}}) => state.templates.templates;
 export const getNewTemplateOpen = (state: {templates: {newTemplateOpen: boolean}}) => state.templates.newTemplateOpen;

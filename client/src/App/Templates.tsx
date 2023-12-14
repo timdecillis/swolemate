@@ -2,7 +2,8 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getTemplates } from './Templates/templatesSlice';
+import { getTemplates, setNewTemplateOpen, getNewTemplateOpen } from './Templates/templatesSlice';
+import { addNameOpen, setAddNameOpen } from './Templates/TemplateEditor/newTemplateSlice'
 import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
@@ -17,9 +18,7 @@ const Templates = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
   const templates = useSelector(getTemplates);
-
-  const [newTemplateOpen, setNewTemplateOpen] = useState<boolean>(false);
-  const [addNameOpen, setAddNameOpen] = useState<boolean>(false);
+  const newTemplateOpen = useSelector(getNewTemplateOpen)
 
   const updateTemplate = (oldValue: string, newValue: string) => {
     // instance.put('/updateTemplate', { oldValue, newValue, user })
@@ -56,11 +55,11 @@ const Templates = () => {
       <h4>Welcome, {user}!</h4>
 
       {newTemplateOpen ?
-        <TemplateEditor addNameOpen={addNameOpen} setAddNameOpen={setAddNameOpen} />
+        <TemplateEditor/>
         :
         <button onClick={() => {
-          setNewTemplateOpen(true);
-          setAddNameOpen(true);
+          dispatch(setNewTemplateOpen({condition: true}));
+          dispatch(setAddNameOpen({condition: true}));
         }
         } >Add a new template</button>
       }

@@ -2,14 +2,13 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
-import { addName, getNewTemplate } from './TemplateEditor/newTemplateSlice'
+import { getUser } from '../userSlice'
+import { addNameOpen, setAddNameOpen } from './TemplateEditor/newTemplateSlice'
 import AddName from './TemplateEditor/AddName';
 import EditorPalette from './TemplateEditor/EditorPalette';
 
 interface TemplateEditorProps {
-  user?: string;
-  addNameOpen?: boolean;
-  setAddNameOpen?: React.Dispatch<SetStateAction<boolean>>;
+  user?: string
   currentTemplate?: TemplateType;
 }
 
@@ -24,7 +23,13 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, currentTemplate }: TemplateEditorProps) => {
+const TemplateEditor = ({ currentTemplate }: TemplateEditorProps) => {
+
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const nameOpen = useSelector(addNameOpen);
+
+  console.log('nameopen:', nameOpen)
 
   const renderString = function (template: TemplateType) {
     return template.string.map((part: (string | string[])) => {
@@ -37,7 +42,7 @@ const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, currentTemplate }: 
 
   const [template, setTemplate] = useState<TemplateType>(
     currentTemplate ? currentTemplate : { id: 0, name: '', variables: {}, string: [] }
-    );
+  );
   const [editorOpen, setEditorOpen] = useState<boolean>(false);
 
 
@@ -75,7 +80,7 @@ const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, currentTemplate }: 
       })
   }
 
-  if (addNameOpen) {
+  if (nameOpen) {
     return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template} setAddNameOpen={setAddNameOpen} />
   }
 
@@ -84,7 +89,7 @@ const TemplateEditor = ({ addNameOpen, setAddNameOpen, user, currentTemplate }: 
       <>
         <h3>Name: {template.name}</h3>
         <button onClick={() => {
-          setAddNameOpen?.(true);
+          dispatch(setAddNameOpen({ condition: true }))
           setEditorOpen(false)
         }}>Edit Name</button>
       </>
