@@ -1,28 +1,23 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { getTemplates, setNewTemplateOpen, getNewTemplateOpen, getAddNameOpen } from './Templates/templatesSlice';
-import { getUser, setSignedIn } from './userSlice'
+import {renderString} from '../Utilities/helpers'
+import { getTemplates } from './Templates/templatesSlice';
 import Template from './Templates/Template';
 
 const Templates = () => {
 
-  const dispatch = useDispatch();
-  const user = useSelector(getUser);
   const templates = useSelector(getTemplates);
-  const newTemplateOpen = useSelector(getNewTemplateOpen);
-  const nameOpen = useSelector(getAddNameOpen);
 
-  // const mapped = templates.map((template, i) => {
-  //   return (
-  //     <Template/>
-  //   )
-  // }
-  // )
+  const mapped = templates.map((template, i) => {
+    return (
+      <Template index={i} string={renderString(template)} template={template}/>
+    )
+  })
 
   return (
     <>
       <h1>Templates</h1>
-      {/* {templates.length > 0 && <div>{mapped}</div>} */}
+      {templates.length > 0 && <div>{mapped}</div>}
       <h1> </h1>
     </>
   )
