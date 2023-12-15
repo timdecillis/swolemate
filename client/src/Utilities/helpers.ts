@@ -14,7 +14,7 @@ export const updateTemplate = (oldValue: string, newValue: string, user: string)
       })
   }
 
-  export const deleteTemplate = (id: string, user: string) => {
+  export const deleteTemplate = (id: string, user: string | null) => {
     instance.delete('/deleteTemplate', { data: { id, user } })
       .then(({ data }) => {
         // setTemplates(data);

@@ -1,25 +1,23 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 
 import { getNewTemplateOpen } from './templatesSlice';
-// import {deleteTemplate }from '../../Utilities/helpers'
+import {deleteTemplate, updateTemplate }from '../../Utilities/helpers'
 import EditForm from './EditForm';
 import TemplateEditor from '../TemplateEditor';
 import { TemplateType } from '../TemplateEditor';
 import { useSelector } from 'react-redux';
+import { getUser } from '../userSlice';
 
 interface TemplateProps {
   index: number;
   string: string;
-  deleteTemplate: (id: string) => void;
-  updateTemplate: (oldValue: string, newValue: string) => void;
   template: TemplateType;
-  user?: string | undefined;
-  setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const Template = ({index, updateTemplate, deleteTemplate, template, string, user, setNewTemplateOpen }: TemplateProps) => {
+const Template = ({index, template, string}: TemplateProps) => {
 
   const newTemplateOpen = useSelector(getNewTemplateOpen);
+  const user = useSelector(getUser);
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [copiedOpen, setCopiedOpen] = useState<boolean>(false);
@@ -34,7 +32,7 @@ const Template = ({index, updateTemplate, deleteTemplate, template, string, user
 
   const deleteAlert = () => {
     const result = window.confirm('Are you sure you want to permanently delete this template?');
-    if (result) deleteTemplate(template.id.toString());
+    if (result) deleteTemplate(template.id.toString(), user);
   }
 
   if (editOpen) {
