@@ -7,22 +7,21 @@ const instance = axios.create({
 });
 
 
-module.exports = {
-  updateTemplate: (oldValue: string, newValue: string, user: string) => {
+export const updateTemplate = (oldValue: string, newValue: string, user: string) => {
     instance.put('/updateTemplate', { oldValue, newValue, user })
       .then(({ data }) => {
         // setTemplates(data)
       })
-  },
+  }
 
- deleteTemplate: (id: string, user: string) => {
+  export const deleteTemplate = (id: string, user: string) => {
     instance.delete('/deleteTemplate', { data: { id, user } })
       .then(({ data }) => {
         // setTemplates(data);
       })
-  },
+  }
 
-  renderString: function (template: TemplateType) {
+  export const renderString = (template: TemplateType) => {
     return template.string.map((part: (string | string[])) => {
       if (Array.isArray(part)) {
         return template.variables[part[0]];
@@ -30,4 +29,3 @@ module.exports = {
       return part;
     }).join(' ');
   }
-}

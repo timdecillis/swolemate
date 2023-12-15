@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
+import {renderString} from '../Utilities/helpers'
 import { getTemplates, setNewTemplateOpen, getNewTemplateOpen, getAddNameOpen } from './Templates/templatesSlice';
 import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';

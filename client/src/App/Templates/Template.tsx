@@ -1,8 +1,11 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 
+import { getNewTemplateOpen } from './templatesSlice';
+// import {deleteTemplate }from '../../Utilities/helpers'
 import EditForm from './EditForm';
 import TemplateEditor from '../TemplateEditor';
 import { TemplateType } from '../TemplateEditor';
+import { useSelector } from 'react-redux';
 
 interface TemplateProps {
   index: number;
@@ -12,10 +15,11 @@ interface TemplateProps {
   template: TemplateType;
   user?: string | undefined;
   setNewTemplateOpen: React.Dispatch<SetStateAction<boolean>>;
-  newTemplateOpen: boolean;
 }
 
-const Template = ({ newTemplateOpen, index, updateTemplate, deleteTemplate, template, string, user, setNewTemplateOpen }: TemplateProps) => {
+const Template = ({index, updateTemplate, deleteTemplate, template, string, user, setNewTemplateOpen }: TemplateProps) => {
+
+  const newTemplateOpen = useSelector(getNewTemplateOpen);
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [copiedOpen, setCopiedOpen] = useState<boolean>(false);
