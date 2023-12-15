@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getTemplates, setNewTemplateOpen, getNewTemplateOpen, setAddNameOpen, addNameOpen } from './Templates/templatesSlice';
+import { getTemplates, setNewTemplateOpen, getNewTemplateOpen, setAddNameOpen, getAddNameOpen } from './Templates/templatesSlice';
 import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';
 import TemplateEditor from './Templates/TemplateEditor';
@@ -11,7 +11,7 @@ const Templates = () => {
   const user = useSelector(getUser);
   const templates = useSelector(getTemplates);
   const newTemplateOpen = useSelector(getNewTemplateOpen);
-  const nameOpen = useSelector(addNameOpen);
+  const nameOpen = useSelector(getAddNameOpen);
 
   // const mapped = templates.map((template, i) => {
   //   return (
@@ -22,7 +22,7 @@ const Templates = () => {
 
   return (
     <>
-      <h4>Welcome, {user}!</h4>
+
 
       {newTemplateOpen ?
         <TemplateEditor/>
