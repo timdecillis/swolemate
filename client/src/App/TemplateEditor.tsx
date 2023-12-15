@@ -31,7 +31,7 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
   const [paletteOpen, setPaletteOpen] = useState<boolean>(false);
   const [template, setTemplate] = useState<TemplateType>(existingTemplate ? existingTemplate : { id: 0, name: '', variables: {}, string: [] });
 
-  if(existingTemplate) {
+  if (existingTemplate) {
     setAddNameOpen(false);
     setPaletteOpen(true);
   }
@@ -62,29 +62,27 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
     }));
   }
 
-  // const saveNewTemplate = () => {
-  //   instance.post('/addTemplate', { user, template })
-  //     .then(({ data }) => {
-  //       setTemplates(data);
-  //       setNewTemplateOpen(false);
-  //     })
-  // }
-
-  if (addNameOpen) {
-    return <AddName setAddNameOpen={setAddNameOpen} setPaletteOpen={setPaletteOpen} editTemplateName={editTemplateName} template={template}/>
+  const saveNewTemplate = () => {
+    instance.post('/addTemplate', { user, template })
+      .then(({ data }) => {
+        // setTemplates(data);
+        // setNewTemplateOpen(false);
+      })
   }
 
   return (
     <>
-      <>
-        <h3>Name: {template.name}</h3>
-        <button onClick={() => {
-          setAddNameOpen(true)
-        }}>Edit Name</button>
-      </>
+
+      {addNameOpen ? <AddName setAddNameOpen={setAddNameOpen} setPaletteOpen={setPaletteOpen} editTemplateName={editTemplateName} template={template} />
+        :
+        <>
+          <h3>Name: {template.name}</h3>
+          <button onClick={() => setAddNameOpen(true)}>Edit Name</button>
+        </>}
+
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
 
-      {/* {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} addNewVariable={addNewVariable} />} */}
+      {paletteOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} addNewVariable={addNewVariable} />}
     </>
   )
 }

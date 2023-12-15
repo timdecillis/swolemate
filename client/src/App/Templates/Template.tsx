@@ -35,7 +35,7 @@ const Template = ({index, template, string}: TemplateProps) => {
   }
 
   if (editOpen) {
-    return <TemplateEditor currentTemplate={template}/>
+    return <TemplateEditor existingTemplate={template}/>
   } else {
     return (
       <div>
