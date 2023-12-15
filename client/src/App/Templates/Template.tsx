@@ -16,7 +16,6 @@ interface TemplateProps {
 
 const Template = ({index, template, string}: TemplateProps) => {
 
-  const newTemplateOpen = useSelector(getNewTemplateOpen);
   const user = useSelector(getUser);
 
   const [editOpen, setEditOpen] = useState<boolean>(false);

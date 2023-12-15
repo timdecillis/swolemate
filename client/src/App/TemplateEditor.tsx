@@ -2,14 +2,13 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
+import { renderString } from '../Utilities/helpers';
 import { getUser } from './userSlice'
-import { setAddNameOpen } from './Templates/templatesSlice'
 import AddName from './Templates/TemplateEditor/AddName';
 import EditorPalette from './Templates/TemplateEditor/EditorPalette';
 
 interface TemplateEditorProps {
-  user?: string
-  currentTemplate?: TemplateType;
+  existingTemplate?: TemplateType;
 }
 
 export type TemplateType = {
@@ -23,26 +22,19 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-const TemplateEditor = ({ currentTemplate }: TemplateEditorProps) => {
+const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  // const nameOpen = useSelector(addNameOpen);
 
-  const renderString = function (template: TemplateType) {
-    return template.string.map((part: (string | string[])) => {
-      if (Array.isArray(part)) {
-        return template.variables[part[0]];
-      }
-      return part;
-    }).join(' ');
+  const [addNameOpen, setAddNameOpen] = useState(true);
+  const [paletteOpen, setPaletteOpen] = useState<boolean>(false);
+  const [template, setTemplate] = useState<TemplateType>(existingTemplate ? existingTemplate : { id: 0, name: '', variables: {}, string: [] });
+
+  if(existingTemplate) {
+    setAddNameOpen(false);
+    setPaletteOpen(true);
   }
-
-  const [template, setTemplate] = useState<TemplateType>(
-    currentTemplate ? currentTemplate : { id: 0, name: '', variables: {}, string: [] }
-  );
-  const [editorOpen, setEditorOpen] = useState<boolean>(false);
-
 
   const editTemplateName = (name: string) => {
     setTemplate({ ...template, name });
@@ -70,30 +62,29 @@ const TemplateEditor = ({ currentTemplate }: TemplateEditorProps) => {
     }));
   }
 
-  const saveNewTemplate = () => {
-    instance.post('/addTemplate', { user, template })
-      .then(({ data }) => {
-        // setTemplates(data);
-        // setNewTemplateOpen(false);
-      })
-  }
-
-  // if (nameOpen) {
-  //   return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template}/>
+  // const saveNewTemplate = () => {
+  //   instance.post('/addTemplate', { user, template })
+  //     .then(({ data }) => {
+  //       setTemplates(data);
+  //       setNewTemplateOpen(false);
+  //     })
   // }
+
+  if (addNameOpen) {
+    return <AddName setAddNameOpen={setAddNameOpen} setPaletteOpen={setPaletteOpen} editTemplateName={editTemplateName} template={template}/>
+  }
 
   return (
     <>
       <>
         <h3>Name: {template.name}</h3>
         <button onClick={() => {
-          dispatch(setAddNameOpen({ condition: true }))
-          setEditorOpen(false)
+          setAddNameOpen(true)
         }}>Edit Name</button>
       </>
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
 
-      {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} addNewVariable={addNewVariable} />}
+      {/* {editorOpen && <EditorPalette saveNewTemplate={saveNewTemplate} setTemplate={setTemplate} addExistingVariableToString={addExistingVariableToString} editTemplateString={editTemplateString} template={template} addNewVariable={addNewVariable} />} */}
     </>
   )
 }

@@ -5,10 +5,11 @@ import { TemplateType } from '../../TemplateEditor';
 interface AddNameProps {
   template: TemplateType;
   editTemplateName: (name: string) => void;
-  setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
+  setPaletteOpen: React.Dispatch<SetStateAction<boolean>>;
+  setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const AddName = ({ editTemplateName, setEditorOpen }: AddNameProps) => {
+const AddName = ({ editTemplateName, setPaletteOpen, setAddNameOpen }: AddNameProps) => {
 
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
@@ -17,15 +18,17 @@ const AddName = ({ editTemplateName, setEditorOpen }: AddNameProps) => {
     // setNewTemplateOpen(false);
   }
 
+  const onSubmit = ((e: SyntheticEvent) => {
+    e.preventDefault();
+    if(!input) return setErrorOpen(true);
+    editTemplateName(input);
+    setAddNameOpen(false);
+    setPaletteOpen(true);
+  })
+
   return (
     <>
-      <form onSubmit={(e: SyntheticEvent) => {
-        e.preventDefault();
-        if(!input) return setErrorOpen(true);
-        editTemplateName(input);
-        // setAddNameOpen?.(false);
-        setEditorOpen(true);
-      }}>
+      <form onSubmit={onSubmit}>
         <h3>Please enter a name for the template:</h3>
         <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text'></input>
         <input type='submit' value='Save'></input>

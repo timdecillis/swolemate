@@ -22,9 +22,9 @@ function App() {
         {signedIn ?
           <>
             {!newTemplateOpen ?
-              <AddTemplate />
+              <AddTemplate/>
               :
-              <TemplateEditor />}
+              <TemplateEditor/>}
             <Templates />
             <button onClick={() => {
               dispatch(setSignedIn({ condition: false }));
@@ -32,7 +32,7 @@ function App() {
             }} >Sign Out</button>
           </>
           :
-          <SignIn />}
+          <SignIn/>}
 
       </header>
     </div>
