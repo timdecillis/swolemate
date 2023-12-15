@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTemplates, setNewTemplateOpen, getNewTemplateOpen, setAddNameOpen, getAddNameOpen } from './Templates/templatesSlice';
 import { getUser, setSignedIn } from './userSlice'
 import Template from './Templates/Template';
-import TemplateEditor from './Templates/TemplateEditor';
+import TemplateEditor from './TemplateEditor';
 
 const Templates = () => {
 
@@ -22,18 +22,6 @@ const Templates = () => {
 
   return (
     <>
-
-
-      {newTemplateOpen ?
-        <TemplateEditor/>
-        :
-        <button onClick={() => {
-          dispatch(setNewTemplateOpen({condition: true}));
-          dispatch(setAddNameOpen({condition: true}));
-        }
-        } >Add a new template</button>
-      }
-
       <h1>Templates</h1>
 
       {templates.length > 0 && <div>there are templates</div>}

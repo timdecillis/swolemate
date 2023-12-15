@@ -1,6 +1,6 @@
 import React, { useState, SetStateAction } from 'react';
 
-import { TemplateType } from '../../TemplateEditor';
+import { TemplateType } from '../../../TemplateEditor';
 
 interface EditVariableProps {
   setVariableOpen: React.Dispatch<SetStateAction<boolean>>;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { TemplateType } from "../App/Templates/TemplateEditor";
+import { TemplateType } from "../App/TemplateEditor";
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'

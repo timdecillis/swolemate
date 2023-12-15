@@ -1,8 +1,8 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 
 import EditForm from './EditForm';
-import TemplateEditor from './TemplateEditor';
-import { TemplateType } from './TemplateEditor';
+import TemplateEditor from '../TemplateEditor';
+import { TemplateType } from '../TemplateEditor';
 
 interface TemplateProps {
   index: number;
