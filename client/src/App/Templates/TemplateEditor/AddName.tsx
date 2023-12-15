@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 
-import { TemplateType } from '../TemplateEditor';
+import { TemplateType } from '../../TemplateEditor';
 
 interface AddNameProps {
   template: TemplateType;

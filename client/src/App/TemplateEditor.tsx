@@ -2,10 +2,10 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
-import { getUser } from '../userSlice'
-import { addNameOpen, setAddNameOpen } from './templatesSlice'
-import AddName from './TemplateEditor/AddName';
-import EditorPalette from './TemplateEditor/EditorPalette';
+import { getUser } from './userSlice'
+import { setAddNameOpen } from './Templates/templatesSlice'
+import AddName from './Templates/TemplateEditor/AddName';
+import EditorPalette from './Templates/TemplateEditor/EditorPalette';
 
 interface TemplateEditorProps {
   user?: string
@@ -27,7 +27,7 @@ const TemplateEditor = ({ currentTemplate }: TemplateEditorProps) => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  const nameOpen = useSelector(addNameOpen);
+  // const nameOpen = useSelector(addNameOpen);
 
   const renderString = function (template: TemplateType) {
     return template.string.map((part: (string | string[])) => {
@@ -78,9 +78,9 @@ const TemplateEditor = ({ currentTemplate }: TemplateEditorProps) => {
       })
   }
 
-  if (nameOpen) {
-    return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template}/>
-  }
+  // if (nameOpen) {
+  //   return <AddName setEditorOpen={setEditorOpen} editTemplateName={editTemplateName} template={template}/>
+  // }
 
   return (
     <>
