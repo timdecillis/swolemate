@@ -4,7 +4,7 @@ import { getNewTemplateOpen } from './templatesSlice';
 import {deleteTemplate, updateTemplate }from '../../Utilities/helpers'
 import EditForm from './EditForm';
 import TemplateEditor from '../TemplateEditor';
-import { TemplateType } from '../TemplateEditor';
+import { TemplateType } from './TemplateEditor/newTemplateSlice';
 import { useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
 
@@ -16,7 +16,6 @@ interface TemplateProps {
 
 const Template = ({index, template, string}: TemplateProps) => {
 
-  const newTemplateOpen = useSelector(getNewTemplateOpen);
   const user = useSelector(getUser);
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
@@ -36,7 +35,7 @@ const Template = ({index, template, string}: TemplateProps) => {
   }
 
   if (editOpen) {
-    return <TemplateEditor currentTemplate={template}/>
+    return <TemplateEditor existingTemplate={template}/>
   } else {
     return (
       <div>

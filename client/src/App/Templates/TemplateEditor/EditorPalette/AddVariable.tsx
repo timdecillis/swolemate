@@ -1,6 +1,6 @@
 import React, { useState, SetStateAction } from 'react';
 
-import { TemplateType } from '../../../TemplateEditor';
+import { TemplateType } from '../newTemplateSlice';
 
 interface EditVariableProps {
   setVariableOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -23,7 +23,7 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template, addExistingVar
           {Object.entries(template.variables).map((tuple, i) => {
             return (
               <>
-                <div>Name: {tuple[0]} Content: {tuple[1]}</div>
+                {/* <div>Name: {tuple[0]} Content: {tuple[1]}</div> */}
                 <button onClick={() => {
                   addExistingVariableToString(tuple[0]);
                   setVariableOpen(false);
