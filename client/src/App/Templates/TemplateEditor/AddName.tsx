@@ -1,7 +1,7 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setAddNameOpen, setPaletteOpen } from '../templatesSlice';
+import { setAddNameOpen, setPaletteOpen, setNewTemplateOpen } from '../templatesSlice';
 import { addName, getNewTemplate } from './newTemplateSlice';
 import { TemplateType } from './newTemplateSlice';
 
@@ -15,6 +15,7 @@ const AddName = () => {
 
   const cancel = () => {
     dispatch(setAddNameOpen({condition: false}));
+    dispatch(setNewTemplateOpen({condition: false}));
   }
 
 

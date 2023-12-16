@@ -1,17 +1,19 @@
-import React, { useState, SetStateAction } from 'react';
+import { useState, SetStateAction } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { TemplateType } from '../newTemplateSlice';
+import { getNewTemplate, addNewVariable, addExistingVariable } from '../newTemplateSlice';
 
 interface EditVariableProps {
   setVariableOpen: React.Dispatch<SetStateAction<boolean>>;
-  addNewVariable: (name: string, content: string) => void;
-  template: TemplateType;
 }
 
-const AddVariable = ({ addNewVariable, setVariableOpen, template }: EditVariableProps) => {
+const AddVariable = ({ setVariableOpen }: EditVariableProps) => {
 
-  const [variableName, setVariableName] = useState<string>('');
-  const [variableContent, setVariableContent] = useState<string>('');
+  const dispatch = useDispatch();
+  const template = useSelector(getNewTemplate);
+
+  const [name, setName] = useState<string>('');
+  const [content, setContent] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   return (
@@ -21,26 +23,26 @@ const AddVariable = ({ addNewVariable, setVariableOpen, template }: EditVariable
           <h4>Choose a variable: </h4>
           {Object.entries(template.variables).map((tuple, i) => {
             return (
-              <>
-                {/* <div>Name: {tuple[0]} Content: {tuple[1]}</div> */}
+              <div key={i} >
+                <div>Name: {tuple[0]} Content: {tuple[1]}</div>
                 <button onClick={() => {
-                  // addExistingVariableToString(tuple[0]);
+                  dispatch(addExistingVariable({name: tuple[0]}));
                   setVariableOpen(false);
                   }} >Insert</button>
-              </>
+              </div>
             );
           })}
           <h4>~Or~</h4>
         </>
       )}
       <h4>Create a new variable:</h4>
-      <input onClick={() => setErrorOpen(false)} onChange={(e) => {setVariableName(e.target.value)}} placeholder='Variable name' ></input>
-      <input onClick={() => setErrorOpen(false)} onChange={(e) => setVariableContent(e.target.value)} placeholder='Variable content' ></input>
+      <input onClick={() => setErrorOpen(false)} onChange={(e) => {setName(e.target.value)}} placeholder='Variable name' ></input>
+      <input onClick={() => setErrorOpen(false)} onChange={(e) => setContent(e.target.value)} placeholder='Variable content' ></input>
       {errorOpen && <div>Please enter a variable name and content!</div>}
       <button onClick={() => setVariableOpen(false)} >Discard</button>
       <button onClick={() => {
-        if (!variableName || !variableContent) return setErrorOpen(true);
-        addNewVariable(variableName, variableContent);
+        if (!name || !content) return setErrorOpen(true);
+        dispatch(addNewVariable({name, content}));
         setVariableOpen(false);
       }} >Add to template</button>
     </>

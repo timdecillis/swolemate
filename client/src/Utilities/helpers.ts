@@ -24,7 +24,7 @@ export const updateTemplate = (oldValue: string, newValue: string, user: string)
   export const renderString = (template: TemplateType) => {
     return template.string.map((part: (string | string[])) => {
       if (Array.isArray(part)) {
-        // return template.variables[part[0]];
+        return template.variables[part[0]];
       }
       return part;
     }).join(' ');

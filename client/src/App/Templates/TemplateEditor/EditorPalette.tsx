@@ -3,15 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import AddVariable from './EditorPalette/AddVariable';
 import EditVariable from './EditVariable';
-import { addNewVariable, addTextToString } from './newTemplateSlice';
-import { TemplateType, getNewTemplate } from './newTemplateSlice';
+import { getNewTemplate, addTextToString } from './newTemplateSlice';
 
 const TemplateEditor = () => {
 
   const dispatch = useDispatch();
-  console.log('PALETTE')
   const template = useSelector(getNewTemplate);
-  const [variableOpen, setVariableOpen] = useState<boolean>(false);
+
+  const [newVariableOpen, setNewVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
   const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
@@ -68,9 +67,9 @@ const TemplateEditor = () => {
 
       {editVariableOpen && <EditVariable variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
 
-      {variableOpen && <AddVariable template={template} setVariableOpen={setVariableOpen} addNewVariable={addNewVariable} />}
+      {newVariableOpen && <AddVariable setVariableOpen={setNewVariableOpen}/>}
 
-      <button onClick={() => setVariableOpen(true)} >Insert variable</button>
+      <button onClick={() => setNewVariableOpen(true)} >Insert variable</button>
       <button onClick={() => {
         // setNewTemplateOpen(false)
         }} >Discard Template</button>
