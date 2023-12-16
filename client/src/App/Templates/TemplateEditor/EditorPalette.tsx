@@ -3,14 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import AddVariable from './EditorPalette/AddVariable';
 import EditVariable from './EditVariable';
-import { addNewVariable, addTextToString } from './newTemplateSlice';
-import { TemplateType, getNewTemplate } from './newTemplateSlice';
+import { getNewTemplate, addTextToString } from './newTemplateSlice';
 
 const TemplateEditor = () => {
 
   const dispatch = useDispatch();
-  console.log('PALETTE')
   const template = useSelector(getNewTemplate);
+
   const [newVariableOpen, setNewVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);

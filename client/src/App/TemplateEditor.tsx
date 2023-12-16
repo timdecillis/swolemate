@@ -28,14 +28,6 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
     dispatch(setPaletteOpen({ condition: true }));
   }
 
-  // const addExistingVariableToString = (name: string) => {
-  //   let previousString = template.string;
-  //   setTemplate(prevTemplate => ({
-  //     ...prevTemplate,
-  //     string: [...previousString, [name]]
-  //   }));
-  // }
-
   // const saveNewTemplate = () => {
   //   instance.post('/addTemplate', { user, template })
   //     .then(({ data }) => {

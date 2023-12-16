@@ -28,6 +28,10 @@ const newTemplateSlice = createSlice({
       state.variables[name] = content;
       state.string.push([name])
     },
+    addExistingVariable(state, action) {
+      const { name } = action.payload;
+      state.string.push([name])
+    },
     addTextToString(state, action) {
       const { text } = action.payload;
       console.log('text:', text)
@@ -44,6 +48,6 @@ const newTemplateSlice = createSlice({
 
 export default newTemplateSlice.reducer
 
-export const { addName, addNewVariable, addTextToString, clearNewTemplate } = newTemplateSlice.actions
+export const { addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable } = newTemplateSlice.actions
 
 export const getNewTemplate = (state: State) => state.newTemplate;

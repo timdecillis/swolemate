@@ -1,7 +1,7 @@
 import { useState, SetStateAction } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getNewTemplate, addNewVariable } from '../newTemplateSlice';
+import { getNewTemplate, addNewVariable, addExistingVariable } from '../newTemplateSlice';
 
 interface EditVariableProps {
   setVariableOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -23,13 +23,13 @@ const AddVariable = ({ setVariableOpen }: EditVariableProps) => {
           <h4>Choose a variable: </h4>
           {Object.entries(template.variables).map((tuple, i) => {
             return (
-              <>
+              <div key={i} >
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
                 <button onClick={() => {
-                  // addExistingVariableToString(tuple[0]);
+                  dispatch(addExistingVariable({name: tuple[0]}));
                   setVariableOpen(false);
                   }} >Insert</button>
-              </>
+              </div>
             );
           })}
           <h4>~Or~</h4>
