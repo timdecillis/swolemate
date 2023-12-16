@@ -21,7 +21,6 @@ const newTemplateSlice = createSlice({
   reducers: {
     addName(state, action) {
       const { name } = action.payload;
-      console.log('name:', name)
       state.name = name;
     },
     addNewVariable(state, action) {
@@ -31,13 +30,20 @@ const newTemplateSlice = createSlice({
     },
     addTextToString(state, action) {
       const { text } = action.payload;
+      console.log('text:', text)
       state.string.push(text)
+    },
+    clearNewTemplate(state, action) {
+      state.id = initialState.id;
+      state.name = initialState.name;
+      state.variables = initialState.variables;
+      state.string = initialState.string;
     }
   }
 })
 
 export default newTemplateSlice.reducer
 
-export const { addName, addNewVariable, addTextToString } = newTemplateSlice.actions
+export const { addName, addNewVariable, addTextToString, clearNewTemplate } = newTemplateSlice.actions
 
 export const getNewTemplate = (state: State) => state.newTemplate;
