@@ -28,24 +28,6 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
     setPaletteOpen(true);
   }
 
-  // const editTemplateName = (name: string) => {
-  //   setTemplate({ ...template, name });
-  // }
-
-  // const editTemplateString = (string: string) => {
-  //   setTemplate(prevTemplate => ({
-  //     ...prevTemplate,
-  //     string: [...prevTemplate.string, string]
-  //   }));
-  // };
-
-  // const addNewVariable = (name: string, content: string) => {
-  //   let previousVariables = template.variables;
-  //   let previousString = template.string;
-  //   previousVariables[name] = content;
-  //   setTemplate({ ...template, string: [...previousString, [name]], variables: previousVariables })
-  // }
-
   // const addExistingVariableToString = (name: string) => {
   //   let previousString = template.string;
   //   setTemplate(prevTemplate => ({

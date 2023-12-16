@@ -4,10 +4,9 @@ interface EditVariableProps {
   editVariableOpen: boolean;
   setEditVariableOpen: React.Dispatch<SetStateAction<boolean>>;
   variable: string[];
-  editVariable: (prevName: string, name: string, content: string) => void;
 }
 
-const EditVariable = ({ setEditVariableOpen, variable, editVariable }: EditVariableProps) => {
+const EditVariable = ({ setEditVariableOpen, variable }: EditVariableProps) => {
 
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
@@ -20,7 +19,7 @@ const EditVariable = ({ setEditVariableOpen, variable, editVariable }: EditVaria
         if (!variableContent) {
           prevName = variable[0];
         }
-        editVariable(prevName, variableName || variable[0], variableContent || variable[1]);
+        // editVariable(prevName, variableName || variable[0], variableContent || variable[1]);
         setEditVariableOpen(false);
       }}>
         <input onChange={(e) => setVariableName(e.target.value)} type='text' defaultValue={variable[0]}></input>
