@@ -9,7 +9,7 @@ import { TemplateType, getNewTemplate } from './newTemplateSlice';
 const TemplateEditor = () => {
 
   const dispatch = useDispatch();
-
+  console.log('PALETTE')
   const template = useSelector(getNewTemplate);
   const [variableOpen, setVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');

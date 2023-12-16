@@ -39,5 +39,6 @@ export default templateSlice.reducer
 export const { setNewTemplateOpen, setAddNameOpen, setPaletteOpen } = templateSlice.actions
 
 export const getTemplates = (state: State) => state.templates.templates;
+export const getPaletteOpen = (state: State) => state.templates.paletteOpen;
 export const getAddNameOpen = (state: State) => state.templates.addNameOpen;
 export const getNewTemplateOpen = (state: State) => state.templates.newTemplateOpen;
