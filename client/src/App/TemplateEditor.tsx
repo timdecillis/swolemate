@@ -2,7 +2,7 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
-import { getAddNameOpen, setAddNameOpen } from './Templates/templatesSlice';
+import { getAddNameOpen, setAddNameOpen, getPaletteOpen } from './Templates/templatesSlice';
 import { renderString } from '../Utilities/helpers';
 import { getUser } from './userSlice'
 import AddName from './Templates/TemplateEditor/AddName';
@@ -19,14 +19,13 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
   const user = useSelector(getUser);
   const template = useSelector(getNewTemplate);
   const addNameOpen = useSelector(getAddNameOpen);
-
-  const [paletteOpen, setPaletteOpen] = useState<boolean>(false);
+  const paletteOpen = useSelector(getPaletteOpen);
   // const [template, setTemplate] = useState<TemplateType>(existingTemplate ? existingTemplate : { id: 0, name: '', variables: {}, string: [] });
 
-  if (existingTemplate) {
-    dispatch(setAddNameOpen(false));
-    setPaletteOpen(true);
-  }
+  // if (existingTemplate) {
+  //   dispatch(setAddNameOpen(false));
+  //   setPaletteOpen(true);
+  // }
 
   // const addExistingVariableToString = (name: string) => {
   //   let previousString = template.string;
