@@ -4,7 +4,7 @@ import { getNewTemplateOpen } from './templatesSlice';
 import {deleteTemplate, updateTemplate }from '../../Utilities/helpers'
 import EditForm from './EditForm';
 import TemplateEditor from '../TemplateEditor';
-import { TemplateType } from '../TemplateEditor';
+import { TemplateType } from './TemplateEditor/newTemplateSlice';
 import { useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
 

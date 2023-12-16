@@ -1,29 +1,30 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { TemplateType } from '../../TemplateEditor';
+import { setAddNameOpen, setPaletteOpen } from '../templatesSlice';
+import { addName } from './newTemplateSlice';
+import { TemplateType } from './newTemplateSlice';
 
-interface AddNameProps {
-  template: TemplateType;
-  editTemplateName: (name: string) => void;
-  setPaletteOpen: React.Dispatch<SetStateAction<boolean>>;
-  setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
-}
+const AddName = () => {
 
-const AddName = ({ editTemplateName, setPaletteOpen, setAddNameOpen }: AddNameProps) => {
+  const dispatch = useDispatch();
 
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
-  const discard = () => {
-    // setNewTemplateOpen(false);
+
+  const cancel = () => {
+    dispatch(setAddNameOpen({condition: false}));
   }
+
 
   const onSubmit = ((e: SyntheticEvent) => {
     e.preventDefault();
     if(!input) return setErrorOpen(true);
-    editTemplateName(input);
-    setAddNameOpen(false);
-    setPaletteOpen(true);
+    dispatch(addName(input))
+    console.log()
+    dispatch(setAddNameOpen({condition: false}))
+    dispatch(setPaletteOpen({condition: false}))
   })
 
   return (
@@ -34,7 +35,7 @@ const AddName = ({ editTemplateName, setPaletteOpen, setAddNameOpen }: AddNamePr
         <input type='submit' value='Save'></input>
       </form>
       {errorOpen && <div>Please enter a name for your template!</div>}
-      <button onClick={discard} >Discard</button>
+      <button onClick={cancel} >Cancel</button>
       <h1> </h1>
     </>
   )

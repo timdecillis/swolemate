@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { State } from "../../userSlice";
 
-export type NewTemplateState = {
+export type TemplateType = {
+  id: number;
   name: string;
   variables: {};
   string: string[]
 }
 
-const initialState: NewTemplateState = {
+const initialState: TemplateType = {
+  id: 0,
   name: '',
   variables: {},
   string: []
@@ -27,6 +30,4 @@ export default newTemplateSlice.reducer
 
 export const { addName } = newTemplateSlice.actions
 
-export const addNameOpen = (state: NewTemplateState) => state;
-
-export const getNewTemplate = (state: NewTemplateState) => state;
+export const getNewTemplate = (state: State) => state.newTemplate;

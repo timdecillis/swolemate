@@ -7,7 +7,6 @@ import Template from './Templates/Template';
 const Templates = () => {
 
   const templates = useSelector(getTemplates);
-
   const mapped = templates.map((template, i) => {
     return (
       <Template index={i} string={renderString(template)} template={template}/>
