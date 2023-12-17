@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-
+import { createStore } from 'redux';
 import './App.css';
 import Templates from './App/Templates';
 import SignIn from './App/SignIn';
@@ -10,6 +10,22 @@ import { getNewTemplateOpen, setNewTemplateOpen, setPaletteOpen } from './App/Te
 import { clearNewTemplate } from './App/Templates/TemplateEditor/newTemplateSlice';
 
 function App() {
+
+  const initialState = {value: 0};
+  const INCREMENT = 'INCREMENT';
+  const incrementAction = {type: INCREMENT};
+  const reducer = (state: any, action: any) => {
+    return {state: state.value + 1};
+  }
+
+  const store = createStore(reducer);
+
+  console.log(createStore(reducer));
+
+
+
+
+
 
   const dispatch = useDispatch();
   const signedIn = useSelector(getSignedIn);
