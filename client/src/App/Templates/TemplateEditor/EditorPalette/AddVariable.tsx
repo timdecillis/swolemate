@@ -1,13 +1,10 @@
-import { useState, SetStateAction } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { setNewVariableOpen } from '../../templatesSlice';
 import { getNewTemplate, addNewVariable, addExistingVariable } from '../newTemplateSlice';
 
-interface EditVariableProps {
-  setVariableOpen: React.Dispatch<SetStateAction<boolean>>;
-}
-
-const AddVariable = ({ setVariableOpen }: EditVariableProps) => {
+const AddVariable = () => {
 
   const dispatch = useDispatch();
   const template = useSelector(getNewTemplate);
@@ -27,7 +24,7 @@ const AddVariable = ({ setVariableOpen }: EditVariableProps) => {
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
                 <button onClick={() => {
                   dispatch(addExistingVariable({name: tuple[0]}));
-                  setVariableOpen(false);
+                  dispatch(setNewVariableOpen({condition: false}));
                   }} >Insert</button>
               </div>
             );
@@ -39,11 +36,11 @@ const AddVariable = ({ setVariableOpen }: EditVariableProps) => {
       <input onClick={() => setErrorOpen(false)} onChange={(e) => {setName(e.target.value)}} placeholder='Variable name' ></input>
       <input onClick={() => setErrorOpen(false)} onChange={(e) => setContent(e.target.value)} placeholder='Variable content' ></input>
       {errorOpen && <div>Please enter a variable name and content!</div>}
-      <button onClick={() => setVariableOpen(false)} >Discard</button>
+      <button onClick={() => dispatch(setNewVariableOpen({condition: false}))} >Discard</button>
       <button onClick={() => {
         if (!name || !content) return setErrorOpen(true);
         dispatch(addNewVariable({name, content}));
-        setVariableOpen(false);
+        dispatch(setNewVariableOpen({condition: false}));
       }} >Add to template</button>
     </>
   )

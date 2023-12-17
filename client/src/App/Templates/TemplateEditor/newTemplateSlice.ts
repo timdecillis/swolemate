@@ -34,20 +34,31 @@ const newTemplateSlice = createSlice({
     },
     addTextToString(state, action) {
       const { text } = action.payload;
-      console.log('text:', text)
       state.string.push(text)
     },
-    clearNewTemplate(state, action) {
+    clearNewTemplate(state) {
       state.id = initialState.id;
       state.name = initialState.name;
       state.variables = initialState.variables;
       state.string = initialState.string;
+    },
+    editVariable(state, action) {
+      const {prevName, name, content} = action.payload;
+      if (prevName) {
+        state.string.forEach((item: (string | string[])) => {
+          if (Array.isArray(item) && item[0] === prevName) item[0] = name;
+        })
+        delete state.variables[prevName];
+        state.variables[name] = content;
+      } else {
+        state.variables[name] = content;
+      }
     }
   }
 })
 
 export default newTemplateSlice.reducer
 
-export const { addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable } = newTemplateSlice.actions
+export const { addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions
 
 export const getNewTemplate = (state: State) => state.newTemplate;

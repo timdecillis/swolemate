@@ -1,6 +1,4 @@
-import React, { useState, SetStateAction, Dispatch } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 
 import { getAddNameOpen, setAddNameOpen, getPaletteOpen, setPaletteOpen } from './Templates/templatesSlice';
 import { renderString } from '../Utilities/helpers';
@@ -22,7 +20,6 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
   const paletteOpen = useSelector(getPaletteOpen);
 
   if (existingTemplate) {
-    console.log('existing template')
     template = existingTemplate
     dispatch(setAddNameOpen({ condition: false }));
     dispatch(setPaletteOpen({ condition: true }));
