@@ -34,10 +34,9 @@ const newTemplateSlice = createSlice({
     },
     addTextToString(state, action) {
       const { text } = action.payload;
-      console.log('text:', text)
       state.string.push(text)
     },
-    clearNewTemplate(state, action) {
+    clearNewTemplate(state) {
       state.id = initialState.id;
       state.name = initialState.name;
       state.variables = initialState.variables;

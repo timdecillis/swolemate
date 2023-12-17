@@ -1,20 +1,21 @@
-import { useState, SetStateAction, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import AddVariable from './EditorPalette/AddVariable';
 import EditVariable from './EditVariable';
-import { getNewTemplate, addTextToString } from './newTemplateSlice';
+import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen } from '../templatesSlice';
+import { getNewTemplate, addTextToString, clearNewTemplate } from './newTemplateSlice';
 
 const TemplateEditor = () => {
 
   const dispatch = useDispatch();
   const template = useSelector(getNewTemplate);
+  const newVariableOpen = useSelector(getNewVariableOpen);
 
-  const [newVariableOpen, setNewVariableOpen] = useState<boolean>(false);
-  const [input, setInput] = useState<string>('');
-  const [errorOpen, setErrorOpen] = useState<boolean>(false);
   const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
+  const [input, setInput] = useState<string>('');
   const [variable, setVariable] = useState<string[]>([]);
+  const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   // const editVariable = (prevName: string, name: string, content: string) => {
   //   if (prevName) {
@@ -67,11 +68,13 @@ const TemplateEditor = () => {
 
       {editVariableOpen && <EditVariable variable={variable} editVariableOpen={editVariableOpen} setEditVariableOpen={setEditVariableOpen} />}
 
-      {newVariableOpen && <AddVariable setVariableOpen={setNewVariableOpen}/>}
+      {newVariableOpen && <AddVariable/>}
 
-      <button onClick={() => setNewVariableOpen(true)} >Insert variable</button>
+      <button onClick={() => dispatch(setNewVariableOpen({condition: true}))} >Insert variable</button>
       <button onClick={() => {
-        // setNewTemplateOpen(false)
+        dispatch(setNewTemplateOpen({condition: false}));
+        dispatch(clearNewTemplate());
+        dispatch(setPaletteOpen({condition: false}));
         }} >Discard Template</button>
       {/* <button onClick={saveNewTemplate} >Save Template</button> */}
       <h2> </h2>
