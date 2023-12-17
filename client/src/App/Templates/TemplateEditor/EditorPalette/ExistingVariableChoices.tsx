@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setNewVariableOpen } from '../../templatesSlice';
 import { getNewTemplate, addExistingVariable } from '../newTemplateSlice';
 
-const Variables = () => {
+const ExistingVariableChoices = () => {
 
   const dispatch = useDispatch();
   const template = useSelector(getNewTemplate);
@@ -31,4 +31,4 @@ const Variables = () => {
   )
 }
 
-export default Variables
+export default ExistingVariableChoices

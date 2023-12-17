@@ -1,34 +1,38 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setNewVariableOpen } from '../templatesSlice';
-import { getNewTemplate, addExistingVariable } from './newTemplateSlice';
+import { getNewTemplate } from './newTemplateSlice';
+import EditVariable from './EditVariable';
 
 const Variables = () => {
 
-  const dispatch = useDispatch();
+  const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
+  const [variable, setVariable] = useState<string[]>([]);
+
   const template = useSelector(getNewTemplate);
 
+  let variables = Object.entries(template.variables).map((entry, i) => {
+    return (
+      <div key={i}>
+        <div>Name: {entry[0]}</div>
+        <div>Content: {entry[1]}</div>
+        <button onClick={() => {
+          setEditVariableOpen(true);
+          setVariable(entry);
+        }}>Edit</button>
+        <h1> </h1>
+      </div>
+    )
+  });
+
   return (
-    <>
-      {Object.keys(template.variables).length > 0 && (
-        <>
-          <h4>Choose a variable: </h4>
-          {Object.entries(template.variables).map((tuple, i) => {
-            return (
-              <div key={i} >
-                <div>Name: {tuple[0]} Content: {tuple[1]}</div>
-                <button onClick={() => {
-                  dispatch(addExistingVariable({ name: tuple[0] }));
-                  dispatch(setNewVariableOpen({ condition: false }));
-                }} >Insert</button>
-              </div>
-            );
-          })}
-          <h4>~Or~</h4>
-        </>
-      )}
-    </>
+    <div>
+      <h3>Variables</h3>
+      {variables}
+      {editVariableOpen && <EditVariable variable={variable} setEditVariableOpen={setEditVariableOpen} />}
+    </div>
   )
 }
 
 export default Variables
+
