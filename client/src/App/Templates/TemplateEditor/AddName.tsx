@@ -1,30 +1,29 @@
-import React, { useState, SyntheticEvent, SetStateAction } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState, SyntheticEvent } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { setAddNameOpen, setPaletteOpen, setNewTemplateOpen } from '../templatesSlice';
-import { addName, getNewTemplate } from './newTemplateSlice';
-import { TemplateType } from './newTemplateSlice';
+import { addName } from './newTemplateSlice';
 
 const AddName = () => {
 
   const dispatch = useDispatch();
-  const template = useSelector(getNewTemplate);
+
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
 
   const cancel = () => {
-    dispatch(setAddNameOpen({condition: false}));
-    dispatch(setNewTemplateOpen({condition: false}));
+    dispatch(setAddNameOpen({ condition: false }));
+    dispatch(setNewTemplateOpen({ condition: false }));
   }
 
 
   const onSubmit = ((e: SyntheticEvent) => {
     e.preventDefault();
-    if(!input) return setErrorOpen(true);
-    dispatch(addName({name: input}))
-    dispatch(setAddNameOpen({condition: false}))
-    dispatch(setPaletteOpen({condition: true}))
+    if (!input) return setErrorOpen(true);
+    dispatch(addName({ name: input }))
+    dispatch(setAddNameOpen({ condition: false }))
+    dispatch(setPaletteOpen({ condition: true }))
   })
 
   return (

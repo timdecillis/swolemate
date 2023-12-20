@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent, SetStateAction } from 'react';
+import { useState, SyntheticEvent, SetStateAction } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { editVariable } from './newTemplateSlice';
@@ -11,6 +11,7 @@ interface EditVariableProps {
 const EditVariable = ({ setEditVariableOpen, variable }: EditVariableProps) => {
 
   const dispatch = useDispatch();
+
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
 
