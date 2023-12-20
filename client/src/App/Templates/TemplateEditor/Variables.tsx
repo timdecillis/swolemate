@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { getNewTemplate } from './newTemplateSlice';
 import EditVariable from './EditVariable';

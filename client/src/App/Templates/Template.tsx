@@ -1,9 +1,8 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import { useState, } from 'react';
 
-import { getNewTemplateOpen } from './templatesSlice';
-import {deleteTemplate, updateTemplate }from '../../Utilities/helpers'
-import EditForm from './EditForm';
 import TemplateEditor from '../TemplateEditor';
+
+import { deleteTemplate } from '../../Utilities/helpers'
 import { TemplateType } from './TemplateEditor/newTemplateSlice';
 import { useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
@@ -14,7 +13,7 @@ interface TemplateProps {
   template: TemplateType;
 }
 
-const Template = ({index, template, string}: TemplateProps) => {
+const Template = ({ index, template, string }: TemplateProps) => {
 
   const user = useSelector(getUser);
 
@@ -35,7 +34,7 @@ const Template = ({index, template, string}: TemplateProps) => {
   }
 
   if (editOpen) {
-    return <TemplateEditor existingTemplate={template}/>
+    return <TemplateEditor existingTemplate={template} />
   } else {
     return (
       <div>

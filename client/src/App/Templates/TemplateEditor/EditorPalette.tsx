@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Variables from './Variables';
 import AddVariable from './EditorPalette/AddVariable';
+
 import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen } from '../templatesSlice';
 import { addTextToString, clearNewTemplate } from './newTemplateSlice';
 
