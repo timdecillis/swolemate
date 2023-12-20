@@ -18,7 +18,6 @@ const SignIn = () => {
     if (!input) setErrorOpen(true);
     dispatch(setSignedIn({ condition: true }));
     dispatch(login({ user: input }));
-
     // instance.get('/getUserTemplates', { params: { user: input } })
     //   .then(({ data }) => {
     //     setTemplates(data);
