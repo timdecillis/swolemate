@@ -37,13 +37,16 @@ const templateSlice = createSlice({
     setNewVariableOpen(state, action) {
       const { condition } = action.payload;
       state.newVariableOpen = condition;
+    },
+    setTemplates(state) {
+      console.log('setting templates with:', action.payload);
     }
   }
 })
 
 export default templateSlice.reducer
 
-export const { setNewTemplateOpen, setAddNameOpen, setPaletteOpen, setNewVariableOpen } = templateSlice.actions
+export const { setNewTemplateOpen, setAddNameOpen, setPaletteOpen, setNewVariableOpen, setTemplates } = templateSlice.actions
 
 export const getTemplates = (state: State) => state.templates.templates;
 export const getPaletteOpen = (state: State) => state.templates.paletteOpen;
