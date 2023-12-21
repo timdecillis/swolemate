@@ -25,12 +25,9 @@ const initialState: TemplateType = {
 const postNewTemplate = createAsyncThunk(
   'newTemplate/saveTemplate',
   async (user, template) => {
-    const result = instance.post('/addTemplate', { user, template })
-    .then(({ data }) => {
-      console.log('DATA FROM API:', data)
-      return data;
-    })
-    return result;
+    const response = await instance.post('/addTemplate', { user, template })
+    console.log('DATA FROM API:', response.data)
+    return response.data;
   });
 
 const newTemplateSlice = createSlice({
@@ -86,4 +83,4 @@ export default newTemplateSlice.reducer
 export const { addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions
 
 export const getNewTemplate = (state: State) => state.newTemplate;
-export const extraReducer = newTemplateSlice.extraReducers[`${postNewTemplate.fulfilled}`];
+export { postNewTemplate }
