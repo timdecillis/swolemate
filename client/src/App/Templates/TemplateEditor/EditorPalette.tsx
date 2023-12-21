@@ -4,16 +4,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import Variables from './Variables';
 import AddVariable from './EditorPalette/AddVariable';
 
-import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen } from '../templatesSlice';
-import { addTextToString, clearNewTemplate } from './newTemplateSlice';
+import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen, setTemplates } from '../templatesSlice';
+import { addTextToString, clearNewTemplate, getNewTemplate, postNewTemplate } from './newTemplateSlice';
+import { getUser } from '../../userSlice';
 
 const TemplateEditor = () => {
 
   const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const template = useSelector(getNewTemplate);
   const newVariableOpen = useSelector(getNewVariableOpen);
 
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
+
+  const saveNewTemplate = () => {
+    dispatch(postNewTemplate({user, template}))
+    dispatch(setNewTemplateOpen({ condition: false }));
+  }
 
   return (
     <>
@@ -21,7 +29,7 @@ const TemplateEditor = () => {
       <form onClick={() => setErrorOpen(false)} onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         if (!input) setErrorOpen(true);
-        dispatch(addTextToString({text: input}))
+        dispatch(addTextToString({ text: input }))
         setInput('');
       }} >
         <input value={input} onChange={e => setInput(e.target.value)} type='text' ></input>
@@ -32,16 +40,16 @@ const TemplateEditor = () => {
 
       <h3>Add variables:</h3>
 
-      {newVariableOpen && <AddVariable/>}
+      {newVariableOpen && <AddVariable />}
 
-      <button onClick={() => dispatch(setNewVariableOpen({condition: true}))} >Insert variable</button>
-      {<Variables/>}
+      <button onClick={() => dispatch(setNewVariableOpen({ condition: true }))} >Insert variable</button>
+      {<Variables />}
       <button onClick={() => {
-        dispatch(setNewTemplateOpen({condition: false}));
+        dispatch(setNewTemplateOpen({ condition: false }));
         dispatch(clearNewTemplate());
-        dispatch(setPaletteOpen({condition: false}));
-        }} >Discard Template</button>
-      {/* <button onClick={saveNewTemplate} >Save Template</button> */}
+        dispatch(setPaletteOpen({ condition: false }));
+      }} >Discard Template</button>
+      <button onClick={saveNewTemplate} >Save Template</button>
       <h2> </h2>
     </>
   )

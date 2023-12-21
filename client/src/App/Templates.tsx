@@ -11,7 +11,7 @@ const Templates = () => {
 
   const mapped = templates.map((template, i) => {
     return (
-      <Template index={i} string={renderString(template)} template={template} />
+      <Template key={i} index={i} string={renderString(template)} template={template} />
     )
   })
 

@@ -1,11 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+import { saveNewTemplate } from "../../../Utilities/helpers";
 import { State } from "../../userSlice";
+import { deleteTemplateRequest } from "../templatesSlice";
+
+const instance = axios.create({
+  baseURL: 'http://localhost:5000'
+});
 
 export type TemplateType = {
   id: number;
   name: string;
-  variables: {[key: string]: string};
-  string: (string[]|string)[]
+  variables: { [key: string]: string };
+  string: (string[] | string)[]
 }
 
 const initialState: TemplateType = {
@@ -14,6 +22,14 @@ const initialState: TemplateType = {
   variables: {},
   string: []
 }
+
+const postNewTemplate = createAsyncThunk(
+  'newTemplate/saveTemplate',
+  async (data: { user: any, template: TemplateType }) => {
+    const { user, template } = data;
+    const response = await instance.post('/addTemplate', { user, template })
+    return response.data;
+  });
 
 const newTemplateSlice = createSlice({
   name: 'newTemplate',
@@ -43,7 +59,7 @@ const newTemplateSlice = createSlice({
       state.string = initialState.string;
     },
     editVariable(state, action) {
-      const {prevName, name, content} = action.payload;
+      const { prevName, name, content } = action.payload;
       if (prevName) {
         state.string.forEach((item: (string | string[])) => {
           if (Array.isArray(item) && item[0] === prevName) item[0] = name;
@@ -54,6 +70,12 @@ const newTemplateSlice = createSlice({
         state.variables[name] = content;
       }
     }
+  },
+  extraReducers: (builder) => {
+    builder
+    .addCase(postNewTemplate.fulfilled, (state, action) => {
+      return action.payload;
+    })
   }
 })
 
@@ -62,3 +84,4 @@ export default newTemplateSlice.reducer
 export const { addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions
 
 export const getNewTemplate = (state: State) => state.newTemplate;
+export { postNewTemplate }

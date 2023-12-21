@@ -27,14 +27,6 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
     dispatch(setPaletteOpen({ condition: true }));
   }
 
-  // const saveNewTemplate = () => {
-  //   instance.post('/addTemplate', { user, template })
-  //     .then(({ data }) => {
-  //       setTemplates(data);
-  //       setNewTemplateOpen(false);
-  //     })
-  // }
-
   return (
     <>
       {addNameOpen ? <AddName />
