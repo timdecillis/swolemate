@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import newTemplateSlice, { TemplateType, postNewTemplate } from "./TemplateEditor/newTemplateSlice";
+import { TemplateType, postNewTemplate } from "./TemplateEditor/newTemplateSlice";
 import { State } from "../userSlice";
+import { deleteTemplate } from "../../Utilities/helpers";
 
 export type TemplatesState = {
   templates: TemplateType[];
@@ -17,6 +18,17 @@ const initialState = {
   paletteOpen: false,
   newVariableOpen: false
 }
+
+const deleteTemplateRequest = createAsyncThunk(
+  'template/deleteTemplate',
+  async (data: { id: number, user: string | null }) => {
+    const { id, user } = data;
+    console.log('thunking:', id, user)
+    const response = await deleteTemplate(id, user);
+    console.log('response:', response)
+    return response;
+  }
+)
 
 const templateSlice = createSlice({
   name: 'templates',
@@ -40,18 +52,28 @@ const templateSlice = createSlice({
     },
     setTemplates(state, action) {
       state.templates = action.payload;
+    },
+    deleteTemplates(state, action) {
+
+      state.templates = action.payload;
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(postNewTemplate.fulfilled, (state, action) => {
-      state.templates = action.payload;
-    })
-  }
+    builder
+      .addCase(postNewTemplate.fulfilled, (state, action) => {
+        state.templates = action.payload;
+      })
+      .addCase(deleteTemplateRequest.fulfilled, (state, action) => {
+        state.templates = action.payload;
+      })
+  },
 })
 
 export default templateSlice.reducer
 
-export const { setNewTemplateOpen, setAddNameOpen, setPaletteOpen, setNewVariableOpen, setTemplates } = templateSlice.actions
+export const { setNewTemplateOpen, setAddNameOpen, setPaletteOpen, setNewVariableOpen, setTemplates, deleteTemplates } = templateSlice.actions
+
+export { deleteTemplateRequest };
 
 export const getTemplates = (state: State) => state.templates.templates;
 export const getPaletteOpen = (state: State) => state.templates.paletteOpen;

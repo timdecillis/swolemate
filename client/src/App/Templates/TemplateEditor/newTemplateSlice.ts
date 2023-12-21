@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { saveNewTemplate } from "../../../Utilities/helpers";
 import { State } from "../../userSlice";
+import { deleteTemplateRequest } from "../templatesSlice";
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000'
@@ -25,7 +26,7 @@ const initialState: TemplateType = {
 const postNewTemplate = createAsyncThunk(
   'newTemplate/saveTemplate',
   async (data: { user: any, template: TemplateType }) => {
-    const {user, template} = data;
+    const { user, template } = data;
     const response = await instance.post('/addTemplate', { user, template })
     return response.data;
   });
@@ -71,9 +72,10 @@ const newTemplateSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(postNewTemplate.fulfilled, (state, action) => {
+    builder
+    .addCase(postNewTemplate.fulfilled, (state, action) => {
       return action.payload;
-    });
+    })
   }
 })
 

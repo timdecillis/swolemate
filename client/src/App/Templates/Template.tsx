@@ -2,10 +2,10 @@ import { useState, } from 'react';
 
 import TemplateEditor from '../TemplateEditor';
 
-import { deleteTemplate } from '../../Utilities/helpers'
 import { TemplateType } from './TemplateEditor/newTemplateSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
+import { deleteTemplateRequest } from './templatesSlice';
 
 interface TemplateProps {
   index: number;
@@ -15,6 +15,7 @@ interface TemplateProps {
 
 const Template = ({ index, template, string }: TemplateProps) => {
 
+  const dispatch = useDispatch();
   const user = useSelector(getUser);
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
@@ -29,8 +30,10 @@ const Template = ({ index, template, string }: TemplateProps) => {
   }
 
   const deleteAlert = () => {
-    const result = window.confirm('Are you sure you want to permanently delete this template?');
-    if (result) deleteTemplate(template.id.toString(), user);
+    // const result = window.confirm('Are you sure you want to permanently delete this template?');
+    // console.log('buttoning:', template.id, user)
+    // if (result) deleteTemplateRequest({ id: template.id, user });
+    dispatch(deleteTemplateRequest({ id: template.id, user }));
   }
 
   if (editOpen) {

@@ -14,11 +14,9 @@ export const updateTemplate = (oldValue: string, newValue: string, user: string)
     })
 }
 
-export const deleteTemplate = (id: string, user: string | null) => {
-  instance.delete('/deleteTemplate', { data: { id, user } })
-    .then(({ data }) => {
-      // setTemplates(data);
-    })
+export const deleteTemplate = async (id: number, user: string | null) => {
+  const response = await instance.delete('/deleteTemplate', { data: { id, user } });
+    return response.data;
 }
 
 export const renderString = (template: TemplateType) => {
