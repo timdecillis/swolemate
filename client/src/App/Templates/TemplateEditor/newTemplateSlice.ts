@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { State } from "../../userSlice";
 
 export type TemplateType = {
@@ -14,6 +14,12 @@ const initialState: TemplateType = {
   variables: {},
   string: []
 }
+
+const postNewTemplate = createAsyncThunk(
+  'newTemplate/saveTemplate',
+  async (newTemplate) => {
+
+})
 
 const newTemplateSlice = createSlice({
   name: 'newTemplate',
