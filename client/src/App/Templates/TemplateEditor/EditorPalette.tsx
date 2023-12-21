@@ -5,7 +5,7 @@ import Variables from './Variables';
 import AddVariable from './EditorPalette/AddVariable';
 
 import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen, setTemplates } from '../templatesSlice';
-import { addTextToString, clearNewTemplate, getNewTemplate } from './newTemplateSlice';
+import { addTextToString, clearNewTemplate, getNewTemplate, postNewTemplate } from './newTemplateSlice';
 import { getUser } from '../../userSlice';
 
 const TemplateEditor = () => {
@@ -19,7 +19,7 @@ const TemplateEditor = () => {
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const saveNewTemplate = () => {
-    // postNewTemplate()
+    dispatch(postNewTemplate({user, template}));
     dispatch(setNewTemplateOpen({ condition: false }));
     dispatch(setTemplates());
   }
