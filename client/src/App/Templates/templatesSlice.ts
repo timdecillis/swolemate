@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { TemplateType } from "./TemplateEditor/newTemplateSlice";
+import newTemplateSlice, { TemplateType, postNewTemplate } from "./TemplateEditor/newTemplateSlice";
 import { State } from "../userSlice";
 
 export type TemplatesState = {
@@ -41,6 +41,11 @@ const templateSlice = createSlice({
     setTemplates(state, action) {
       state.templates = action.payload;
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(postNewTemplate.fulfilled, (state, action) => {
+      state.templates = action.payload;
+    })
   }
 })
 
