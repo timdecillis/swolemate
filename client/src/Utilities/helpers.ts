@@ -30,11 +30,10 @@ export const renderString = (template: TemplateType) => {
   }).join(' ');
 }
 
-export const saveNewTemplate = (user, template) => {
-  instance.post('/addTemplate', { user, template })
+export const saveNewTemplate = (user: string, template: TemplateType): Promise<string> => {
+  return instance.post('/addTemplate', { user, template })
     .then(({ data }) => {
       console.log('DATA FROM API:', data)
-      setTemplates(data);
-      setNewTemplateOpen(false);
+      return data;
     })
 }

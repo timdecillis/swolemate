@@ -5,11 +5,14 @@ import Variables from './Variables';
 import AddVariable from './EditorPalette/AddVariable';
 
 import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen, setTemplates } from '../templatesSlice';
-import { addTextToString, clearNewTemplate } from './newTemplateSlice';
+import { addTextToString, clearNewTemplate, getNewTemplate } from './newTemplateSlice';
+import { getUser } from '../../userSlice';
 
 const TemplateEditor = () => {
 
   const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const template = useSelector(getNewTemplate);
   const newVariableOpen = useSelector(getNewVariableOpen);
 
   const [input, setInput] = useState<string>('');

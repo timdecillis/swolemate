@@ -39,7 +39,7 @@ const templateSlice = createSlice({
       state.newVariableOpen = condition;
     },
     setTemplates(state) {
-      console.log('setting templates with:', action.payload);
+      console.log('setting templates with:');
     }
   }
 })

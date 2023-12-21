@@ -1,11 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+import { saveNewTemplate } from "../../../Utilities/helpers";
 import { State } from "../../userSlice";
+
+const instance = axios.create({
+  baseURL: 'http://localhost:5000'
+});
 
 export type TemplateType = {
   id: number;
   name: string;
-  variables: {[key: string]: string};
-  string: (string[]|string)[]
+  variables: { [key: string]: string };
+  string: (string[] | string)[]
 }
 
 const initialState: TemplateType = {
@@ -17,9 +24,14 @@ const initialState: TemplateType = {
 
 const postNewTemplate = createAsyncThunk(
   'newTemplate/saveTemplate',
-  async (newTemplate) => {
-
-})
+  async (user, template) => {
+    const result = instance.post('/addTemplate', { user, template })
+    .then(({ data }) => {
+      console.log('DATA FROM API:', data)
+      return data;
+    })
+    return result;
+  });
 
 const newTemplateSlice = createSlice({
   name: 'newTemplate',
@@ -49,7 +61,7 @@ const newTemplateSlice = createSlice({
       state.string = initialState.string;
     },
     editVariable(state, action) {
-      const {prevName, name, content} = action.payload;
+      const { prevName, name, content } = action.payload;
       if (prevName) {
         state.string.forEach((item: (string | string[])) => {
           if (Array.isArray(item) && item[0] === prevName) item[0] = name;
@@ -60,6 +72,12 @@ const newTemplateSlice = createSlice({
         state.variables[name] = content;
       }
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(postNewTemplate.fulfilled, (state, action) => {
+      console.log('payload in extra reducer:', action.payload);
+      return action.payload;
+    });
   }
 })
 
@@ -68,3 +86,4 @@ export default newTemplateSlice.reducer
 export const { addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions
 
 export const getNewTemplate = (state: State) => state.newTemplate;
+export const extraReducer = newTemplateSlice.extraReducers[`${postNewTemplate.fulfilled}`];

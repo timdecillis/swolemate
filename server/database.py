@@ -29,7 +29,8 @@ def add_temp(user, template):
         {"$push": {"templates": template}},
         return_document=ReturnDocument.AFTER
     )
-    return doc["templates"]
+    # return doc["templates"]
+    return 'foo'
 
 def update_temp(user, old_value, new_value):
     for doc in db["users"].find({"name": user}):
