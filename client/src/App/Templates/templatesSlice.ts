@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { TemplateType } from "./TemplateEditor/newTemplateSlice";
 import { State } from "../userSlice";
 
 export type TemplatesState = {
-  templates: any[];
+  templates: TemplateType[];
   newTemplateOpen: boolean;
   addNameOpen: boolean;
   paletteOpen: boolean;
