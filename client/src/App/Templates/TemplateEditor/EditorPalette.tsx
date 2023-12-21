@@ -19,9 +19,9 @@ const TemplateEditor = () => {
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const saveNewTemplate = () => {
-    dispatch(postNewTemplate({user, template}));
+    const result = dispatch(postNewTemplate({user, template}))
     dispatch(setNewTemplateOpen({ condition: false }));
-    dispatch(setTemplates());
+    dispatch(setTemplates(result));
   }
 
   return (

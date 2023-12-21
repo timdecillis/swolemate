@@ -72,7 +72,6 @@ const newTemplateSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(postNewTemplate.fulfilled, (state, action) => {
-      console.log('payload in extra reducer:', action.payload);
       return action.payload;
     });
   }
