@@ -1,8 +1,11 @@
-import React, { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 
 import { signIn } from './userSlice';
+import { useDispatch } from 'react-redux';
 
 const SignIn = () => {
+
+  const dispatch = useDispatch();
 
   const [input, setInput] = useState('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
@@ -12,7 +15,7 @@ const SignIn = () => {
     if (!input) {
       setErrorOpen(true);
     } else {
-      signIn({ user: input });
+      dispatch(signIn({ user: input }));
     }
   }
 

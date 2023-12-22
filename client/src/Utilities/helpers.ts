@@ -31,13 +31,11 @@ export const renderString = (template: TemplateType) => {
 export const saveNewTemplate = (user: string, template: TemplateType): Promise<string> => {
   return instance.post('/addTemplate', { user, template })
     .then(({ data }) => {
-      console.log('DATA FROM API:', data)
       return data;
     })
 }
 
 export const getTemplates = async (user: string) => {
-  const response = await instance.get('/getUserTemplates', { data: user });
-  console.log('helper data:', response);
+  const response = await instance.get(`/getUserTemplates?user=${user}`);
   return response;
 }

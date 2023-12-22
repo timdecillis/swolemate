@@ -11,15 +11,10 @@ def add_cors_headers(response):
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
     return response
 
-@app.route("/createTemplate", methods=["POST"])
-def create_template():
-    data = request.get_json()
-    print(data)
-    return 'Success'
-
 @app.route("/getUserTemplates", methods=["GET"])
 def get_templates():
     user = request.args.get("user")
+    print('user in flask:', user)
     data = get_all(user)
     return data
 

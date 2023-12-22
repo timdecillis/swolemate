@@ -20,10 +20,10 @@ const initialState = {
   signedIn: false
 }
 
-const signIn = createAsyncThunk('user/signIn',
+const signIn = createAsyncThunk(
+  'user/signIn',
   async (data: { user: string }) => {
     const response = await getTemplates(data.user);
-    console.log('thunk data:', response);
     return response.data;
   }
 )
@@ -44,10 +44,13 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signIn.fulfilled, (state, action) => {
-        state.signedIn = true;
-        console.log('action from extra reducer sign in:', action);
-        // state.user = action.payload.user
         return action.payload;
+      })
+      .addCase(signIn.fulfilled, (state, action) => {
+        state.signedIn = true;
+      })
+      .addCase(signIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
       })
   }
 })
