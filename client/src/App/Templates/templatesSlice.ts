@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { getSignedIn, signIn } from "../userSlice";
+import { signIn } from "../userSlice";
 import { TemplateType, postNewTemplate } from "./TemplateEditor/newTemplateSlice";
 import { State } from "../userSlice";
 import { deleteTemplate } from "../../Utilities/helpers";
@@ -11,13 +11,15 @@ export type TemplatesState = {
   addNameOpen: boolean;
   paletteOpen: boolean;
   newVariableOpen: boolean;
+  loading: boolean;
 }
 const initialState = {
   templates: [],
   newTemplateOpen: false,
   addNameOpen: false,
   paletteOpen: false,
-  newVariableOpen: false
+  newVariableOpen: false,
+  loading: false
 }
 
 const deleteTemplateRequest = createAsyncThunk(
@@ -61,10 +63,18 @@ const templateSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(postNewTemplate.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(postNewTemplate.fulfilled, (state, action) => {
+        state.loading = false;
         state.templates = action.payload;
       })
+      .addCase(deleteTemplateRequest.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(deleteTemplateRequest.fulfilled, (state, action) => {
+        state.loading = false;
         state.templates = action.payload;
       })
       .addCase(signIn.fulfilled, (state, action) => {
@@ -84,3 +94,4 @@ export const getPaletteOpen = (state: State) => state.templates.paletteOpen;
 export const getAddNameOpen = (state: State) => state.templates.addNameOpen;
 export const getNewTemplateOpen = (state: State) => state.templates.newTemplateOpen;
 export const getNewVariableOpen = (state: State) => state.templates.newVariableOpen;
+export const getLoading = (state: State) => state.templates.loading;

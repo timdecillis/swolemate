@@ -17,7 +17,7 @@ def get_all(user):
     doc = db["users"].find_one({"name": user})
     if not doc:
         create_user(user)
-        return []
+        return {"user": user, "templates": []}
     data = doc["templates"]
     return {"user": user, "templates": data}
 
