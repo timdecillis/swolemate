@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { getSignedIn } from "../userSlice";
+import { getSignedIn, signIn } from "../userSlice";
 import { TemplateType, postNewTemplate } from "./TemplateEditor/newTemplateSlice";
 import { State } from "../userSlice";
 import { deleteTemplate } from "../../Utilities/helpers";
@@ -66,6 +66,9 @@ const templateSlice = createSlice({
       })
       .addCase(deleteTemplateRequest.fulfilled, (state, action) => {
         state.templates = action.payload;
+      })
+      .addCase(signIn.fulfilled, (state, action) => {
+        state.templates = action.payload.templates;
       })
   },
 })

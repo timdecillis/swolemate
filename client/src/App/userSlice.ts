@@ -44,13 +44,11 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signIn.fulfilled, (state, action) => {
-        return action.payload;
-      })
-      .addCase(signIn.fulfilled, (state, action) => {
-        state.signedIn = true;
-      })
-      .addCase(signIn.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        return {
+          ...state,
+          signedIn: true,
+          user: action.payload.user
+        };
       })
   }
 })
