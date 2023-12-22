@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import './App.css';
+// import './App.css';
 import Templates from './App/Templates';
 import SignIn from './App/SignIn';
 import TemplateEditor from './App/TemplateEditor';
@@ -18,10 +18,10 @@ function App() {
   const newTemplateOpen = useSelector(getNewTemplateOpen)
 
   return (
-    // <div className="App">
-    <div>
-      {/* <header className="App-header"> */}
-      <header>
+    <div className="App">
+    {/* // <div> */}
+      <header className="App-header">
+      {/* <header> */}
         {user && <h4>Welcome, {user}!</h4>}
         {signedIn ?
           <>
