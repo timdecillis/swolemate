@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useState } from 'react';
 import axios from 'axios';
 
 import { useDispatch } from 'react-redux';
-import { setSignedIn, login } from './userSlice';
+import { setSignedIn, login, signIn } from './userSlice';
 
 const SignIn = () => {
 
@@ -15,14 +15,11 @@ const SignIn = () => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    if (!input) setErrorOpen(true);
-    dispatch(setSignedIn({ condition: true }));
-    dispatch(login({ user: input }));
-    // instance.get('/getUserTemplates', { params: { user: input } })
-    //   .then(({ data }) => {
-    //     setTemplates(data);
-    //     // setSignedIn(true);
-    //   })
+    if (!input) {
+      setErrorOpen(true);
+    } else {
+      signIn({ user: input });
+    }
   }
 
   return (

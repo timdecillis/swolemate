@@ -3,7 +3,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { TemplatesState } from "./Templates/templatesSlice";
 import { TemplateType } from "./Templates/TemplateEditor/newTemplateSlice";
 import { getTemplates } from "../Utilities/helpers";
-import { buildQueries } from "@testing-library/react";
 
 export type State = {
   user: UserState;
@@ -22,7 +21,7 @@ const initialState = {
 }
 
 const signIn = createAsyncThunk('user/signIn',
-  async (data: {user: string}) => {
+  async (data: { user: string }) => {
     const response = await getTemplates(data.user);
     console.log('thunk data:', response);
     return response.data;
@@ -44,18 +43,19 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(signIn.fulfilled, (state, action) => {
-      state.signedIn = true;
-      console.log('action from extra reducer sign in:', action);
-      // state.user = action.payload.user
-      return action.payload;
-    })
+      .addCase(signIn.fulfilled, (state, action) => {
+        state.signedIn = true;
+        console.log('action from extra reducer sign in:', action);
+        // state.user = action.payload.user
+        return action.payload;
+      })
   }
 })
 
-export default userSlice.reducer
+export default userSlice.reducer;
 
-export const { login, setSignedIn } = userSlice.actions
+export const { login, setSignedIn } = userSlice.actions;
+export { signIn };
 
 export const getUser = (state: State) => state.user.user;
 export const getSignedIn = (state: State) => state.user.signedIn;
