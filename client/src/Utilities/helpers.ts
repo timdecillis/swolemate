@@ -37,6 +37,7 @@ export const saveNewTemplate = (user: string, template: TemplateType): Promise<s
 }
 
 export const getTemplates = async (user: string) => {
-  const response = instance.get('/getTemplates', { data: user });
+  const response = await instance.get('/getUserTemplates', { data: user });
+  console.log('helper data:', response);
   return response;
 }
