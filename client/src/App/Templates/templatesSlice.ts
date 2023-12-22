@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { getSignedIn } from "../userSlice";
 import { TemplateType, postNewTemplate } from "./TemplateEditor/newTemplateSlice";
 import { State } from "../userSlice";
 import { deleteTemplate } from "../../Utilities/helpers";
