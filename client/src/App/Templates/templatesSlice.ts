@@ -63,10 +63,18 @@ const templateSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(postNewTemplate.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(postNewTemplate.fulfilled, (state, action) => {
+        state.loading = false;
         state.templates = action.payload;
       })
+      .addCase(deleteTemplateRequest.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(deleteTemplateRequest.fulfilled, (state, action) => {
+        state.loading = false;
         state.templates = action.payload;
       })
       .addCase(signIn.fulfilled, (state, action) => {
@@ -86,3 +94,4 @@ export const getPaletteOpen = (state: State) => state.templates.paletteOpen;
 export const getAddNameOpen = (state: State) => state.templates.addNameOpen;
 export const getNewTemplateOpen = (state: State) => state.templates.newTemplateOpen;
 export const getNewVariableOpen = (state: State) => state.templates.newVariableOpen;
+export const getLoading = (state: State) => state.templates.loading;

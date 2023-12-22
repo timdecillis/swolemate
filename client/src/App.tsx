@@ -6,12 +6,13 @@ import SignIn from './App/SignIn';
 import TemplateEditor from './App/TemplateEditor';
 import AddTemplate from './App/AddTemplate';
 import { getSignedIn, getUser, setSignedIn, login } from './App/userSlice';
-import { getNewTemplateOpen, setNewTemplateOpen, setPaletteOpen, setTemplates } from './App/Templates/templatesSlice';
+import { getLoading, getNewTemplateOpen, setNewTemplateOpen, setPaletteOpen, setTemplates } from './App/Templates/templatesSlice';
 import { clearNewTemplate } from './App/Templates/TemplateEditor/newTemplateSlice';
 
 function App() {
 
   const dispatch = useDispatch();
+  const loading = useSelector(getLoading)
   const signedIn = useSelector(getSignedIn);
   const user = useSelector(getUser);
   const newTemplateOpen = useSelector(getNewTemplateOpen)
@@ -23,21 +24,22 @@ function App() {
         {signedIn ?
           <>
             {!newTemplateOpen ?
-              <AddTemplate/>
+              <AddTemplate />
               :
-              <TemplateEditor/>}
+              <TemplateEditor />}
             <Templates />
+            {loading && <div>PLEASE WAIT</div>}
             <button onClick={() => {
               dispatch(setSignedIn({ condition: false }));
-              dispatch(login({user: null}));
+              dispatch(login({ user: null }));
               dispatch(clearNewTemplate());
-              dispatch(setNewTemplateOpen({condition: false}));
-              dispatch(setPaletteOpen({condition: false}));
+              dispatch(setNewTemplateOpen({ condition: false }));
+              dispatch(setPaletteOpen({ condition: false }));
               dispatch(setTemplates([]))
             }} >Sign Out</button>
           </>
           :
-          <SignIn/>}
+          <SignIn />}
       </header>
     </div>
   );
