@@ -1,14 +1,8 @@
 import React, { SyntheticEvent, useState } from 'react';
-import axios from 'axios';
 
-import { useDispatch } from 'react-redux';
-import { setSignedIn, login, signIn } from './userSlice';
+import { signIn } from './userSlice';
 
 const SignIn = () => {
-
-  const instance = axios.create({ baseURL: 'http://localhost:5000' });
-
-  const dispatch = useDispatch();
 
   const [input, setInput] = useState('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
