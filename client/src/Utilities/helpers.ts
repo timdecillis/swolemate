@@ -16,7 +16,7 @@ export const updateTemplate = (oldValue: string, newValue: string, user: string)
 
 export const deleteTemplate = async (id: number, user: string | null) => {
   const response = await instance.delete('/deleteTemplate', { data: { id, user } });
-    return response.data;
+  return response.data;
 }
 
 export const renderString = (template: TemplateType) => {
@@ -31,7 +31,11 @@ export const renderString = (template: TemplateType) => {
 export const saveNewTemplate = (user: string, template: TemplateType): Promise<string> => {
   return instance.post('/addTemplate', { user, template })
     .then(({ data }) => {
-      console.log('DATA FROM API:', data)
       return data;
     })
+}
+
+export const getTemplates = async (user: string) => {
+  const response = await instance.get(`/getUserTemplates?user=${user}`);
+  return response;
 }

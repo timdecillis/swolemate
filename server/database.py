@@ -12,12 +12,14 @@ def create_user(user):
     db["users"].insert_one(data)
 
 def get_all(user):
+    print('user in db:', user)
+
     doc = db["users"].find_one({"name": user})
     if not doc:
         create_user(user)
         return []
     data = doc["templates"]
-    return data
+    return {"user": user, "templates": data}
 
 
 def add_temp(user, template):

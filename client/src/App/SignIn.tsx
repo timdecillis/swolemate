@@ -1,12 +1,9 @@
-import React, { SyntheticEvent, useState } from 'react';
-import axios from 'axios';
+import { SyntheticEvent, useState } from 'react';
 
+import { signIn } from './userSlice';
 import { useDispatch } from 'react-redux';
-import { setSignedIn, login } from './userSlice';
 
 const SignIn = () => {
-
-  const instance = axios.create({ baseURL: 'http://localhost:5000' });
 
   const dispatch = useDispatch();
 
@@ -15,14 +12,11 @@ const SignIn = () => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    if (!input) setErrorOpen(true);
-    dispatch(setSignedIn({ condition: true }));
-    dispatch(login({ user: input }));
-    // instance.get('/getUserTemplates', { params: { user: input } })
-    //   .then(({ data }) => {
-    //     setTemplates(data);
-    //     // setSignedIn(true);
-    //   })
+    if (!input) {
+      setErrorOpen(true);
+    } else {
+      dispatch(signIn({ user: input }));
+    }
   }
 
   return (

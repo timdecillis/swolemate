@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { TemplatesState } from "./Templates/templatesSlice";
 import { TemplateType } from "./Templates/TemplateEditor/newTemplateSlice";
+import { getTemplates } from "../Utilities/helpers";
 
 export type State = {
   user: UserState;
-  templates:TemplatesState;
+  templates: TemplatesState;
   newTemplate: TemplateType
 }
 
@@ -19,6 +20,14 @@ const initialState = {
   signedIn: false
 }
 
+const signIn = createAsyncThunk(
+  'user/signIn',
+  async (data: { user: string }) => {
+    const response = await getTemplates(data.user);
+    return response.data;
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -29,14 +38,25 @@ const userSlice = createSlice({
     },
     setSignedIn(state, action) {
       const { condition } = action.payload;
-     state.signedIn = condition;
+      state.signedIn = condition;
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(signIn.fulfilled, (state, action) => {
+        return {
+          ...state,
+          signedIn: true,
+          user: action.payload.user
+        };
+      })
   }
 })
 
-export default userSlice.reducer
+export default userSlice.reducer;
 
-export const { login, setSignedIn } = userSlice.actions
+export const { login, setSignedIn } = userSlice.actions;
+export { signIn };
 
 export const getUser = (state: State) => state.user.user;
 export const getSignedIn = (state: State) => state.user.signedIn;
