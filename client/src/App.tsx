@@ -18,8 +18,10 @@ function App() {
   const newTemplateOpen = useSelector(getNewTemplateOpen)
 
   return (
-    <div className="App">
-      <header className="App-header">
+    // <div className="App">
+    <div>
+      {/* <header className="App-header"> */}
+      <header>
         {user && <h4>Welcome, {user}!</h4>}
         {signedIn ?
           <>
