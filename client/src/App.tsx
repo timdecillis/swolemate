@@ -30,7 +30,7 @@ function App() {
             <button onClick={() => {
               dispatch(setSignedIn({ condition: false }));
               dispatch(login({user: null}));
-              // dispatch(clearNewTemplate());
+              dispatch(clearNewTemplate());
               dispatch(setNewTemplateOpen({condition: false}));
               dispatch(setPaletteOpen({condition: false}));
               dispatch(setTemplates([]))

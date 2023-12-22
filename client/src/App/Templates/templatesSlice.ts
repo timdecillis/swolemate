@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { getSignedIn, signIn } from "../userSlice";
+import { signIn } from "../userSlice";
 import { TemplateType, postNewTemplate } from "./TemplateEditor/newTemplateSlice";
 import { State } from "../userSlice";
 import { deleteTemplate } from "../../Utilities/helpers";
@@ -11,13 +11,15 @@ export type TemplatesState = {
   addNameOpen: boolean;
   paletteOpen: boolean;
   newVariableOpen: boolean;
+  loading: boolean;
 }
 const initialState = {
   templates: [],
   newTemplateOpen: false,
   addNameOpen: false,
   paletteOpen: false,
-  newVariableOpen: false
+  newVariableOpen: false,
+  loading: false
 }
 
 const deleteTemplateRequest = createAsyncThunk(
