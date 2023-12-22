@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 // import './App.css';
+import './styles.css';
 import Templates from './App/Templates';
 import SignIn from './App/SignIn';
 import TemplateEditor from './App/TemplateEditor';
@@ -19,29 +20,32 @@ function App() {
 
   return (
     <div className="App">
-    {/* // <div> */}
+      {/* // <div> */}
       <header className="App-header">
-      {/* <header> */}
-        {user && <h4>Welcome, {user}!</h4>}
-        {signedIn ?
-          <>
-            {!newTemplateOpen ?
-              <AddTemplate />
-              :
-              <TemplateEditor />}
-            <Templates />
-            {loading && <div>PLEASE WAIT</div>}
-            <button onClick={() => {
-              dispatch(setSignedIn({ condition: false }));
-              dispatch(login({ user: null }));
-              dispatch(clearNewTemplate());
-              dispatch(setNewTemplateOpen({ condition: false }));
-              dispatch(setPaletteOpen({ condition: false }));
-              dispatch(setTemplates([]))
-            }} >Sign Out</button>
-          </>
-          :
-          <SignIn />}
+        {/* <header> */}
+        {user && <h4 className='user-header'>Welcome, {user}!</h4>}
+        <div className='App-Template'>
+
+          {signedIn ?
+            <>
+              {!newTemplateOpen ?
+                <AddTemplate />
+                :
+                <TemplateEditor />}
+              <Templates />
+              {loading && <div>PLEASE WAIT</div>}
+              <button onClick={() => {
+                dispatch(setSignedIn({ condition: false }));
+                dispatch(login({ user: null }));
+                dispatch(clearNewTemplate());
+                dispatch(setNewTemplateOpen({ condition: false }));
+                dispatch(setPaletteOpen({ condition: false }));
+                dispatch(setTemplates([]))
+              }} >Sign Out</button>
+            </>
+            :
+            <SignIn />}
+        </div>
       </header>
     </div>
   );

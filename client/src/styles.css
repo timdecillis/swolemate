@@ -1,3 +1,18 @@
 .App {
+  text-align: center;
+  border-color: black;
+  border-style: ridge;
+  margin: 3em;
+}
+
+/* .App-Template {
+  display: flex;
+  flex-direction: column;
+  border-style: ridge;
+} */
+
+.user-header {
   text-align: left;
+  border-width: .2em;
+  border-style: ridge;
 }
