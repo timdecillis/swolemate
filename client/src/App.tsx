@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import './App.css';
+// import './App.css';
+import './styles.css';
 import Templates from './App/Templates';
 import SignIn from './App/SignIn';
 import TemplateEditor from './App/TemplateEditor';
@@ -18,29 +19,34 @@ function App() {
   const newTemplateOpen = useSelector(getNewTemplateOpen)
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {user && <h4>Welcome, {user}!</h4>}
-        {signedIn ?
-          <>
-            {!newTemplateOpen ?
-              <AddTemplate />
-              :
-              <TemplateEditor />}
-            <Templates />
-            {loading && <div>PLEASE WAIT</div>}
-            <button onClick={() => {
-              dispatch(setSignedIn({ condition: false }));
-              dispatch(login({ user: null }));
-              dispatch(clearNewTemplate());
-              dispatch(setNewTemplateOpen({ condition: false }));
-              dispatch(setPaletteOpen({ condition: false }));
-              dispatch(setTemplates([]))
-            }} >Sign Out</button>
-          </>
-          :
-          <SignIn />}
-      </header>
+    <div className='container'>
+      <div className="App">
+        {/* // <div> */}
+        {/* <header> */}
+        {user && <h4 className='user-header'>Welcome, {user}!</h4>}
+        <div className='App-Template'>
+
+          {signedIn ?
+            <>
+              {!newTemplateOpen ?
+                <AddTemplate />
+                :
+                <TemplateEditor />}
+              <Templates />
+              {loading && <div>PLEASE WAIT</div>}
+              <button onClick={() => {
+                dispatch(setSignedIn({ condition: false }));
+                dispatch(login({ user: null }));
+                dispatch(clearNewTemplate());
+                dispatch(setNewTemplateOpen({ condition: false }));
+                dispatch(setPaletteOpen({ condition: false }));
+                dispatch(setTemplates([]))
+              }} >Sign Out</button>
+            </>
+            :
+            <SignIn />}
+        </div>
+      </div>
     </div>
   );
 }
