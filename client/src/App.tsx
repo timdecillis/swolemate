@@ -19,8 +19,9 @@ function App() {
   const newTemplateOpen = useSelector(getNewTemplateOpen)
 
   return (
-    <div className="App">
-      {/* // <div> */}
+    <div className='container'>
+      <div className="App">
+        {/* // <div> */}
         {/* <header> */}
         {user && <h4 className='user-header'>Welcome, {user}!</h4>}
         <div className='App-Template'>
@@ -45,6 +46,7 @@ function App() {
             :
             <SignIn />}
         </div>
+      </div>
     </div>
   );
 }
