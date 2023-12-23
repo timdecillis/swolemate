@@ -1,19 +1,24 @@
 .App {
   text-align: center;
   margin: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 .App-Template {
+  background-color: blue;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
   border-style: ridge;
-  min-width: 75%;
-  max-width: 75%;
+  min-width: 80%;
 }
 
 .user-header {
   text-align: left;
   border-width: .2em;
+  background-color: green;
+  min-width: 100%;
 }

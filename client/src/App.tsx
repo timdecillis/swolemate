@@ -21,7 +21,6 @@ function App() {
   return (
     <div className="App">
       {/* // <div> */}
-      <header className="App-header">
         {/* <header> */}
         {user && <h4 className='user-header'>Welcome, {user}!</h4>}
         <div className='App-Template'>
@@ -46,7 +45,6 @@ function App() {
             :
             <SignIn />}
         </div>
-      </header>
     </div>
   );
 }
