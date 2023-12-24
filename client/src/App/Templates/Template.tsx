@@ -30,10 +30,8 @@ const Template = ({ index, template, string }: TemplateProps) => {
   }
 
   const deleteAlert = () => {
-    // const result = window.confirm('Are you sure you want to permanently delete this template?');
-    // console.log('buttoning:', template.id, user)
-    // if (result) deleteTemplateRequest({ id: template.id, user });
-    dispatch(deleteTemplateRequest({ id: template.id, user }));
+    const result = window.confirm('Are you sure you want to permanently delete this template?');
+    if (result) dispatch(deleteTemplateRequest({ id: template.id, user }));
   }
 
   if (editOpen) {
