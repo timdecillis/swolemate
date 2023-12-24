@@ -2,7 +2,7 @@ import { useState, } from 'react';
 
 import TemplateEditor from '../TemplateEditor';
 
-import { TemplateType } from './TemplateEditor/newTemplateSlice';
+import { TemplateType, addExistingTemplate } from './TemplateEditor/newTemplateSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
 import { deleteTemplateRequest } from './templatesSlice';
@@ -45,6 +45,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
         <button onClick={() => copy(string)} >Copy</button>
         <button onClick={() => {
           setEditOpen(true);
+          dispatch(addExistingTemplate({template}))
         }
         } >Edit</button>
         <button onClick={deleteAlert} >X</button>
