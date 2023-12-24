@@ -35,6 +35,15 @@ const newTemplateSlice = createSlice({
   name: 'newTemplate',
   initialState,
   reducers: {
+    addExistingTemplate(state, action) {
+      const { id, name, variables, string } = action.payload.template;
+      state = {
+        id,
+        name,
+        variables,
+        string
+      }
+    },
     addName(state, action) {
       const { name } = action.payload;
       state.name = name;
@@ -83,7 +92,7 @@ const newTemplateSlice = createSlice({
 
 export default newTemplateSlice.reducer
 
-export const { addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions
+export const { addExistingTemplate, addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions
 
 export const getNewTemplate = (state: State) => state.newTemplate;
 export { postNewTemplate }
