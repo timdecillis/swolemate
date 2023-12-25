@@ -1,10 +1,15 @@
-import { useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setAddNameOpen, setPaletteOpen, setNewTemplateOpen } from '../templatesSlice';
 import { addName } from './newTemplateSlice';
 
-const AddName = () => {
+type AddNameProps = {
+  setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
+  setPaletteOpen: React.Dispatch<SetStateAction<boolean>>;
+}
+
+const AddName = ({setAddNameOpen, setPaletteOpen}: AddNameProps) => {
 
   const dispatch = useDispatch();
 

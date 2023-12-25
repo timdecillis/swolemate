@@ -25,7 +25,7 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
 
   return (
     <>
-      {addNameOpen ? <AddName />
+      {addNameOpen ? <AddName setAddNameOpen={setAddNameOpen} setPaletteOpen={setPaletteOpen} />
         :
         template.name && <>
           <h3>Name: {template.name}</h3>
