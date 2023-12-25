@@ -13,10 +13,10 @@ import { clearNewTemplate } from './App/Templates/TemplateEditor/newTemplateSlic
 function App() {
 
   const dispatch = useDispatch();
-  const loading = useSelector(getLoading)
+  const loading = useSelector(getLoading);
   const signedIn = useSelector(getSignedIn);
   const user = useSelector(getUser);
-  const newTemplateOpen = useSelector(getNewTemplateOpen)
+  const newTemplateOpen = useSelector(getNewTemplateOpen);
 
   return (
     <div className='container'>

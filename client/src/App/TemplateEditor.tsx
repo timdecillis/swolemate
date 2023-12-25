@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 import AddName from './Templates/TemplateEditor/AddName';
 import EditorPalette from './Templates/TemplateEditor/EditorPalette';
 
 import { renderString } from '../Utilities/helpers';
-import { getAddNameOpen, setAddNameOpen, getPaletteOpen, setPaletteOpen } from './Templates/templatesSlice';
 import { TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
 
 
@@ -15,18 +13,14 @@ interface TemplateEditorProps {
 
 const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
 
-
-  const dispatch = useDispatch();
-  let [template, setTemplate] = useState<TemplateType>(existingTemplate  || {id: 0, name: '', string: [], variables: {}});
-
-  const addNameOpen = useSelector(getAddNameOpen);
-  const paletteOpen = useSelector(getPaletteOpen);
-
+  const [template, setTemplate] = useState<TemplateType>(existingTemplate  || {id: 0, name: '', string: [], variables: {}});
+  const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
+  const [paletteOpen, setPaletteOpen] = useState<boolean>(false);
 
   if (existingTemplate) {
-    template = existingTemplate
-    dispatch(setAddNameOpen({ condition: false }));
-    dispatch(setPaletteOpen({ condition: true }));
+    setTemplate(existingTemplate);
+    setAddNameOpen(false);
+    setPaletteOpen(true);
   }
 
   return (
@@ -35,7 +29,7 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
         :
         template.name && <>
           <h3>Name: {template.name}</h3>
-          <button onClick={() => dispatch(setAddNameOpen({ condition: true }))}>Edit Name</button>
+          <button onClick={() => setAddNameOpen(true)}>Edit Name</button>
         </>
       }
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
