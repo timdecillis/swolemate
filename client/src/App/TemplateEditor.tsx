@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import AddName from './Templates/TemplateEditor/AddName';
@@ -5,9 +6,7 @@ import EditorPalette from './Templates/TemplateEditor/EditorPalette';
 
 import { renderString } from '../Utilities/helpers';
 import { getAddNameOpen, setAddNameOpen, getPaletteOpen, setPaletteOpen } from './Templates/templatesSlice';
-import { getUser } from './userSlice'
-import { getNewTemplate, TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
-import { useState } from 'react';
+import { TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
 
 
 interface TemplateEditorProps {
@@ -18,7 +17,6 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
 
 
   const dispatch = useDispatch();
-  const user = useSelector(getUser);
   let [template, setTemplate] = useState<TemplateType>(existingTemplate  || {id: 0, name: '', string: [], variables: {}});
 
   const addNameOpen = useSelector(getAddNameOpen);
