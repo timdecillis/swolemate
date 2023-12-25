@@ -7,6 +7,7 @@ import { renderString } from '../Utilities/helpers';
 import { getAddNameOpen, setAddNameOpen, getPaletteOpen, setPaletteOpen } from './Templates/templatesSlice';
 import { getUser } from './userSlice'
 import { getNewTemplate, TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
+import { useState } from 'react';
 
 
 interface TemplateEditorProps {
@@ -18,9 +19,11 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  let template = useSelector(getNewTemplate);
+  let [template, setTemplate] = useState<TemplateType>(existingTemplate  || {id: 0, name: '', string: [], variables: {}});
+
   const addNameOpen = useSelector(getAddNameOpen);
   const paletteOpen = useSelector(getPaletteOpen);
+
 
   if (existingTemplate) {
     template = existingTemplate
