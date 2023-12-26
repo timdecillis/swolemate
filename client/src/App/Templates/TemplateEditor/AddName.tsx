@@ -1,8 +1,9 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
-import { useDispatch } from 'react-redux';
+
 
 import { setNewTemplateOpen } from '../templatesSlice';
-import { TemplateType, addName } from './newTemplateSlice';
+import { TemplateType } from './newTemplateSlice';
+import { useDispatch } from 'react-redux';
 
 type AddNameProps = {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -21,7 +22,7 @@ const AddName = ({ setAddNameOpen, setPaletteOpen, setTemplate, template }: AddN
 
   const cancel = () => {
     setAddNameOpen(false);
-    setNewTemplateOpen(false);
+    dispatch(setNewTemplateOpen({condition: false}));
   }
 
 
