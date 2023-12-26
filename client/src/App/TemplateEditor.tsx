@@ -33,7 +33,7 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
         </>
       }
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
-      {paletteOpen && <EditorPalette />}
+      {paletteOpen && <EditorPalette setTemplate={setTemplate} template={template} />}
     </>
   )
 }

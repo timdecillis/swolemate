@@ -1,6 +1,5 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 
-
 import { setNewTemplateOpen } from '../templatesSlice';
 import { TemplateType } from './newTemplateSlice';
 import { useDispatch } from 'react-redux';
@@ -19,12 +18,10 @@ const AddName = ({ setAddNameOpen, setPaletteOpen, setTemplate, template }: AddN
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
-
   const cancel = () => {
     setAddNameOpen(false);
     dispatch(setNewTemplateOpen({condition: false}));
   }
-
 
   const onSubmit = ((e: SyntheticEvent) => {
     e.preventDefault();
