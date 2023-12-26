@@ -1,25 +1,35 @@
-import { useState, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent, SetStateAction } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Variables from './Variables';
 import AddVariable from './EditorPalette/AddVariable';
 
 import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen, setTemplates } from '../templatesSlice';
-import { addTextToString, clearNewTemplate, getNewTemplate, postNewTemplate } from './newTemplateSlice';
+import { addTextToString, clearNewTemplate, getNewTemplate, postNewTemplate, TemplateType } from './newTemplateSlice';
 import { getUser } from '../../userSlice';
 
-const TemplateEditor = () => {
+type EditorPaletteProps = {
+  template: TemplateType;
+  setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
+}
+
+const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  const template = useSelector(getNewTemplate);
   const newVariableOpen = useSelector(getNewVariableOpen);
 
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
+  const addTextToString = (input: string) => {
+    let prevString = template.string;
+    prevString.push(input);
+    setTemplate({...template, string: prevString});
+  }
+
   const saveNewTemplate = () => {
-    dispatch(postNewTemplate({user, template}));
+    dispatch(postNewTemplate({ user, template }));
     dispatch(setNewTemplateOpen({ condition: false }));
   }
 
@@ -29,7 +39,7 @@ const TemplateEditor = () => {
       <form onClick={() => setErrorOpen(false)} onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
         if (!input) setErrorOpen(true);
-        dispatch(addTextToString({ text: input }))
+        addTextToString(input);
         setInput('');
       }} >
         <input value={input} onChange={e => setInput(e.target.value)} type='text' ></input>
@@ -55,4 +65,4 @@ const TemplateEditor = () => {
   )
 }
 
-export default TemplateEditor
+export default EditorPalette

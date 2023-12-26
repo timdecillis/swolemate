@@ -1,13 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 import AddName from './Templates/TemplateEditor/AddName';
 import EditorPalette from './Templates/TemplateEditor/EditorPalette';
 
 import { renderString } from '../Utilities/helpers';
-import { getAddNameOpen, setAddNameOpen, getPaletteOpen, setPaletteOpen } from './Templates/templatesSlice';
-import { getUser } from './userSlice'
-import { getNewTemplate, TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
-import { useState } from 'react';
+import { TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
 
 
 interface TemplateEditorProps {
@@ -16,32 +13,27 @@ interface TemplateEditorProps {
 
 const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
 
-
-  const dispatch = useDispatch();
-  const user = useSelector(getUser);
-  let [template, setTemplate] = useState<TemplateType>(existingTemplate  || {id: 0, name: '', string: [], variables: {}});
-
-  const addNameOpen = useSelector(getAddNameOpen);
-  const paletteOpen = useSelector(getPaletteOpen);
-
+  const [template, setTemplate] = useState<TemplateType>(existingTemplate  || {id: 0, name: '', string: [], variables: {}});
+  const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
+  const [paletteOpen, setPaletteOpen] = useState<boolean>(false);
 
   if (existingTemplate) {
-    template = existingTemplate
-    dispatch(setAddNameOpen({ condition: false }));
-    dispatch(setPaletteOpen({ condition: true }));
+    setTemplate(existingTemplate);
+    setAddNameOpen(false);
+    setPaletteOpen(true);
   }
 
   return (
     <>
-      {addNameOpen ? <AddName />
+      {addNameOpen ? <AddName template={template} setTemplate={setTemplate} setAddNameOpen={setAddNameOpen} setPaletteOpen={setPaletteOpen} />
         :
         template.name && <>
           <h3>Name: {template.name}</h3>
-          <button onClick={() => dispatch(setAddNameOpen({ condition: true }))}>Edit Name</button>
+          <button onClick={() => setAddNameOpen(true)}>Edit Name</button>
         </>
       }
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
-      {paletteOpen && <EditorPalette />}
+      {paletteOpen && <EditorPalette setTemplate={setTemplate} template={template} />}
     </>
   )
 }

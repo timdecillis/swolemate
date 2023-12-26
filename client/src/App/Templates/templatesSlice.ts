@@ -42,7 +42,6 @@ const templateSlice = createSlice({
       state.newTemplateOpen = condition;
     },
     setAddNameOpen(state, action) {
-      console.log('adding name', action.payload)
       const { condition } = action.payload;
       state.addNameOpen = condition;
     },
