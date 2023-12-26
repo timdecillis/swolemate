@@ -1,15 +1,17 @@
 import React, { useState, SyntheticEvent, SetStateAction } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setAddNameOpen, setPaletteOpen, setNewTemplateOpen } from '../templatesSlice';
-import { addName } from './newTemplateSlice';
+import { setNewTemplateOpen } from '../templatesSlice';
+import { TemplateType, addName } from './newTemplateSlice';
 
 type AddNameProps = {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
   setPaletteOpen: React.Dispatch<SetStateAction<boolean>>;
+  setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
+  template: TemplateType;
 }
 
-const AddName = ({setAddNameOpen, setPaletteOpen}: AddNameProps) => {
+const AddName = ({ setAddNameOpen, setPaletteOpen, setTemplate, template }: AddNameProps) => {
 
   const dispatch = useDispatch();
 
@@ -18,17 +20,17 @@ const AddName = ({setAddNameOpen, setPaletteOpen}: AddNameProps) => {
 
 
   const cancel = () => {
-    dispatch(setAddNameOpen({ condition: false }));
-    dispatch(setNewTemplateOpen({ condition: false }));
+    setAddNameOpen(false);
+    setNewTemplateOpen(false);
   }
 
 
   const onSubmit = ((e: SyntheticEvent) => {
     e.preventDefault();
     if (!input) return setErrorOpen(true);
-    dispatch(addName({ name: input }))
-    dispatch(setAddNameOpen({ condition: false }))
-    dispatch(setPaletteOpen({ condition: true }))
+    setTemplate({...template, name:input})
+    setAddNameOpen(false)
+    setPaletteOpen(true)
   })
 
   return (
