@@ -1,12 +1,23 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setNewVariableOpen } from '../../templatesSlice';
-import { getNewTemplate, addExistingVariable } from '../newTemplateSlice';
+import { TemplateType } from '../newTemplateSlice';
+import { SetStateAction } from 'react';
 
-const ExistingVariableChoices = () => {
+type ExistingVariableChoicesProps = {
+  template: TemplateType;
+  setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
+}
+
+const ExistingVariableChoices = ({ template, setTemplate }: ExistingVariableChoicesProps) => {
 
   const dispatch = useDispatch();
-  const template = useSelector(getNewTemplate);
+
+  const addExistingVariable = (name: string) => {
+    let prevString = template.string;
+    prevString.push([name]);
+    setTemplate({ ...template, string: prevString });
+  }
 
   return (
     <>
@@ -18,7 +29,7 @@ const ExistingVariableChoices = () => {
               <div key={i} >
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
                 <button onClick={() => {
-                  dispatch(addExistingVariable({ name: tuple[0] }));
+                  addExistingVariable(tuple[0]);
                   dispatch(setNewVariableOpen({ condition: false }));
                 }} >Insert</button>
               </div>

@@ -38,7 +38,7 @@ const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
       <h3>Add text: </h3>
       <form onClick={() => setErrorOpen(false)} onSubmit={(e: SyntheticEvent) => {
         e.preventDefault();
-        if (!input) setErrorOpen(true);
+        if (!input) return setErrorOpen(true);
         addTextToString(input);
         setInput('');
       }} >
@@ -50,13 +50,13 @@ const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
 
       <h3>Add variables:</h3>
 
-      {newVariableOpen && <AddVariable />}
+      {newVariableOpen && <AddVariable template={template} setTemplate={setTemplate} />}
 
       <button onClick={() => dispatch(setNewVariableOpen({ condition: true }))} >Insert variable</button>
       {<Variables />}
       <button onClick={() => {
         dispatch(setNewTemplateOpen({ condition: false }));
-        dispatch(clearNewTemplate());
+        setTemplate({id: 0, name: '', string: [], variables: {}});
         dispatch(setPaletteOpen({ condition: false }));
       }} >Discard Template</button>
       <button onClick={saveNewTemplate} >Save Template</button>
