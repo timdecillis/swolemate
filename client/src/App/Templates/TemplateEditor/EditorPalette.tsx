@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Variables from './Variables';
 import AddVariable from './EditorPalette/AddVariable';
 
-import { getNewVariableOpen, setNewVariableOpen, setNewTemplateOpen, setPaletteOpen, setTemplates } from '../templatesSlice';
-import { addTextToString, clearNewTemplate, getNewTemplate, postNewTemplate, TemplateType } from './newTemplateSlice';
+import { setNewTemplateOpen, setPaletteOpen } from '../templatesSlice';
+import { postNewTemplate, TemplateType } from './newTemplateSlice';
 import { getUser } from '../../userSlice';
 
 type EditorPaletteProps = {
@@ -17,13 +17,13 @@ const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  const newVariableOpen = useSelector(getNewVariableOpen);
 
+  const [newVariableOpen, setNewVariableOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
   const addTextToString = (input: string) => {
-    let prevString = template.string;
+    let prevString = [...template.string];
     prevString.push(input);
     setTemplate({...template, string: prevString});
   }
@@ -50,9 +50,9 @@ const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
 
       <h3>Add variables:</h3>
 
-      {newVariableOpen && <AddVariable template={template} setTemplate={setTemplate} />}
+      {newVariableOpen && <AddVariable setNewVariableOpen={setNewVariableOpen} template={template} setTemplate={setTemplate} />}
 
-      <button onClick={() => dispatch(setNewVariableOpen({ condition: true }))} >Insert variable</button>
+      <button onClick={() => setNewVariableOpen(true)} >Insert variable</button>
       {<Variables />}
       <button onClick={() => {
         dispatch(setNewTemplateOpen({ condition: false }));
