@@ -27,8 +27,8 @@ const postNewTemplate = createAsyncThunk(
   'newTemplate/saveTemplate',
   async (data: { user: any, template: TemplateType }) => {
     const { user, template } = data;
-    const response = await instance.post('/addTemplate', { user, template })
-    return response.data;
+    const response = await saveNewTemplate(user, template);
+    return response;
   });
 
 const newTemplateSlice = createSlice({

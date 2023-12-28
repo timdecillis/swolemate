@@ -26,7 +26,6 @@ const deleteTemplateRequest = createAsyncThunk(
   'template/deleteTemplate',
   async (data: { id: number, user: string | null }) => {
     const { id, user } = data;
-    console.log('thunking:', id, user)
     const response = await deleteTemplate(id, user);
     console.log('response:', response)
     return response;
@@ -57,7 +56,6 @@ const templateSlice = createSlice({
       state.templates = action.payload;
     },
     deleteTemplates(state, action) {
-
       state.templates = action.payload;
     }
   },

@@ -2,7 +2,7 @@ import { useState, } from 'react';
 
 import TemplateEditor from '../TemplateEditor';
 
-import { TemplateType, addExistingTemplate } from './TemplateEditor/newTemplateSlice';
+import { TemplateType } from './TemplateEditor/newTemplateSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
 import { deleteTemplateRequest } from './templatesSlice';
@@ -34,10 +34,11 @@ const Template = ({ index, template, string }: TemplateProps) => {
     if (result) dispatch(deleteTemplateRequest({ id: template.id, user }));
   }
 
-  if (editOpen) {
-    return <TemplateEditor existingTemplate={template} />
-  } else {
-    return (
+
+  return (
+    editOpen ?
+      <TemplateEditor existingTemplate={template} />
+      :
       <div>
         <h3>{index + 1}.) {template.name}</h3>
         <h4>{string}</h4>
@@ -45,13 +46,12 @@ const Template = ({ index, template, string }: TemplateProps) => {
         <button onClick={() => copy(string)} >Copy</button>
         <button onClick={() => {
           setEditOpen(true);
-          dispatch(addExistingTemplate({template}))
         }
         } >Edit</button>
         <button onClick={deleteAlert} >X</button>
       </div>
-    )
-  }
+  );
+
 }
 
-export default Template
+export default Template;

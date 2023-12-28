@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import AddName from './Templates/TemplateEditor/AddName';
 import EditorPalette from './Templates/TemplateEditor/EditorPalette';
@@ -13,15 +13,17 @@ interface TemplateEditorProps {
 
 const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
 
-  const [template, setTemplate] = useState<TemplateType>(existingTemplate  || {id: 0, name: '', string: [], variables: {}});
+  const [template, setTemplate] = useState<TemplateType>(existingTemplate || { id: 0, name: '', string: [], variables: {} });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
   const [paletteOpen, setPaletteOpen] = useState<boolean>(false);
 
-  if (existingTemplate) {
-    setTemplate(existingTemplate);
-    setAddNameOpen(false);
-    setPaletteOpen(true);
-  }
+  useEffect(() => {
+    if (existingTemplate) {
+      setTemplate(existingTemplate);
+      setAddNameOpen(false);
+      setPaletteOpen(true);
+    };
+  }, [existingTemplate])
 
   return (
     <>

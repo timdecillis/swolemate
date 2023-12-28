@@ -6,14 +6,6 @@ const instance = axios.create({
   baseURL: 'http://localhost:5000'
 });
 
-
-export const updateTemplate = (oldValue: string, newValue: string, user: string) => {
-  instance.put('/updateTemplate', { oldValue, newValue, user })
-    .then(({ data }) => {
-      // setTemplates(data)
-    })
-}
-
 export const deleteTemplate = async (id: number, user: string | null) => {
   const response = await instance.delete('/deleteTemplate', { data: { id, user } });
   return response.data;
@@ -28,11 +20,9 @@ export const renderString = (template: TemplateType) => {
   }).join(' ');
 }
 
-export const saveNewTemplate = (user: string, template: TemplateType): Promise<string> => {
-  return instance.post('/addTemplate', { user, template })
-    .then(({ data }) => {
-      return data;
-    })
+export const saveNewTemplate = async (user: string, template: TemplateType): Promise<string> => {
+  const response = await instance.post('/addTemplate', { user, template });
+  return response.data;
 }
 
 export const getTemplates = async (user: string) => {
