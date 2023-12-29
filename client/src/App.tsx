@@ -31,7 +31,7 @@ function App() {
               {!newTemplateOpen ?
                 <AddTemplate />
                 :
-                <TemplateEditor />}
+                <TemplateEditor setEditOpen={() => {}} />}
               <Templates />
               {loading && <div>PLEASE WAIT</div>}
               <button onClick={() => {

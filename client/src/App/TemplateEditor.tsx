@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 
 import AddName from './Templates/TemplateEditor/AddName';
 import EditorPalette from './Templates/TemplateEditor/EditorPalette';
@@ -7,11 +7,12 @@ import { renderString } from '../Utilities/helpers';
 import { TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
 
 
-interface TemplateEditorProps {
+type TemplateEditorProps = {
   existingTemplate?: TemplateType;
+  setEditOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
+const TemplateEditor = ({ existingTemplate, setEditOpen }: TemplateEditorProps) => {
 
   const [template, setTemplate] = useState<TemplateType>(existingTemplate || { id: 0, name: '', string: [], variables: {} });
   const [addNameOpen, setAddNameOpen] = useState<boolean>(true);
@@ -35,7 +36,7 @@ const TemplateEditor = ({ existingTemplate }: TemplateEditorProps) => {
         </>
       }
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
-      {paletteOpen && <EditorPalette setTemplate={setTemplate} template={template} />}
+      {paletteOpen && <EditorPalette setEditOpen={setEditOpen} setTemplate={setTemplate} template={template} />}
     </>
   )
 }
