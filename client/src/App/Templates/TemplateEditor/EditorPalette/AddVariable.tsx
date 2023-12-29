@@ -19,10 +19,13 @@ const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableP
   const [content, setContent] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
+  console.log('temp string:', template.string)
+
   const addNewVariable = () => {
-    let prevString = template.string;
+    let prevString = [...template.string];
     prevString.push([name]);
-    setTemplate({ ...template, string: prevString, variables: { ...template.variables, [name]: content } })
+    setTemplate({ ...template, string: prevString, variables: { ...template.variables, [name]: content } });
+    console.log('template:', template)
   }
 
   return (
@@ -32,7 +35,7 @@ const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableP
       <input onClick={() => setErrorOpen(false)} onChange={(e) => { setName(e.target.value) }} placeholder='Variable name' ></input>
       <input onClick={() => setErrorOpen(false)} onChange={(e) => setContent(e.target.value)} placeholder='Variable content' ></input>
       {errorOpen && <div>Please enter a variable name and content!</div>}
-      <button onClick={() => setNewVariableOpen(false)} >Discard</button>
+      <button onClick={() => setNewVariableOpen(false)} >Cancel</button>
       <button onClick={() => {
         if (!name || !content) return setErrorOpen(true);
         addNewVariable();
