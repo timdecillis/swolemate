@@ -37,7 +37,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
 
   return (
     editOpen ?
-      <TemplateEditor existingTemplate={template} />
+      <TemplateEditor setEditOpen={setEditOpen} existingTemplate={template} />
       :
       <div>
         <h3>{index + 1}.) {template.name}</h3>

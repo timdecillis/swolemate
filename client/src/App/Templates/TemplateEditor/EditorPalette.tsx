@@ -11,9 +11,10 @@ import { getUser } from '../../userSlice';
 type EditorPaletteProps = {
   template: TemplateType;
   setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
+  setEditOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
+const EditorPalette = ({ template, setTemplate, setEditOpen }: EditorPaletteProps) => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser);
@@ -25,12 +26,13 @@ const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
   const addTextToString = (input: string) => {
     let prevString = [...template.string];
     prevString.push(input);
-    setTemplate({...template, string: prevString});
+    setTemplate({ ...template, string: prevString });
   }
 
   const saveNewTemplate = () => {
     dispatch(postNewTemplate({ user, template }));
     dispatch(setNewTemplateOpen({ condition: false }));
+    setEditOpen(false);
   }
 
   return (
@@ -56,7 +58,7 @@ const EditorPalette = ({ template, setTemplate }: EditorPaletteProps) => {
       {<Variables />}
       <button onClick={() => {
         dispatch(setNewTemplateOpen({ condition: false }));
-        setTemplate({id: 0, name: '', string: [], variables: {}});
+        setTemplate({ id: 0, name: '', string: [], variables: {} });
         dispatch(setPaletteOpen({ condition: false }));
       }} >Discard Template</button>
       <button onClick={saveNewTemplate} >Save Template</button>
