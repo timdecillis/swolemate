@@ -27,7 +27,6 @@ const deleteTemplateRequest = createAsyncThunk(
   async (data: { id: number, user: string | null }) => {
     const { id, user } = data;
     const response = await deleteTemplate(id, user);
-    console.log('response:', response)
     return response;
   }
 )
@@ -66,7 +65,7 @@ const templateSlice = createSlice({
       })
       .addCase(postNewTemplate.fulfilled, (state, action) => {
         state.loading = false;
-        state.templates = action.payload;
+        state.templates = action.payload.data;
       })
       .addCase(deleteTemplateRequest.pending, (state) => {
         state.loading = true;
