@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Variables from './Variables';
 import AddVariable from './EditorPalette/AddVariable';
 
-import { setNewTemplateOpen, setPaletteOpen } from '../templatesSlice';
+import { setNewTemplateOpen } from '../templatesSlice';
 import { postNewTemplate, TemplateType } from './newTemplateSlice';
 import { getUser } from '../../userSlice';
 
@@ -12,9 +12,10 @@ type EditorPaletteProps = {
   template: TemplateType;
   setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
   setEditOpen: React.Dispatch<SetStateAction<boolean>>;
+  setPaletteOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const EditorPalette = ({ template, setTemplate, setEditOpen }: EditorPaletteProps) => {
+const EditorPalette = ({ template, setTemplate, setEditOpen, setPaletteOpen }: EditorPaletteProps) => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser);
@@ -59,8 +60,9 @@ const EditorPalette = ({ template, setTemplate, setEditOpen }: EditorPaletteProp
       <button onClick={() => {
         dispatch(setNewTemplateOpen({ condition: false }));
         setTemplate({ id: 0, name: '', string: [], variables: {} });
-        dispatch(setPaletteOpen({ condition: false }));
-      }} >Discard Template</button>
+        setPaletteOpen(false);
+        setEditOpen(false);
+      }} >Discard Template/Cancel Edit</button>
       <button onClick={saveNewTemplate} >Save Template</button>
       <h2> </h2>
     </>

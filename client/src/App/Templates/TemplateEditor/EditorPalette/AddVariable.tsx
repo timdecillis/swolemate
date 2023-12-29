@@ -35,7 +35,7 @@ const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableP
       <input onClick={() => setErrorOpen(false)} onChange={(e) => { setName(e.target.value) }} placeholder='Variable name' ></input>
       <input onClick={() => setErrorOpen(false)} onChange={(e) => setContent(e.target.value)} placeholder='Variable content' ></input>
       {errorOpen && <div>Please enter a variable name and content!</div>}
-      <button onClick={() => setNewVariableOpen(false)} >Discard</button>
+      <button onClick={() => setNewVariableOpen(false)} >Cancel</button>
       <button onClick={() => {
         if (!name || !content) return setErrorOpen(true);
         addNewVariable();
