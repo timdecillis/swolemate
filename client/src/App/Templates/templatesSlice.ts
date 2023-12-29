@@ -66,7 +66,7 @@ const templateSlice = createSlice({
       })
       .addCase(postNewTemplate.fulfilled, (state, action) => {
         state.loading = false;
-        state.templates = action.payload;
+        state.templates = action.payload.data;
       })
       .addCase(deleteTemplateRequest.pending, (state) => {
         state.loading = true;
