@@ -26,8 +26,9 @@ const postNewTemplate = createAsyncThunk(
   'newTemplate/saveTemplate',
   async (data: { user: any, template: TemplateType }) => {
     const { user, template } = data;
+    console.log('thunk:', template)
     const response = await instance.post('/addTemplate', { user, template });
-    return response;
+    return response.data;
   });
 
 const newTemplateSlice = createSlice({
@@ -84,7 +85,6 @@ const newTemplateSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(postNewTemplate.fulfilled, (state, action) => {
-      console.log('payload new:', action.payload)
       return action.payload.data;
     })
   }

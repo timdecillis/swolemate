@@ -21,9 +21,15 @@ def get_all(user):
 
 
 def add_temp(user, template):
+    doc = db["users"].find_one({"name": user})
+    temps = doc["templates"]
+    for i, temp in enumerate(temps):
+        if temp["id"] == template["id"]:
+            temps[i] = template
+            db["users"].update_one({"name": user}, {"$set": {"templates": temps}})
+            return temps
     template_id = str(ObjectId())
     template = { **template, "id": template_id}
-
     doc = db["users"].find_one_and_update(
         {"name": user},
         {"$push": {"templates": template}},
