@@ -14,7 +14,7 @@ const ExistingVariableChoices = ({ template, setTemplate }: ExistingVariableChoi
   const dispatch = useDispatch();
 
   const addExistingVariable = (name: string) => {
-    let prevString = template.string;
+    let prevString = [...template.string];
     prevString.push([name]);
     setTemplate({ ...template, string: prevString });
   }

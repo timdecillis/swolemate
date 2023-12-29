@@ -19,10 +19,13 @@ const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableP
   const [content, setContent] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
+  console.log('temp string:', template.string)
+
   const addNewVariable = () => {
-    let prevString = template.string;
+    let prevString = [...template.string];
     prevString.push([name]);
-    setTemplate({ ...template, string: prevString, variables: { ...template.variables, [name]: content } })
+    setTemplate({ ...template, string: prevString, variables: { ...template.variables, [name]: content } });
+    console.log('template:', template)
   }
 
   return (
