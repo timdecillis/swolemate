@@ -56,7 +56,7 @@ const EditorPalette = ({ template, setTemplate, setEditOpen, setPaletteOpen }: E
       {newVariableOpen && <AddVariable setNewVariableOpen={setNewVariableOpen} template={template} setTemplate={setTemplate} />}
 
       <button onClick={() => setNewVariableOpen(true)} >Insert variable</button>
-      {<Variables />}
+      {<Variables setTemplate={setTemplate} template={template} />}
       <button onClick={() => {
         dispatch(setNewTemplateOpen({ condition: false }));
         setTemplate({ id: 0, name: '', string: [], variables: {} });
