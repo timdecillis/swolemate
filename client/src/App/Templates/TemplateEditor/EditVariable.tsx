@@ -1,7 +1,6 @@
 import { useState, SyntheticEvent, SetStateAction } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { TemplateType, editVariable } from './newTemplateSlice';
+import { TemplateType } from './newTemplateSlice';
 
 interface EditVariableProps {
   setEditVariableOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -11,8 +10,6 @@ interface EditVariableProps {
 }
 
 const EditVariable = ({ setEditVariableOpen, variable, setTemplate, template }: EditVariableProps) => {
-
-  const dispatch = useDispatch();
 
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');

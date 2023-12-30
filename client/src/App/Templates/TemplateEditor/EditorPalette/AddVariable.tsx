@@ -1,5 +1,4 @@
 import { SetStateAction, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { TemplateType } from '../newTemplateSlice';
 
@@ -12,8 +11,6 @@ type AddVariableProps = {
 }
 
 const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableProps) => {
-
-  const dispatch = useDispatch();
 
   const [name, setName] = useState<string>('');
   const [content, setContent] = useState<string>('');

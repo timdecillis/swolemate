@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { saveNewTemplate } from "../../../Utilities/helpers";
 import { State } from "../../userSlice";
 
 const instance = axios.create({
@@ -89,9 +88,9 @@ const newTemplateSlice = createSlice({
   }
 })
 
-export default newTemplateSlice.reducer
+export default newTemplateSlice.reducer;
 
-export const { addExistingTemplate, addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions
+export const { addExistingTemplate, addName, addNewVariable, addTextToString, clearNewTemplate, addExistingVariable, editVariable } = newTemplateSlice.actions;
 
 export const getNewTemplate = (state: State) => state.newTemplate;
-export { postNewTemplate }
+export { postNewTemplate };

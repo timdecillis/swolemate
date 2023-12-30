@@ -27,13 +27,12 @@ const Template = ({ index, template, string }: TemplateProps) => {
     setTimeout(() => {
       setCopiedOpen(false);
     }, 1800)
-  }
+  };
 
   const deleteAlert = () => {
     const result = window.confirm('Are you sure you want to permanently delete this template?');
     if (result) dispatch(deleteTemplateRequest({ id: template.id, user }));
-  }
-
+  };
 
   return (
     editOpen ?
