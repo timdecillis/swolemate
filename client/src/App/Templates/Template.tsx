@@ -35,20 +35,22 @@ const Template = ({ index, template, string }: TemplateProps) => {
   };
 
   return (
-    editOpen ?
-      <TemplateEditor setEditOpen={setEditOpen} existingTemplate={template} />
-      :
-      <div>
-        <h3>{index + 1}.) {template.name}</h3>
-        <h4>{string}</h4>
-        {copiedOpen && <div>template copied to clipboard</div>}
-        <button onClick={() => copy(string)} >Copy</button>
-        <button onClick={() => {
-          setEditOpen(true);
-        }
-        } >Edit</button>
-        <button onClick={deleteAlert} >X</button>
-      </div>
+    <div className='template'>
+      {editOpen ?
+        <TemplateEditor setEditOpen={setEditOpen} existingTemplate={template} />
+        :
+        <div>
+          <h3>{index + 1}.) {template.name}</h3>
+          <h4>{string}</h4>
+          {copiedOpen && <div>template copied to clipboard</div>}
+          <button onClick={() => copy(string)} >Copy</button>
+          <button onClick={() => {
+            setEditOpen(true);
+          }
+          } >Edit</button>
+          <button onClick={deleteAlert} >X</button>
+        </div>}
+    </div>
   );
 
 }

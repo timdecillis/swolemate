@@ -27,7 +27,7 @@ const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableP
 
   return (
     <>
-      <ExistingVariableChoices template={template} setTemplate={setTemplate} />
+      <ExistingVariableChoices setNewVariableOpen={setNewVariableOpen} template={template} setTemplate={setTemplate} />
       <h4>Create a new variable:</h4>
       <input onClick={() => setErrorOpen(false)} onChange={(e) => { setName(e.target.value) }} placeholder='Variable name' ></input>
       <input onClick={() => setErrorOpen(false)} onChange={(e) => setContent(e.target.value)} placeholder='Variable content' ></input>
