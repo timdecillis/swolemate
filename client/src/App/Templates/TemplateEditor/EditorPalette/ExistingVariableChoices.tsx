@@ -7,9 +7,10 @@ import { SetStateAction } from 'react';
 type ExistingVariableChoicesProps = {
   template: TemplateType;
   setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
+  setNewVariableOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const ExistingVariableChoices = ({ template, setTemplate }: ExistingVariableChoicesProps) => {
+const ExistingVariableChoices = ({ template, setTemplate, setNewVariableOpen }: ExistingVariableChoicesProps) => {
 
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const ExistingVariableChoices = ({ template, setTemplate }: ExistingVariableChoi
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
                 <button onClick={() => {
                   addExistingVariable(tuple[0]);
-                  dispatch(setNewVariableOpen({ condition: false }));
+                  setNewVariableOpen(false);
                 }} >Insert</button>
               </div>
             );

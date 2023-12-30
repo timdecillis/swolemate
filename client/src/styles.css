@@ -31,3 +31,7 @@ body {
   background-color: green;
   min-width: 100%;
 }
+
+.template {
+  border-style: double;
+}

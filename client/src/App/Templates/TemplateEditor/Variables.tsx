@@ -1,15 +1,19 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { SetStateAction, useState } from 'react';
 
-import { getNewTemplate } from './newTemplateSlice';
 import EditVariable from './EditVariable';
+import { TemplateType } from './newTemplateSlice';
 
-const Variables = () => {
+type VariablesProps = {
+  template: TemplateType;
+  setTemplate: React.Dispatch<SetStateAction<TemplateType>>;
+}
+
+const Variables = ({ template, setTemplate }: VariablesProps) => {
+
+  console.log('template:', template)
 
   const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
   const [variable, setVariable] = useState<string[]>([]);
-
-  const template = useSelector(getNewTemplate);
 
   let variables = Object.entries(template.variables).map((entry, i) => {
     return (
@@ -27,9 +31,9 @@ const Variables = () => {
 
   return (
     <div>
-      <h3>Variables</h3>
+      <h3>Variableszzz</h3>
       {variables}
-      {editVariableOpen && <EditVariable variable={variable} setEditVariableOpen={setEditVariableOpen} />}
+      {editVariableOpen && <EditVariable template={template} setTemplate={setTemplate} variable={variable} setEditVariableOpen={setEditVariableOpen} />}
     </div>
   )
 }
