@@ -29,3 +29,9 @@ export const getTemplates = async (user: string) => {
   const response = await instance.get(`/getUserTemplates?user=${user}`);
   return response;
 }
+
+export const deleteLast = (template: TemplateType) => {
+  let string = [...template.string];
+  string.pop();
+  return template = {...template, string};
+}
