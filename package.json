@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "redux": "^5.0.0"
+     "concurrently": "8.2.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"cd client && npm run start\" \"cd server && python3 app.py\" "
   }
+
 }

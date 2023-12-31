@@ -36,6 +36,7 @@ const TemplateEditor = ({ existingTemplate, setEditOpen }: TemplateEditorProps) 
         </>
       }
       {template.string.length > 0 && <div>Template content: {renderString(template)}</div>}
+      <button onClick={deleteLast}>Delete last</button>
       {paletteOpen && <EditorPalette setPaletteOpen={setPaletteOpen} setEditOpen={setEditOpen} setTemplate={setTemplate} template={template} />}
     </>
   )
