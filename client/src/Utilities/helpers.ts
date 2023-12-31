@@ -33,6 +33,5 @@ export const getTemplates = async (user: string) => {
 export const deleteLast = (template: TemplateType) => {
   let string = [...template.string];
   string.pop();
-  template = {...template, string};
-  return template;
+  return template = {...template, string};
 }
