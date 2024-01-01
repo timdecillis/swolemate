@@ -16,8 +16,6 @@ const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableP
   const [content, setContent] = useState<string>('');
   const [errorOpen, setErrorOpen] = useState<boolean>(false);
 
-  console.log('temp string:', template.string)
-
   const addNewVariable = () => {
     let prevString = [...template.string];
     prevString.push([name]);
