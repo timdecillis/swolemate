@@ -20,7 +20,6 @@ const AddVariable = ({ template, setTemplate, setNewVariableOpen }: AddVariableP
     let prevString = [...template.string];
     prevString.push([name]);
     setTemplate({ ...template, string: prevString, variables: { ...template.variables, [name]: content } });
-    console.log('template:', template)
   }
 
   return (
