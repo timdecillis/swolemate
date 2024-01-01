@@ -48,9 +48,10 @@ const EditorPalette = ({ template, setTemplate, setEditOpen, setPaletteOpen }: E
         <input value={input} onChange={e => setInput(e.target.value)} type='text' ></input>
         <button type='submit'>Add to template</button>
       </form>
-      {errorOpen && <div>Please enter some text to add!</div>}
-      <h4> </h4>
 
+      {errorOpen && <div>Please enter some text to add!</div>}
+
+      <h4> </h4>
       <h3>Add variables:</h3>
 
       {newVariableOpen ? <AddVariable setNewVariableOpen={setNewVariableOpen} template={template} setTemplate={setTemplate} />

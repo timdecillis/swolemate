@@ -1,6 +1,3 @@
-import { useDispatch } from 'react-redux';
-
-import { setNewVariableOpen } from '../../templatesSlice';
 import { TemplateType } from '../newTemplateSlice';
 import { SetStateAction } from 'react';
 
@@ -11,8 +8,6 @@ type ExistingVariableChoicesProps = {
 }
 
 const ExistingVariableChoices = ({ template, setTemplate, setNewVariableOpen }: ExistingVariableChoicesProps) => {
-
-  const dispatch = useDispatch();
 
   const addExistingVariable = (name: string) => {
     let prevString = [...template.string];
