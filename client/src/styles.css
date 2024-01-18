@@ -19,7 +19,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-style: ridge;
+  border-top-style: ridge;
+  border-bottom-style: ridge;
 }
 
 .user-header {
