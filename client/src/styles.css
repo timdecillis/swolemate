@@ -33,3 +33,7 @@ body {
 .template {
   border-style: double;
 }
+
+button {
+  max-width: 6em;
+}
