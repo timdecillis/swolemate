@@ -26,8 +26,6 @@ function App() {
   return (
     <div className="container">
       <div className="App">
-        {/* // <div> */}
-        {/* <header> */}
         {user && <h4 className="user-header">Welcome, {user}!</h4>}
         <div className="App-Template">
           {signedIn ? (
