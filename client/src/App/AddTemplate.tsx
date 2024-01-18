@@ -11,7 +11,7 @@ function AddTemplate() {
       dispatch(setNewTemplateOpen({condition: true}));
       dispatch(setAddNameOpen({condition: true}));
     }
-    } >Add a new template</button>
+    } >Add template</button>
   );
 }
 
