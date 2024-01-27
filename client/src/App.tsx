@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import './App.css';
+// import './App.css';
 import "./styles.css";
 import Templates from "./App/Templates";
 import SignIn from "./App/SignIn";
