@@ -1,9 +1,11 @@
 {
   "dependencies": {
-     "concurrently": "8.2.2"
+    "concurrently": "^8.2.2"
   },
   "scripts": {
     "dev": "concurrently \"cd client && npm run start\" \"cd server && python3 app.py\" "
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
   }
-
 }
