@@ -21,7 +21,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <h3 className="bg-blue-500 text-white p-4">Enter username</h3>
+      <h3 className="bg-blue-500 text-white p-4">Login</h3>
       <form onSubmit={onSubmit}>
         <input onClick={() => setErrorOpen(false)} onChange={e => setInput(e.target.value)} type='text' />
         <input type='submit' />
