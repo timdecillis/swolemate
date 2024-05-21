@@ -2,7 +2,11 @@ import { useDispatch } from "react-redux";
 
 import { setNewTemplateOpen, setAddNameOpen } from "./Templates/templatesSlice";
 
-function Button({ content }) {
+type ButtonProps = {
+  content: string;
+};
+
+function Button({ content }: ButtonProps) {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(setNewTemplateOpen({ condition: true }));
