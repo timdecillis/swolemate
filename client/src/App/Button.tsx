@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { setNewTemplateOpen, setAddNameOpen } from "./Templates/templatesSlice";
 
-function AddTemplate() {
+function Button() {
   const dispatch = useDispatch();
 
   return (
@@ -17,4 +17,4 @@ function AddTemplate() {
   );
 }
 
-export default AddTemplate;
+export default Button;
