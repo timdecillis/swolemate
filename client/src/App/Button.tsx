@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { setNewTemplateOpen, setAddNameOpen } from "./Templates/templatesSlice";
 
-function Button({content, onClick}) {
+function Button({ content }) {
   const dispatch = useDispatch();
 
   return (
