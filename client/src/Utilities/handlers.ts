@@ -4,8 +4,12 @@ import {
   setAddNameOpen,
 } from "../App/Templates/templatesSlice";
 
-export const useHandleAddTemplate = () => {
+export const useCustomDispatch = () => {
   const dispatch = useDispatch();
-  dispatch(setNewTemplateOpen({ condition: true }));
-  dispatch(setAddNameOpen({ condition: true }));
+  const handleAddTemplate = () => {
+    dispatch(setNewTemplateOpen({ condition: true }));
+    dispatch(setAddNameOpen({ condition: true }));
+  };
+
+  return { handleAddTemplate };
 };

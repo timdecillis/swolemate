@@ -16,6 +16,7 @@ import {
   setAddNameOpen
 } from "./App/Templates/templatesSlice";
 import { clearNewTemplate } from "./App/Templates/TemplateEditor/newTemplateSlice";
+import { useCustomDispatch } from "./Utilities/handlers";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,10 +25,7 @@ function App() {
   const user = useSelector(getUser);
   const newTemplateOpen = useSelector(getNewTemplateOpen);
 
-  const handleAddTemplate = () => {
-    dispatch(setNewTemplateOpen({ condition: true }));
-    dispatch(setAddNameOpen({ condition: true }));
-  };
+  const customDispatch = useCustomDispatch()
 
   return (
     <div className="container">
@@ -38,7 +36,7 @@ function App() {
             <>
               <Templates />
               {!newTemplateOpen ? (
-                <Button content='Add Template' handler={handleAddTemplate} />
+                <Button content='Add Template' handler={customDispatch.handleAddTemplate} />
               ) : (
                 <TemplateEditor setEditOpen={() => {}} />
               )}
