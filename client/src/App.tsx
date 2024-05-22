@@ -12,8 +12,7 @@ import {
   getNewTemplateOpen,
   setNewTemplateOpen,
   setPaletteOpen,
-  setTemplates,
-  setAddNameOpen
+  setTemplates
 } from "./App/Templates/templatesSlice";
 import { clearNewTemplate } from "./App/Templates/TemplateEditor/newTemplateSlice";
 import { useCustomDispatch } from "./Utilities/handlers";
@@ -41,6 +40,7 @@ function App() {
                 <TemplateEditor setEditOpen={() => {}} />
               )}
               {loading && <div>PLEASE WAIT</div>}
+              <Button content="Sign Out"/>
               <button
                 onClick={() => {
                   dispatch(setSignedIn({ condition: false }));
