@@ -38,7 +38,7 @@ function App() {
             <>
               <Templates />
               {!newTemplateOpen ? (
-                <Button content='Add Template' />
+                <Button content='Add Template' handler={handleAddTemplate} />
               ) : (
                 <TemplateEditor setEditOpen={() => {}} />
               )}
