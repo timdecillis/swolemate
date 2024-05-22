@@ -14,6 +14,7 @@ import {
   setNewTemplateOpen,
   setPaletteOpen,
   setTemplates,
+  setAddNameOpen
 } from "./App/Templates/templatesSlice";
 import { clearNewTemplate } from "./App/Templates/TemplateEditor/newTemplateSlice";
 
@@ -23,6 +24,11 @@ function App() {
   const signedIn = useSelector(getSignedIn);
   const user = useSelector(getUser);
   const newTemplateOpen = useSelector(getNewTemplateOpen);
+
+  const handleAddTemplate = () => {
+    dispatch(setNewTemplateOpen({ condition: true }));
+    dispatch(setAddNameOpen({ condition: true }));
+  };
 
   return (
     <div className="container">
