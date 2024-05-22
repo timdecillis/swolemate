@@ -2,6 +2,7 @@ import { SetStateAction, useEffect, useState } from 'react';
 
 import AddName from './Templates/TemplateEditor/AddName';
 import EditorPalette from './Templates/TemplateEditor/EditorPalette';
+import Button from './Button';
 
 import { deleteLast, renderString } from '../Utilities/helpers';
 import { TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
@@ -36,6 +37,7 @@ const TemplateEditor = ({ existingTemplate, setEditOpen }: TemplateEditorProps) 
         :
         template.name && <>
           <h3>Name: {template.name}</h3>
+          <Button content='Edit Name'/>
           <button onClick={() => setAddNameOpen(true)}>Edit Name</button>
         </>
       }

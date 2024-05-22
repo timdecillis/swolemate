@@ -1,18 +1,10 @@
-import { useDispatch } from "react-redux";
-
-import { setNewTemplateOpen, setAddNameOpen } from "./Templates/templatesSlice";
-
 type ButtonProps = {
   content: string;
+  handler?: () => void;
 };
 
-function Button({ content }: ButtonProps) {
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(setNewTemplateOpen({ condition: true }));
-    dispatch(setAddNameOpen({ condition: true }));
-  };
-  return <button onClick={handleClick}>{content}</button>;
+function Button({ content, handler }: ButtonProps) {
+  return <button onClick={handler}>{content}</button>;
 }
 
 export default Button;
