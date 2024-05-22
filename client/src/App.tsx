@@ -5,7 +5,6 @@ import "./styles.css";
 import Templates from "./App/Templates";
 import SignIn from "./App/SignIn";
 import TemplateEditor from "./App/TemplateEditor";
-import AddTemplate from "./App/AddTemplate";
 import Button from "./App/Button";
 import { getSignedIn, getUser, setSignedIn, login } from "./App/userSlice";
 import {
