@@ -4,7 +4,7 @@ import { setNewTemplateOpen, setAddNameOpen } from "./Templates/templatesSlice";
 
 type ButtonProps = {
   content: string;
-  handler: () => void;
+  handler?: () => void;
 };
 
 function Button({ content, handler }: ButtonProps) {
@@ -13,7 +13,7 @@ function Button({ content, handler }: ButtonProps) {
     dispatch(setNewTemplateOpen({ condition: true }));
     dispatch(setAddNameOpen({ condition: true }));
   };
-  return <button onClick={handleClick}>{content}</button>;
+  return <button onClick={handler}>{content}</button>;
 }
 
 export default Button;
