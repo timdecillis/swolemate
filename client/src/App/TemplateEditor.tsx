@@ -2,6 +2,7 @@ import { SetStateAction, useEffect, useState } from 'react';
 
 import AddName from './Templates/TemplateEditor/AddName';
 import EditorPalette from './Templates/TemplateEditor/EditorPalette';
+import Button from './Button';
 
 import { deleteLast, renderString } from '../Utilities/helpers';
 import { TemplateType } from './Templates/TemplateEditor/newTemplateSlice';
