@@ -8,7 +8,7 @@ import {
   setPaletteOpen,
   setTemplates,
 } from "../App/Templates/templatesSlice";
-
+import { clearNewTemplate } from "../App/Templates/TemplateEditor/newTemplateSlice";
 import { getSignedIn, getUser, setSignedIn, login } from "../App/userSlice";
 
 export const useCustomDispatch = () => {
@@ -20,9 +20,14 @@ export const useCustomDispatch = () => {
   };
 
   const handleSignOut = () => {
-
+    dispatch(setSignedIn({ condition: false }));
+    dispatch(login({ user: null }));
+    dispatch(clearNewTemplate());
+    dispatch(setNewTemplateOpen({ condition: false }));
+    dispatch(setPaletteOpen({ condition: false }));
+    dispatch(setTemplates([]));
   }
 
 
-  return { handleAddTemplate };
+  return { handleAddTemplate, handleSignOut };
 };
