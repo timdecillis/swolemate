@@ -12,7 +12,7 @@ import {
   getNewTemplateOpen,
   setNewTemplateOpen,
   setPaletteOpen,
-  setTemplates
+  setTemplates,
 } from "./App/Templates/templatesSlice";
 import { clearNewTemplate } from "./App/Templates/TemplateEditor/newTemplateSlice";
 import { useCustomDispatch } from "./Utilities/handlers";
@@ -24,7 +24,7 @@ function App() {
   const user = useSelector(getUser);
   const newTemplateOpen = useSelector(getNewTemplateOpen);
 
-  const customDispatch = useCustomDispatch()
+  const customDispatch = useCustomDispatch();
 
   return (
     <div className="container">
@@ -35,24 +35,18 @@ function App() {
             <>
               <Templates />
               {!newTemplateOpen ? (
-                <Button content='Add Template' handler={customDispatch.handleAddTemplate} />
+                <Button
+                  content="Add Template"
+                  handler={customDispatch.handleAddTemplate}
+                />
               ) : (
                 <TemplateEditor setEditOpen={() => {}} />
               )}
               {loading && <div>PLEASE WAIT</div>}
-              <Button content="Sign Out"/>
-              <button
-                onClick={() => {
-                  dispatch(setSignedIn({ condition: false }));
-                  dispatch(login({ user: null }));
-                  dispatch(clearNewTemplate());
-                  dispatch(setNewTemplateOpen({ condition: false }));
-                  dispatch(setPaletteOpen({ condition: false }));
-                  dispatch(setTemplates([]));
-                }}
-              >
-                Sign Out
-              </button>
+              <Button
+                content="Sign Out"
+                handler={customDispatch.handleSignOut}
+              />
             </>
           ) : (
             <SignIn />
