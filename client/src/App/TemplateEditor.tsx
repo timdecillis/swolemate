@@ -37,6 +37,7 @@ const TemplateEditor = ({ existingTemplate, setEditOpen }: TemplateEditorProps) 
         :
         template.name && <>
           <h3>Name: {template.name}</h3>
+          <Button content='Edit Name'/>
           <button onClick={() => setAddNameOpen(true)}>Edit Name</button>
         </>
       }
