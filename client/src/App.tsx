@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 // import './App.css';
 import "./styles.css";
@@ -6,19 +6,11 @@ import Templates from "./App/Templates";
 import SignIn from "./App/SignIn";
 import TemplateEditor from "./App/TemplateEditor";
 import Button from "./App/Button";
-import { getSignedIn, getUser, setSignedIn, login } from "./App/userSlice";
-import {
-  getLoading,
-  getNewTemplateOpen,
-  setNewTemplateOpen,
-  setPaletteOpen,
-  setTemplates,
-} from "./App/Templates/templatesSlice";
-import { clearNewTemplate } from "./App/Templates/TemplateEditor/newTemplateSlice";
+import { getSignedIn, getUser } from "./App/userSlice";
+import { getLoading, getNewTemplateOpen } from "./App/Templates/templatesSlice";
 import { useCustomDispatch } from "./Utilities/handlers";
 
 function App() {
-  const dispatch = useDispatch();
   const loading = useSelector(getLoading);
   const signedIn = useSelector(getSignedIn);
   const user = useSelector(getUser);
