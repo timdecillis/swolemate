@@ -3,6 +3,7 @@ import React, { useState, SyntheticEvent, SetStateAction } from "react";
 import { setNewTemplateOpen } from "../templatesSlice";
 import { TemplateType } from "./newTemplateSlice";
 import { useDispatch } from "react-redux";
+import Button from "../../Button";
 
 type AddNameProps = {
   setAddNameOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -45,7 +46,7 @@ const AddName = ({
           type="text"
         ></input>
         <input type="submit" value="Save"></input>
-        <button onClick={cancel}>Cancel</button>
+        <Button handler={cancel} content="Cancel"/>
       </form>
       {errorOpen && <div>Please enter a name for your template!</div>}
       <h1> </h1>
