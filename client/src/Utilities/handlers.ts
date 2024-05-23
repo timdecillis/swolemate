@@ -7,6 +7,7 @@ import {
   getNewTemplateOpen,
   setPaletteOpen,
   setTemplates,
+  deleteTemplateRequest,
 } from "../App/Templates/templatesSlice";
 import { clearNewTemplate } from "../App/Templates/TemplateEditor/newTemplateSlice";
 import { getSignedIn, getUser, setSignedIn, login } from "../App/userSlice";
@@ -28,6 +29,10 @@ export const useCustomDispatch = () => {
     dispatch(setTemplates([]));
   }
 
+  const deleteAlert = (id: number, user: string) => {
+    const result = window.confirm('Are you sure you want to permanently delete this template?');
+    if (result) dispatch(deleteTemplateRequest({ id, user }));
+  };
 
-  return { handleAddTemplate, handleSignOut };
+  return { handleAddTemplate, handleSignOut, deleteAlert };
 };
