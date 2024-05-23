@@ -50,7 +50,6 @@ const Template = ({ index, template, string }: TemplateProps) => {
           }
           } >Edit</button>
           <Button content='X' handler={deleteAlert}/>
-          <button onClick={deleteAlert} >X</button>
         </div>}
     </div>
   );
