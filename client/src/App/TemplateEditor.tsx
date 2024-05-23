@@ -48,7 +48,6 @@ const TemplateEditor = ({
           <>
             <h3>Name: {template.name}</h3>
             <Button content="Edit Name" />
-            <button onClick={() => setAddNameOpen(true)}>Edit Name</button>
           </>
         )
       )}
