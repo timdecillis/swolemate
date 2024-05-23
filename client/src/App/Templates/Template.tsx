@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
 import { deleteTemplateRequest } from './templatesSlice';
 import Button from '../Button';
+import { useCustomDispatch } from '../../Utilities/handlers';
 
 interface TemplateProps {
   index: number;
@@ -17,6 +18,7 @@ interface TemplateProps {
 const Template = ({ index, template, string }: TemplateProps) => {
 
   const dispatch = useDispatch();
+  const customDispatch = useCustomDispatch();
   const user = useSelector(getUser);
 
   const [editOpen, setEditOpen] = useState<boolean>(false);
@@ -28,11 +30,6 @@ const Template = ({ index, template, string }: TemplateProps) => {
     setTimeout(() => {
       setCopiedOpen(false);
     }, 1800)
-  };
-
-  const deleteAlert = () => {
-    const result = window.confirm('Are you sure you want to permanently delete this template?');
-    if (result) dispatch(deleteTemplateRequest({ id: template.id, user }));
   };
 
   return (
@@ -49,7 +46,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
             setEditOpen(true);
           }
           } >Edit</button>
-          <Button content='X' handler={deleteAlert}/>
+          <Button content='X' handler={() => user && customDispatch.deleteAlert(template.id, user)}/>
         </div>}
     </div>
   );
