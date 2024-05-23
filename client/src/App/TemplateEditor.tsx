@@ -54,7 +54,7 @@ const TemplateEditor = ({
       {template.string.length > 0 && (
         <div>Template content: {renderString(template)}</div>
       )}
-      <button onClick={handleClick}>Delete last</button>
+      <Button handler={handleClick} content="Delete last"/>
       {paletteOpen && (
         <EditorPalette
           setPaletteOpen={setPaletteOpen}
