@@ -6,6 +6,7 @@ import { TemplateType } from './TemplateEditor/newTemplateSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
 import { deleteTemplateRequest } from './templatesSlice';
+import Button from '../Button';
 
 interface TemplateProps {
   index: number;
@@ -48,6 +49,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
             setEditOpen(true);
           }
           } >Edit</button>
+          <Button content='X' handler={deleteAlert}/>
           <button onClick={deleteAlert} >X</button>
         </div>}
     </div>
