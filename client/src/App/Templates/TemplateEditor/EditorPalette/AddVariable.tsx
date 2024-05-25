@@ -37,20 +37,22 @@ const AddVariable = ({
         setTemplate={setTemplate}
       />
       <h4>Create a new variable:</h4>
-      <input
-        onClick={() => setErrorOpen(false)}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-        placeholder="Variable name"
-      ></input>
-      <input
-        onClick={() => setErrorOpen(false)}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Variable content"
-      ></input>
-      {errorOpen && <div>Please enter a variable name and content!</div>}
-      <button onClick={() => setNewVariableOpen(false)}>Cancel</button>
+      <form>
+        <input
+          onClick={() => setErrorOpen(false)}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          placeholder="Variable name"
+        ></input>
+        <input
+          onClick={() => setErrorOpen(false)}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Variable content"
+        ></input>
+        {errorOpen && <div>Please enter a variable name and content!</div>}
+        <button onClick={() => setNewVariableOpen(false)}>Cancel</button>
+      </form>
       <button
         onClick={() => {
           if (!name || !content) return setErrorOpen(true);
