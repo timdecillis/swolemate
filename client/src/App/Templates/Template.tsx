@@ -3,7 +3,7 @@ import { useState, } from 'react';
 import TemplateEditor from '../TemplateEditor';
 
 import { TemplateType } from './TemplateEditor/newTemplateSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
 import { deleteTemplateRequest } from './templatesSlice';
 import Button from '../Button';
@@ -17,7 +17,6 @@ interface TemplateProps {
 
 const Template = ({ index, template, string }: TemplateProps) => {
 
-  const dispatch = useDispatch();
   const customDispatch = useCustomDispatch();
   const user = useSelector(getUser);
 
