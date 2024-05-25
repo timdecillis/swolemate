@@ -22,7 +22,6 @@ const EditorPalette = ({
   setEditOpen,
   setPaletteOpen,
 }: EditorPaletteProps) => {
-
   const customDispatch = useCustomDispatch();
   const user = useSelector(getUser);
 
@@ -86,7 +85,7 @@ const EditorPalette = ({
         </button>
       )}
 
-      {<Variables setTemplate={setTemplate} template={template} />}
+      <Variables setTemplate={setTemplate} template={template} />
       <Button content="Discard Template/Cancel Edit" handler={discard} />
       <Button handler={saveNewTemplate} content="Save Template" />
       <h2> </h2>
