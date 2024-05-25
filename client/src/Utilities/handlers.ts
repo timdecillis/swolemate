@@ -3,14 +3,12 @@ import { useDispatch } from "react-redux";
 import {
   setNewTemplateOpen,
   setAddNameOpen,
-  getLoading,
-  getNewTemplateOpen,
   setPaletteOpen,
   setTemplates,
   deleteTemplateRequest,
 } from "../App/Templates/templatesSlice";
 import { clearNewTemplate } from "../App/Templates/TemplateEditor/newTemplateSlice";
-import { getSignedIn, getUser, setSignedIn, login } from "../App/userSlice";
+import { setSignedIn, login } from "../App/userSlice";
 
 export const useCustomDispatch = () => {
   const dispatch = useDispatch();
