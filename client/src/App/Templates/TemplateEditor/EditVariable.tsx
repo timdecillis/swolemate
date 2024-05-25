@@ -15,7 +15,7 @@ const EditVariable = ({ setEditVariableOpen, variable, setTemplate, template }: 
   const [variableName, setVariableName] = useState<string>('');
   const [variableContent, setVariableContent] = useState<string>('');
 
-  const onSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     let prevName = '';
     let name = '';
@@ -50,7 +50,7 @@ const EditVariable = ({ setEditVariableOpen, variable, setTemplate, template }: 
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <input onChange={(e) => setVariableName(e.target.value)} type='text' defaultValue={variable[0]}></input>
         <input onChange={(e) => setVariableContent(e.target.value)} type='text' defaultValue={variable[1]}></input>
         <button type='submit'>Save</button>
