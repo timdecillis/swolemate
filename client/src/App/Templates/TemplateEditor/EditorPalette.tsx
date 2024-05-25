@@ -1,11 +1,10 @@
 import { useState, SyntheticEvent, SetStateAction } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Variables from "./Variables";
 import AddVariable from "./EditorPalette/AddVariable";
 
-import { setNewTemplateOpen } from "../templatesSlice";
-import { postNewTemplate, TemplateType } from "./newTemplateSlice";
+import { TemplateType } from "./newTemplateSlice";
 import { getUser } from "../../userSlice";
 import Button from "../../Button";
 import { useCustomDispatch } from "../../../Utilities/handlers";
@@ -23,7 +22,7 @@ const EditorPalette = ({
   setEditOpen,
   setPaletteOpen,
 }: EditorPaletteProps) => {
-  const dispatch = useDispatch();
+
   const customDispatch = useCustomDispatch();
   const user = useSelector(getUser);
 
