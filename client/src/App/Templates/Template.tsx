@@ -5,7 +5,6 @@ import TemplateEditor from '../TemplateEditor';
 import { TemplateType } from './TemplateEditor/newTemplateSlice';
 import { useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
-import { deleteTemplateRequest } from './templatesSlice';
 import Button from '../Button';
 import { useCustomDispatch } from '../../Utilities/handlers';
 
