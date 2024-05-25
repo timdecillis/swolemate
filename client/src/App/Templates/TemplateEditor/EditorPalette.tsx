@@ -8,6 +8,7 @@ import { setNewTemplateOpen } from "../templatesSlice";
 import { postNewTemplate, TemplateType } from "./newTemplateSlice";
 import { getUser } from "../../userSlice";
 import Button from "../../Button";
+import { useCustomDispatch } from "../../../Utilities/handlers";
 
 type EditorPaletteProps = {
   template: TemplateType;
@@ -23,6 +24,7 @@ const EditorPalette = ({
   setPaletteOpen,
 }: EditorPaletteProps) => {
   const dispatch = useDispatch();
+  const customDispatch = useCustomDispatch();
   const user = useSelector(getUser);
 
   const [newVariableOpen, setNewVariableOpen] = useState<boolean>(false);
@@ -41,11 +43,10 @@ const EditorPalette = ({
     setEditOpen(false);
   };
 
-  const handleDiscard = () => {
-    dispatch(setNewTemplateOpen({ condition: false }));
+  const discard = () => {
+    customDispatch.handleDiscard();
     setTemplate({ id: 0, name: "", string: [], variables: {} });
     setPaletteOpen(false);
-    setEditOpen(false);
   };
 
   return (
@@ -86,7 +87,7 @@ const EditorPalette = ({
       )}
 
       {<Variables setTemplate={setTemplate} template={template} />}
-      <Button content="Discard Template/Cancel Edit" handler={handleDiscard} />
+      <Button content="Discard Template/Cancel Edit" handler={discard} />
       <button onClick={saveNewTemplate}>Save Template</button>
       <h2> </h2>
     </>

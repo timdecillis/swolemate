@@ -34,9 +34,7 @@ export const useCustomDispatch = () => {
 
   const handleDiscard = () => {
     dispatch(setNewTemplateOpen({ condition: false }));
-    setTemplate({ id: 0, name: "", string: [], variables: {} });
     setPaletteOpen(false);
-    setEditOpen(false);
   };
 
   return { handleAddTemplate, handleSignOut, deleteAlert, handleDiscard };
