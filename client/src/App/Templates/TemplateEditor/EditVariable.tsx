@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent, SetStateAction } from 'react';
 
 import { TemplateType } from './newTemplateSlice';
+import Button from '../../Button';
 
 interface EditVariableProps {
   setEditVariableOpen: React.Dispatch<SetStateAction<boolean>>;
@@ -54,7 +55,7 @@ const EditVariable = ({ setEditVariableOpen, variable, setTemplate, template }: 
         <input onChange={(e) => setVariableContent(e.target.value)} type='text' defaultValue={variable[1]}></input>
         <button type='submit'>Save</button>
       </form>
-      <button onClick={() => setEditVariableOpen(false)} >Cancel</button>
+      <Button handler={() => setEditVariableOpen(false)} content='Cancel'/>
     </>
   )
 }
