@@ -38,9 +38,10 @@ const EditorPalette = ({
   };
 
   const saveNewTemplate = () => {
-    dispatch(postNewTemplate({ user, template }));
-    dispatch(setNewTemplateOpen({ condition: false }));
-    setEditOpen(false);
+    if (user !== null) {
+      customDispatch.handleSaveNewTemplate(user, template);
+      setEditOpen(false);
+    }
   };
 
   const discard = () => {
@@ -88,7 +89,7 @@ const EditorPalette = ({
 
       {<Variables setTemplate={setTemplate} template={template} />}
       <Button content="Discard Template/Cancel Edit" handler={discard} />
-      <Button handler={saveNewTemplate} content='Save Template'/>
+      <Button handler={saveNewTemplate} content="Save Template" />
       <h2> </h2>
     </>
   );

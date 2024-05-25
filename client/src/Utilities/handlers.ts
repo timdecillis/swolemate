@@ -43,5 +43,5 @@ export const useCustomDispatch = () => {
     dispatch(setNewTemplateOpen({ condition: false }));
   };
 
-  return { handleAddTemplate, handleSignOut, handleDeleteAlert, handleDiscard };
+  return { handleAddTemplate, handleSignOut, handleDeleteAlert, handleDiscard, handleSaveNewTemplate };
 };
