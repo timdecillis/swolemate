@@ -32,5 +32,12 @@ export const useCustomDispatch = () => {
     if (result) dispatch(deleteTemplateRequest({ id, user }));
   };
 
-  return { handleAddTemplate, handleSignOut, deleteAlert };
+  const handleDiscard = () => {
+    dispatch(setNewTemplateOpen({ condition: false }));
+    setTemplate({ id: 0, name: "", string: [], variables: {} });
+    setPaletteOpen(false);
+    setEditOpen(false);
+  };
+
+  return { handleAddTemplate, handleSignOut, deleteAlert, handleDiscard };
 };
