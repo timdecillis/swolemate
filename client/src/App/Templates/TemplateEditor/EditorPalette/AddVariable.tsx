@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, SyntheticEvent, useState } from "react";
 
 import { TemplateType } from "../newTemplateSlice";
 
@@ -29,6 +29,13 @@ const AddVariable = ({
     });
   };
 
+  const handleSubmit = (e:SyntheticEvent) => {
+    e.preventDefault();
+    if (!name || !content) return setErrorOpen(true);
+    addNewVariable();
+    setNewVariableOpen(false);
+  };
+
   return (
     <>
       <ExistingVariableChoices
@@ -37,29 +44,23 @@ const AddVariable = ({
         setTemplate={setTemplate}
       />
       <h4>Create a new variable:</h4>
-      <input
-        onClick={() => setErrorOpen(false)}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-        placeholder="Variable name"
-      ></input>
-      <input
-        onClick={() => setErrorOpen(false)}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Variable content"
-      ></input>
-      {errorOpen && <div>Please enter a variable name and content!</div>}
-      <button onClick={() => setNewVariableOpen(false)}>Cancel</button>
-      <button
-        onClick={() => {
-          if (!name || !content) return setErrorOpen(true);
-          addNewVariable();
-          setNewVariableOpen(false);
-        }}
-      >
-        Add to template
-      </button>
+      <form onSubmit={handleSubmit}>
+        <input
+          onClick={() => setErrorOpen(false)}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          placeholder="Variable name"
+        ></input>
+        <input
+          onClick={() => setErrorOpen(false)}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Variable content"
+        ></input>
+        <input type='submit' value='Add to Template'></input>
+        {errorOpen && <div>Please enter a variable name and content!</div>}
+        <button onClick={() => setNewVariableOpen(false)}>Cancel</button>
+      </form>
     </>
   );
 };

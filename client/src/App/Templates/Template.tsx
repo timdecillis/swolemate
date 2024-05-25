@@ -3,9 +3,8 @@ import { useState, } from 'react';
 import TemplateEditor from '../TemplateEditor';
 
 import { TemplateType } from './TemplateEditor/newTemplateSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getUser } from '../userSlice';
-import { deleteTemplateRequest } from './templatesSlice';
 import Button from '../Button';
 import { useCustomDispatch } from '../../Utilities/handlers';
 
@@ -17,7 +16,6 @@ interface TemplateProps {
 
 const Template = ({ index, template, string }: TemplateProps) => {
 
-  const dispatch = useDispatch();
   const customDispatch = useCustomDispatch();
   const user = useSelector(getUser);
 
@@ -46,7 +44,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
             setEditOpen(true);
           }
           } >Edit</button>
-          <Button content='X' handler={() => user && customDispatch.deleteAlert(template.id, user)}/>
+          <Button content='X' handler={() => user && customDispatch.handleDeleteAlert(template.id, user)}/>
         </div>}
     </div>
   );

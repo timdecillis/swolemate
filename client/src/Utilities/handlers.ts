@@ -1,16 +1,15 @@
 import { useDispatch } from "react-redux";
+import { postNewTemplate, TemplateType } from "../App/Templates/TemplateEditor/newTemplateSlice";
 
 import {
   setNewTemplateOpen,
   setAddNameOpen,
-  getLoading,
-  getNewTemplateOpen,
   setPaletteOpen,
   setTemplates,
   deleteTemplateRequest,
 } from "../App/Templates/templatesSlice";
 import { clearNewTemplate } from "../App/Templates/TemplateEditor/newTemplateSlice";
-import { getSignedIn, getUser, setSignedIn, login } from "../App/userSlice";
+import { setSignedIn, login } from "../App/userSlice";
 
 export const useCustomDispatch = () => {
   const dispatch = useDispatch();
@@ -29,10 +28,20 @@ export const useCustomDispatch = () => {
     dispatch(setTemplates([]));
   }
 
-  const deleteAlert = (id: number, user: string) => {
+  const handleDeleteAlert = (id: number, user: string) => {
     const result = window.confirm('Are you sure you want to permanently delete this template?');
     if (result) dispatch(deleteTemplateRequest({ id, user }));
   };
 
-  return { handleAddTemplate, handleSignOut, deleteAlert };
+  const handleDiscard = () => {
+    dispatch(setNewTemplateOpen({ condition: false }));
+    setPaletteOpen(false);
+  };
+
+  const handleSaveNewTemplate = (user: string, template: TemplateType) => {
+    dispatch(postNewTemplate({ user, template }));
+    dispatch(setNewTemplateOpen({ condition: false }));
+  };
+
+  return { handleAddTemplate, handleSignOut, handleDeleteAlert, handleDiscard, handleSaveNewTemplate };
 };
