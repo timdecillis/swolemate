@@ -88,7 +88,7 @@ const EditorPalette = ({
 
       {<Variables setTemplate={setTemplate} template={template} />}
       <Button content="Discard Template/Cancel Edit" handler={discard} />
-      <button onClick={saveNewTemplate}>Save Template</button>
+      <Button handler={saveNewTemplate} content='Save Template'/>
       <h2> </h2>
     </>
   );

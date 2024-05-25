@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { postNewTemplate, TemplateType } from "../App/Templates/TemplateEditor/newTemplateSlice";
 
 import {
   setNewTemplateOpen,
@@ -35,6 +36,11 @@ export const useCustomDispatch = () => {
   const handleDiscard = () => {
     dispatch(setNewTemplateOpen({ condition: false }));
     setPaletteOpen(false);
+  };
+
+  const handleSaveNewTemplate = (user: string, template: TemplateType) => {
+    dispatch(postNewTemplate({ user, template }));
+    dispatch(setNewTemplateOpen({ condition: false }));
   };
 
   return { handleAddTemplate, handleSignOut, handleDeleteAlert, handleDiscard };
