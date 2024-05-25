@@ -27,7 +27,7 @@ export const useCustomDispatch = () => {
     dispatch(setTemplates([]));
   }
 
-  const deleteAlert = (id: number, user: string) => {
+  const handleDeleteAlert = (id: number, user: string) => {
     const result = window.confirm('Are you sure you want to permanently delete this template?');
     if (result) dispatch(deleteTemplateRequest({ id, user }));
   };
@@ -37,5 +37,5 @@ export const useCustomDispatch = () => {
     setPaletteOpen(false);
   };
 
-  return { handleAddTemplate, handleSignOut, deleteAlert, handleDiscard };
+  return { handleAddTemplate, handleSignOut, handleDeleteAlert, handleDiscard };
 };

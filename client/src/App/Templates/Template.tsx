@@ -44,7 +44,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
             setEditOpen(true);
           }
           } >Edit</button>
-          <Button content='X' handler={() => user && customDispatch.deleteAlert(template.id, user)}/>
+          <Button content='X' handler={() => user && customDispatch.handleDeleteAlert(template.id, user)}/>
         </div>}
     </div>
   );
