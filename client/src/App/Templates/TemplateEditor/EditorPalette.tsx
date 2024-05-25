@@ -7,6 +7,7 @@ import AddVariable from './EditorPalette/AddVariable';
 import { setNewTemplateOpen } from '../templatesSlice';
 import { postNewTemplate, TemplateType } from './newTemplateSlice';
 import { getUser } from '../../userSlice';
+import Button from '../../Button';
 
 type EditorPaletteProps = {
   template: TemplateType;
@@ -46,7 +47,7 @@ const EditorPalette = ({ template, setTemplate, setEditOpen, setPaletteOpen }: E
         setInput('');
       }} >
         <input value={input} onChange={e => setInput(e.target.value)} type='text' ></input>
-        <button type='submit'>Add to template</button>
+        <Button type='submit' content='Add to template' />
       </form>
 
       {errorOpen && <div>Please enter some text to add!</div>}
