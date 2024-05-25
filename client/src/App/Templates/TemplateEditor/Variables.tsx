@@ -10,8 +10,6 @@ type VariablesProps = {
 
 const Variables = ({ template, setTemplate }: VariablesProps) => {
 
-  console.log('template:', template)
-
   const [editVariableOpen, setEditVariableOpen] = useState<boolean>(false);
   const [variable, setVariable] = useState<string[]>([]);
 
