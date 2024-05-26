@@ -40,10 +40,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
           <h4>{string}</h4>
           {copiedOpen && <div>template copied to clipboard</div>}
           <Button handler={copy} content='Copy'/>
-          <button onClick={() => {
-            setEditOpen(true);
-          }
-          } >Edit</button>
+          <Button handler={() => setEditOpen(true)} content='Edit'/>
           <Button content='X' handler={() => user && customDispatch.handleDeleteAlert(template.id, user)}/>
         </div>}
     </div>
