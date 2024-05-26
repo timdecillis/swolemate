@@ -22,8 +22,8 @@ const Template = ({ index, template, string }: TemplateProps) => {
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [copiedOpen, setCopiedOpen] = useState<boolean>(false);
 
-  const copy = (text: string) => {
-    navigator.clipboard.writeText(text);
+  const copy = () => {
+    navigator.clipboard.writeText(string);
     setCopiedOpen(true);
     setTimeout(() => {
       setCopiedOpen(false);
@@ -39,11 +39,8 @@ const Template = ({ index, template, string }: TemplateProps) => {
           <h3>{index + 1}.) {template.name}</h3>
           <h4>{string}</h4>
           {copiedOpen && <div>template copied to clipboard</div>}
-          <button onClick={() => copy(string)} >Copy</button>
-          <button onClick={() => {
-            setEditOpen(true);
-          }
-          } >Edit</button>
+          <Button handler={copy} content='Copy'/>
+          <Button handler={() => setEditOpen(true)} content='Edit'/>
           <Button content='X' handler={() => user && customDispatch.handleDeleteAlert(template.id, user)}/>
         </div>}
     </div>
