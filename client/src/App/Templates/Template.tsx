@@ -39,7 +39,7 @@ const Template = ({ index, template, string }: TemplateProps) => {
           <h3>{index + 1}.) {template.name}</h3>
           <h4>{string}</h4>
           {copiedOpen && <div>template copied to clipboard</div>}
-          <button onClick={copy} >Copy</button>
+          <Button handler={copy} content='Copy'/>
           <button onClick={() => {
             setEditOpen(true);
           }
