@@ -2,6 +2,7 @@ import { SetStateAction, useState } from "react";
 
 import EditVariable from "./EditVariable";
 import { TemplateType } from "./newTemplateSlice";
+import Button from "../../Button";
 
 type VariablesProps = {
   template: TemplateType;
@@ -22,7 +23,7 @@ const Variables = ({ template, setTemplate }: VariablesProps) => {
       <div key={i}>
         <div>Name: {entry[0]}</div>
         <div>Content: {entry[1]}</div>
-        <button onClick={() => handleEdit(entry)}>Edit</button>
+        <Button handler={() => handleEdit(entry)} content="Edit"/>
         <h1> </h1>
       </div>
     );
