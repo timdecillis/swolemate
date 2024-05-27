@@ -16,6 +16,11 @@ const ExistingVariableChoices = ({ template, setTemplate, setNewVariableOpen }: 
     setTemplate({ ...template, string: prevString });
   }
 
+  const handleInsert = (existing: string) => {
+    addExistingVariable(existing);
+    setNewVariableOpen(false);
+  }
+
   return (
     <>
       {Object.keys(template.variables).length > 0 && (
@@ -25,11 +30,7 @@ const ExistingVariableChoices = ({ template, setTemplate, setNewVariableOpen }: 
             return (
               <div key={i} >
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
-                <Button handler={handleInsert} content='Insert'/>
-                <button onClick={() => {
-                  addExistingVariable(tuple[0]);
-                  setNewVariableOpen(false);
-                }} >Insert</button>
+                <Button handler={() => handleInsert(tuple[0])} content='Insert'/>
               </div>
             );
           })}
