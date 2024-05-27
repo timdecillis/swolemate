@@ -1,3 +1,4 @@
+import Button from '../../../Button';
 import { TemplateType } from '../newTemplateSlice';
 import { SetStateAction } from 'react';
 
@@ -24,6 +25,7 @@ const ExistingVariableChoices = ({ template, setTemplate, setNewVariableOpen }: 
             return (
               <div key={i} >
                 <div>Name: {tuple[0]} Content: {tuple[1]}</div>
+                <Button handler={handleInsert} content='Insert'/>
                 <button onClick={() => {
                   addExistingVariable(tuple[0]);
                   setNewVariableOpen(false);
