@@ -31,7 +31,7 @@ const Variables = ({ template, setTemplate }: VariablesProps) => {
 
   return (
     <div>
-      <h3>Variableszzz</h3>
+      <h3>Variables</h3>
       {variables}
       {editVariableOpen && (
         <EditVariable
