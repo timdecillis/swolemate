@@ -65,7 +65,7 @@ const EditVariable = ({
           type="text"
           defaultValue={variable[1]}
         ></input>
-        <button type="submit">Save</button>
+        <Button type="submit" content="Save" />
       </form>
       <Button handler={() => setEditVariableOpen(false)} content="Cancel" />
     </>
