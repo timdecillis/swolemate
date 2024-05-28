@@ -1,12 +1,12 @@
-import { useState, } from 'react';
+import { useState } from "react";
 
-import TemplateEditor from '../TemplateEditor';
+import TemplateEditor from "../TemplateEditor";
 
-import { TemplateType } from './TemplateEditor/newTemplateSlice';
-import { useSelector } from 'react-redux';
-import { getUser } from '../userSlice';
-import Button from '../Button';
-import { useCustomDispatch } from '../../Utilities/handlers';
+import { TemplateType } from "./TemplateEditor/newTemplateSlice";
+import { useSelector } from "react-redux";
+import { getUser } from "../userSlice";
+import Button from "../Button";
+import { useCustomDispatch } from "../../Utilities/handlers";
 
 interface TemplateProps {
   index: number;
@@ -15,7 +15,6 @@ interface TemplateProps {
 }
 
 const Template = ({ index, template, string }: TemplateProps) => {
-
   const customDispatch = useCustomDispatch();
   const user = useSelector(getUser);
 
@@ -27,25 +26,32 @@ const Template = ({ index, template, string }: TemplateProps) => {
     setCopiedOpen(true);
     setTimeout(() => {
       setCopiedOpen(false);
-    }, 1800)
+    }, 1800);
   };
 
   return (
-    <div className='template'>
-      {editOpen ?
+    <div className="template">
+      {editOpen ? (
         <TemplateEditor setEditOpen={setEditOpen} existingTemplate={template} />
-        :
+      ) : (
         <div>
-          <h3>{index + 1}.) {template.name}</h3>
+          <h3>
+            {index + 1}.) {template.name}
+          </h3>
           <h4>{string}</h4>
           {copiedOpen && <div>template copied to clipboard</div>}
-          <Button handler={copy} content='Copy'/>
-          <Button handler={() => setEditOpen(true)} content='Edit'/>
-          <Button content='X' handler={() => user && customDispatch.handleDeleteAlert(template.id, user)}/>
-        </div>}
+          <Button handler={copy} content="Copy" />
+          <Button handler={() => setEditOpen(true)} content="Edit" />
+          <Button
+            content="X"
+            handler={() =>
+              user && customDispatch.handleDeleteAlert(template.id, user)
+            }
+          />
+        </div>
+      )}
     </div>
   );
-
-}
+};
 
 export default Template;
