@@ -23,7 +23,7 @@ const Variables = ({ template, setTemplate }: VariablesProps) => {
       <div key={i}>
         <div>Name: {entry[0]}</div>
         <div>Content: {entry[1]}</div>
-        <Button handler={() => handleEdit(entry)} content="Edit"/>
+        <Button handler={() => handleEdit(entry)} content="Edit" />
         <h1> </h1>
       </div>
     );
@@ -31,7 +31,7 @@ const Variables = ({ template, setTemplate }: VariablesProps) => {
 
   return (
     <div>
-      <h3>Variableszzz</h3>
+      <h3>Variables</h3>
       {variables}
       {editVariableOpen && (
         <EditVariable
