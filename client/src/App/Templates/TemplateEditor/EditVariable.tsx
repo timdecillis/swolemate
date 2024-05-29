@@ -16,8 +16,8 @@ const EditVariable = ({
   setTemplate,
   template,
 }: EditVariableProps) => {
-  const [variableName, setVariableName] = useState<string>("");
-  const [variableContent, setVariableContent] = useState<string>("");
+  let [variableName, setVariableName] = useState<string>("");
+  let [variableContent, setVariableContent] = useState<string>("");
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -40,9 +40,12 @@ const EditVariable = ({
     let string = [...template.string];
     let variables = { ...template.variables };
     if (prevName) {
-      string.forEach((item: string | string[]) => {
-        if (Array.isArray(item) && item[0] === prevName) item[0] = name;
+      string.forEach((item: string | string[], i) => {
+        if (Array.isArray(item) && item[0] === prevName) {
+          (item as string[])[0] = name;
+        }
       });
+
       delete variables[prevName];
       variables[name] = content;
     } else {
