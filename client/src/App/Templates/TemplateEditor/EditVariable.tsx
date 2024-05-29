@@ -40,13 +40,12 @@ const EditVariable = ({
     let string = [...template.string];
     let variables = { ...template.variables };
     if (prevName) {
-      string.forEach((item: string | string[]) => {
+      string.forEach((item: string | string[], i) => {
         if (Array.isArray(item) && item[0] === prevName) {
-          console.log('first error')
-          item[0] = name;
-          console.log('second error')
+          (item as string[])[0] = name;
         }
       });
+
       delete variables[prevName];
       variables[name] = content;
     } else {
