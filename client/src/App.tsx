@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 
-// import './App.css';
 import "./styles.css";
 import Templates from "./App/Templates";
 import SignIn from "./App/SignIn";
