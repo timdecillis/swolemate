@@ -4,10 +4,12 @@ import "./styles.css";
 import Templates from "./App/Templates";
 import SignIn from "./App/SignIn";
 import TemplateEditor from "./App/TemplateEditor";
-import Button from "./App/Button";
+// import Button from "./App/Button";
 import { getSignedIn, getUser } from "./App/userSlice";
 import { getLoading, getNewTemplateOpen } from "./App/Templates/templatesSlice";
 import { useCustomDispatch } from "./Utilities/handlers";
+import Button from '@mui/material/Button';
+
 
 function App() {
   const loading = useSelector(getLoading);
@@ -22,7 +24,7 @@ function App() {
       <div className="App">
         {user && <h4 className="user-header">Welcome, {user}!</h4>}
         <div className="App-Template">
-          {signedIn ? (
+          {/* {signedIn ? (
             <>
               <Templates />
               {!newTemplateOpen ? (
@@ -41,8 +43,9 @@ function App() {
             </>
           ) : (
             <SignIn />
-          )}
+          )} */}
         </div>
+        <Button>Hello</Button>
       </div>
     </div>
   );
