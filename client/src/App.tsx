@@ -8,7 +8,7 @@ import TemplateEditor from "./App/TemplateEditor";
 import { getSignedIn, getUser } from "./App/userSlice";
 import { getLoading, getNewTemplateOpen } from "./App/Templates/templatesSlice";
 import { useCustomDispatch } from "./Utilities/handlers";
-import { Button, Input } from "@mui/material";
+import { Button, Input, BottomNavigation, Link } from "@mui/material";
 
 function App() {
   const loading = useSelector(getLoading);
@@ -46,6 +46,9 @@ function App() {
         </div>
         <Input/>
         <Button variant="contained">Hello</Button>
+        <BottomNavigation>
+          <Link>Foo</Link>
+        </BottomNavigation>
       </div>
     </div>
   );
