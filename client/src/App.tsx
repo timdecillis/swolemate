@@ -47,7 +47,7 @@ function App() {
         <Input/>
         <Button variant="contained">Hello</Button>
         <BottomNavigation>
-          <Link>Foo</Link>
+          <Link>Account</Link>
         </BottomNavigation>
       </div>
     </div>
