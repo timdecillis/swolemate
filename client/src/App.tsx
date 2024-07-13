@@ -48,6 +48,8 @@ function App() {
         <Button variant="contained">Hello</Button>
         <BottomNavigation>
           <Link>Account</Link>
+          <Link>Templates</Link>
+          <Link>Support</Link>
         </BottomNavigation>
       </div>
     </div>
